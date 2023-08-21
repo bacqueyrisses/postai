@@ -10,7 +10,6 @@ export default function Home() {
       <Header />
       <main className="">
         <Hero />
-        <Locations />
       </main>
     </>
   );
