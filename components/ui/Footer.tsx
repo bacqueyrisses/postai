@@ -7,17 +7,17 @@ export default function Footer() {
       <Link href={"https://www.bacqueyrisses.dev/"} target={"_blank"}>
         ✦ Made with love by Enzo ✦
       </Link>
-      <Link
-        href={"https://www.buymeacoffee.com/bacqueyrisses"}
-        target={"_blank"}
-      >
-        <Image
-          src={"/buymeacoffee.png"}
-          width={80}
-          height={10}
-          alt={"Enzo Bacqueyrisses' Buy Me a Coffee logo"}
-        />
-      </Link>
+      {/*<Link*/}
+      {/*  href={"https://www.buymeacoffee.com/bacqueyrisses"}*/}
+      {/*  target={"_blank"}*/}
+      {/*>*/}
+      {/*  <Image*/}
+      {/*    src={"/buymeacoffee.png"}*/}
+      {/*    width={80}*/}
+      {/*    height={10}*/}
+      {/*    alt={"Enzo Bacqueyrisses' Buy Me a Coffee logo"}*/}
+      {/*  />*/}
+      {/*</Link>*/}
     </div>
   );
 }
