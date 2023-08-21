@@ -21,7 +21,7 @@ export default function Hero() {
           alt={""}
           width={65}
           height={65}
-          className={"-mt-2 inline"}
+          className={"-mt-2 -mx-1 inline"}
         />{" "}
         location-based{" "}
         <Image
