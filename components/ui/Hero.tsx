@@ -5,9 +5,20 @@ export default function Hero() {
         "h-screen flex flex-col justify-between text-4xl text-center pb-10 pt-32"
       }
     >
-      <div className={"flex flex-col text-5xl gap-1"}>
-        <div>Create your virtual</div>
-        <div>location-based ai-generated</div>
+      <div className={"group inline-block relative text-5xl gap-1"}>
+        <div className="group inline-block relative">
+          Create
+          <span
+            className={
+              "absolute left-0 transition-transform transform translate-x-0 group-hover:translate-x-20"
+            }
+          >
+            your virtual
+          </span>
+        </div>
+        <div>
+          location-based <span>ai-generated</span>
+        </div>
         <div>postcard</div>
       </div>
       <div className={"flex flex-col gap-16"}>
@@ -57,14 +68,14 @@ export default function Hero() {
           </div>
           <div
             className={
-              "col-span-5 border-green-600 text-green-600 border-3 rounded-full px-2.5 py-4 hover:bg-green-600 hover:text-white"
+              "col-span-5 border-green-600 text-green-600 border-3 rounded-full px-2.5 py-4 hover:bg-green-600 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             washington
           </div>
           <div
             className={
-              "col-span-2 border-emerald-700 text-emerald-700 border-3 rounded-full px-2.5 py-4 hover:bg-emerald-700 hover:text-white"
+              "col-span-2 border-emerald-700 text-emerald-700 border-3 rounded-full px-2.5 py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             toronto
