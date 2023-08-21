@@ -29,28 +29,28 @@ export default function Hero() {
           </div>
           <div
             className={
-              "col-span-3 bg-orange-400 text-white rounded-full px-2.5 py-4 hover:border-3 hover:border-orange-400 hover:text-orange-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+              "col-span-3 bg-orange-400 text-white rounded-full px-2.5 py-4 border-3 border-orange-400 hover:text-orange-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             tokyo
           </div>
           <div
             className={
-              "col-span-5 bg-yellow-400 text-white rounded-full px-2.5 py-4 hover:border-3 hover:border-yellow-400 hover:text-yellow-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+              "col-span-5 bg-yellow-400 text-white rounded-full px-2.5 py-4 border-3 border-yellow-400 hover:text-yellow-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             johannesburg
           </div>
           <div
             className={
-              "col-span-5 bg-red-500 text-white rounded-full px-2.5 py-4 hover:border-3 hover:border-red-500 hover:text-red-500 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+              "col-span-5 bg-red-500 text-white rounded-full px-2.5 py-4 border-3 border-red-500 hover:text-red-500 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             madrid
           </div>
           <div
             className={
-              "col-span-3 bg-blue-600 text-white rounded-full px-2.5 py-4 hover:border-3 hover:border-blue-600 hover:text-blue-600 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+              "col-span-3 bg-blue-600 text-white rounded-full px-2.5 py-4 border-3 border-blue-600 hover:text-blue-600 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             dublin
