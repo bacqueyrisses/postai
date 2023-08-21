@@ -30,7 +30,7 @@ export default function Hero() {
             alt={""}
             width={70}
             height={70}
-            className={"-mt-1 -mx-2 inline"}
+            className={"-mt-1 -mx-2.5 inline"}
           />{" "}
           postcard
         </div>
