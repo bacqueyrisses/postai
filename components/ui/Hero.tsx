@@ -82,10 +82,30 @@ export default function Hero() {
         <div className={"grid grid-cols-10 gap-5"}>
           <div
             className={
-              "col-span-4 border-3 border-pink-300 text-pink-300 rounded-full px-2.5 py-4 hover:bg-pink-300 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
+              "col-span-4 border-3 border-pink-300 text-pink-300 rounded-full px-2.5 py-4 hover:bg-pink-300 hover:text-white transition-colors ease-in-out cursor-pointer duration-300 inline-flex items-baseline justify-center gap-2"
             }
           >
-            current location
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+              />
+            </svg>
+
+            <div>current location</div>
           </div>
           <div
             className={
