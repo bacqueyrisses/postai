@@ -15,56 +15,56 @@ export default function Hero() {
         <div className={"grid grid-cols-10 gap-5"}>
           <div
             className={
-              "col-span-4 border-3 border-pink-300 text-pink-300 rounded-full px-2.5 py-5"
+              "col-span-4 border-3 border-pink-300 text-pink-300 rounded-full px-2.5 py-4 hover:bg-pink-300 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             current location
           </div>
           <div
             className={
-              "col-span-3 border-3 border-emerald-700 text-emerald-700 rounded-full px-2.5 py-5"
+              "col-span-3 border-3 border-emerald-700 text-emerald-700 rounded-full px-2.5 py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             paris
           </div>
           <div
             className={
-              "col-span-3 bg-orange-400 text-white rounded-full px-2.5 py-5"
+              "col-span-3 bg-orange-400 text-white rounded-full px-2.5 py-4 hover:border-3 hover:border-orange-400 hover:text-orange-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             tokyo
           </div>
           <div
             className={
-              "col-span-5 bg-yellow-400 text-white rounded-full px-2.5 py-5"
+              "col-span-5 bg-yellow-400 text-white rounded-full px-2.5 py-4 hover:border-3 hover:border-yellow-400 hover:text-yellow-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             johannesburg
           </div>
           <div
             className={
-              "col-span-5 bg-red-500 text-white rounded-full px-2.5 py-5"
+              "col-span-5 bg-red-500 text-white rounded-full px-2.5 py-4 hover:border-3 hover:border-red-500 hover:text-red-500 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             madrid
           </div>
           <div
             className={
-              "col-span-3 bg-blue-600  text-white rounded-full px-2.5 py-5"
+              "col-span-3 bg-blue-600 text-white rounded-full px-2.5 py-4 hover:border-3 hover:border-blue-600 hover:text-blue-600 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
             dublin
           </div>
           <div
             className={
-              "col-span-5 border-green-600 text-green-600  border-3 rounded-full px-2.5 py-5"
+              "col-span-5 border-green-600 text-green-600 border-3 rounded-full px-2.5 py-4 hover:bg-green-600 hover:text-white"
             }
           >
             washington
           </div>
           <div
             className={
-              "col-span-2 border-emerald-700 text-emerald-700 border-3 rounded-full px-2.5 py-5"
+              "col-span-2 border-emerald-700 text-emerald-700 border-3 rounded-full px-2.5 py-4 hover:bg-emerald-700 hover:text-white"
             }
           >
             toronto
