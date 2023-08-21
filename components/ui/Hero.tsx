@@ -1,28 +1,84 @@
+import Image from "next/image";
+import { Raleway } from "next/font/google";
+
+const alegreya = Raleway({ subsets: ["latin"], weight: ["500"] });
+
 export default function Hero() {
   return (
-    <div
-      className={
-        "h-screen flex flex-col justify-between text-4xl text-center pb-10 pt-32"
-      }
-    >
-      <div className={"group inline-block relative text-5xl gap-1"}>
-        <div className="group inline-block relative">
-          Create
-          <span
-            className={
-              "absolute left-0 transition-transform transform translate-x-0 group-hover:translate-x-20"
-            }
-          >
-            your virtual
-          </span>
+    <div className={"flex flex-col text-6xl text-center pb-10 pt-32"}>
+      <div
+        className={`mb-28 mx-auto flex flex-col items-center ${alegreya.className}`}
+      >
+        <div>
+          Create your virtual{" "}
+          <Image
+            src={"/robot.webp"}
+            alt={""}
+            width={65}
+            height={65}
+            className={"-mt-2 inline"}
+          />{" "}
+          ai-generated
         </div>
         <div>
-          location-based <span>ai-generated</span>
+          &{" "}
+          <Image
+            src={"/compass.webp"}
+            alt={""}
+            width={65}
+            height={65}
+            className={"-mt-2 inline"}
+          />{" "}
+          location-based{" "}
+          <Image
+            src={"/burningheart.webp"}
+            alt={""}
+            width={70}
+            height={70}
+            className={"-mt-1 inline"}
+          />{" "}
+          postcard
         </div>
-        <div>postcard</div>
       </div>
-      <div className={"flex flex-col gap-16"}>
-        <div className={"self-start text-4xl pl-4"}>Popular locations</div>
+      {/*<div className={"flex flex-col group items-start mx-auto"}>*/}
+      {/*  <div className={"inline-flex justify-center relative gap-2"}>*/}
+      {/*    <div>Create your</div>*/}
+      {/*    <div className="inline-flex items-baseline relative">*/}
+      {/*      <div*/}
+      {/*        className={*/}
+      {/*          "absolute left-0 transition-transform transform translate-x-0 group-hover:translate-x-10 whitespace-nowrap"*/}
+      {/*        }*/}
+      {/*      >*/}
+      {/*        virtual*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+
+      {/*  <div className={"inline-flex justify-start relative gap-2"}>*/}
+      {/*    <div>ai-generated</div>*/}
+      {/*  </div>*/}
+
+      {/*  <div className={"inline-flex justify-start relative  gap-2"}>*/}
+      {/*    <div>&</div>*/}
+      {/*    <div className="inline-flex items-baseline relative">*/}
+      {/*      <div*/}
+      {/*        className={*/}
+      {/*          "absolute left-0 transition-transform transform translate-x-0 group-hover:translate-x-10 whitespace-nowrap"*/}
+      {/*        }*/}
+      {/*      >*/}
+      {/*        location-based*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+
+      {/*  <div className={"inline-flex justify-start relative  gap-1"}>*/}
+
+      {/*    <div>postcard</div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
+
+      <div className={"flex flex-col gap-10 text-4xl"}>
+        <div className={"self-start pl-4"}>🏝️ Popular locations</div>
         <div className={"grid grid-cols-10 gap-5"}>
           <div
             className={
@@ -78,7 +134,7 @@ export default function Hero() {
               "col-span-2 border-emerald-700 text-emerald-700 border-3 rounded-full px-2.5 py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
             }
           >
-            toronto
+            other
           </div>
         </div>
       </div>
