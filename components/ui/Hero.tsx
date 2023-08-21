@@ -1,14 +1,9 @@
 import Image from "next/image";
-import { Raleway } from "next/font/google";
-
-const alegreya = Raleway({ subsets: ["latin"], weight: ["500"] });
 
 export default function Hero() {
   return (
     <div className={"flex flex-col text-6xl text-center pb-10 pt-32"}>
-      <div
-        className={`mb-28 mx-auto flex flex-col items-center ${alegreya.className}`}
-      >
+      <div className={`mb-28 mx-auto flex flex-col items-center`}>
         <div>
           Create your virtual{" "}
           <Image

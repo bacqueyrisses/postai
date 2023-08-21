@@ -1,16 +1,9 @@
-import { Raleway } from "next/font/google";
-import Image from "next/image";
-
-const alegreya = Raleway({
-  subsets: ["latin"],
-  style: ["italic"],
-  weight: ["700"],
-});
+import { ralewayItalic } from "@/utils/fonts";
 
 export default function Header() {
   return (
     <div className={"flex items-center justify-between pt-5"}>
-      <div className={`text-3xl ${alegreya.className}`}>postai</div>
+      <div className={`text-3xl ${ralewayItalic.className}`}>postai</div>
       <div className={"flex gap-14 items-center"}>
         <div
           className={
