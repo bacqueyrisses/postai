@@ -1,9 +1,20 @@
 import { ralewayItalic } from "@/utils/fonts";
+import Image from "next/image";
 
 export default function Header() {
   return (
     <div className={"flex items-center justify-between pt-5"}>
-      <div className={`text-3xl ${ralewayItalic.className}`}>postai</div>
+      <div className={`text-3xl flex items-center  ${ralewayItalic.className}`}>
+        {" "}
+        <Image
+          src={"/logo.webp"}
+          alt={"logo postai"}
+          width={50}
+          height={50}
+          className={"inline mt-1"}
+        />
+        <div>postai</div>
+      </div>
       <div className={"flex gap-14 items-center"}>
         <div
           className={

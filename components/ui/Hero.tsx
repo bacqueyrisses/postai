@@ -7,7 +7,7 @@ export default function Hero() {
         Create your virtual{" "}
         <Image
           src={"/robot.webp"}
-          alt={""}
+          alt={"robot telemoji"}
           width={65}
           height={65}
           className={"-mt-2 inline"}
@@ -18,7 +18,7 @@ export default function Hero() {
         &{" "}
         <Image
           src={"/compass.webp"}
-          alt={""}
+          alt={"compass telemoji"}
           width={65}
           height={65}
           className={"-mt-2 -mx-1 inline"}
@@ -26,7 +26,7 @@ export default function Hero() {
         location-based{" "}
         <Image
           src={"/burningheart.webp"}
-          alt={""}
+          alt={"burning heart telemoji"}
           width={70}
           height={70}
           className={"-mt-1 -mx-2.5 inline"}
