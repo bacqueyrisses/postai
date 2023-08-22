@@ -27,7 +27,7 @@ export default function Header() {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-4 h-4 group-hover:animate-spin group-hover:animate-once group-hover:animate-ease-in-out"
+            className="w-4 h-4 group-hover:animate-spin group-hover:animate-once group-hover:animate-ease-in-out group-hover:animate-duration-[1200ms]"
           >
             <path
               strokeLinecap="round"
