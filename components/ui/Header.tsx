@@ -4,7 +4,9 @@ import Image from "next/image";
 export default function Header() {
   return (
     <div className={"flex items-center justify-between pt-5"}>
-      <div className={`text-3xl flex items-center  ${ralewayItalic.className}`}>
+      <div
+        className={`text-3xl flex items-center gap-0.5 ${ralewayItalic.className}`}
+      >
         {" "}
         <Image
           src={"/logo.webp"}
