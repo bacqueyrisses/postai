@@ -4,7 +4,9 @@ export default function Header() {
   return (
     <div className={"flex items-center justify-between pt-5"}>
       <div
-        className={`text-3xl flex items-center gap-0.5 italic font-semibold`}
+        className={
+          "text-2xl md:text-3xl flex items-center italic font-semibold"
+        }
       >
         {" "}
         <Image

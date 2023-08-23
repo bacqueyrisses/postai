@@ -1,7 +1,7 @@
 export default function Locations() {
   return (
-    <div className={"flex flex-col gap-10 text-black"}>
-      <div className={"self-start pl-4 text-xl md:text-4xl"}>
+    <div className={"flex flex-col gap-8 md:gap-10 text-black"}>
+      <div className={"self-start pl-2 md:pl-4 text-2xl md:text-4xl"}>
         🏝️ Popular locations
       </div>
       <div
@@ -11,7 +11,7 @@ export default function Locations() {
       >
         <div
           className={
-            "col-span-6 md:col-span-4 border-3 border-pink-400 text-pink-400 rounded-full px-2.5 py-3 md:py-4 hover:bg-pink-400 hover:text-white transition-colors ease-in-out cursor-pointer duration-300 inline-flex items-center justify-center gap-1 md:gap-2"
+            "col-span-6 md:col-span-4 border-2 md:border-3 border-pink-400 text-pink-400 rounded-full px-2.5 py-2 md:py-4 hover:bg-pink-400 hover:text-white transition-colors ease-in-out cursor-pointer duration-300 inline-flex items-center justify-center gap-1 md:gap-2"
           }
         >
           <svg
@@ -38,49 +38,49 @@ export default function Locations() {
         </div>
         <div
           className={
-            "col-span-4 md:col-span-3 border-3 border-emerald-700 text-emerald-700 rounded-full px-2.5 py-3 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-4 md:col-span-3 border-2 md:border-3 border-emerald-700 text-emerald-700 rounded-full px-2.5 py-2 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           paris
         </div>
         <div
           className={
-            "col-span-3 bg-orange-400 text-white rounded-full px-2.5 py-3 md:py-4 border-3 border-orange-400 hover:text-orange-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-3 bg-orange-400 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-orange-400 hover:text-orange-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           tokyo
         </div>
         <div
           className={
-            "col-span-7 md:col-span-5 bg-yellow-400 text-white rounded-full px-2.5 py-3 md:py-4 border-3 border-yellow-400 hover:text-yellow-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-7 md:col-span-5 bg-yellow-400 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-yellow-400 hover:text-yellow-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           johannesburg
         </div>
         <div
           className={
-            "col-span-5 bg-red-500 text-white rounded-full px-2.5 py-3 md:py-4 border-3 border-red-500 hover:text-red-500 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-6 bg-red-500 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-red-500 hover:text-red-500 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           madrid
         </div>
         <div
           className={
-            "col-span-5 md:col-span-3 bg-blue-600 text-white rounded-full px-2.5 py-3 md:py-4 border-3 border-blue-600 hover:text-blue-600 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-4 md:col-span-3 bg-blue-600 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-blue-600 hover:text-blue-600 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           dublin
         </div>
         <div
           className={
-            "col-span-5 border-green-600 text-green-600 border-3 rounded-full px-2.5 py-3 md:py-4 hover:bg-green-600 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-5 md:col-span-4 border-green-600 text-green-600 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-green-600 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           washington
         </div>
         <div
           className={
-            "col-span-5 md:col-span-2 border-emerald-700 text-emerald-700 border-3 rounded-full px-2.5 py-3 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-5 md:col-span-3 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           other
