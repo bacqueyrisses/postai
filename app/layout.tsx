@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`px-24 flex flex-col justify-between h-screen bg-[#E9E7DF] ${raleway.className}`}
+        className={`px-8 md:px-24 flex flex-col justify-between h-screen bg-[#E9E7DF] ${raleway.className}`}
       >
         <link
           rel="icon"

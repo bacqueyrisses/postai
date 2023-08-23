@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Header />
 
-      <main className="flex flex-col grow justify-around text-6xl text-center">
+      <main className="flex flex-col grow justify-around text-center">
         <Hero />
         <Locations />
       </main>
