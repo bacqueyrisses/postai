@@ -8,7 +8,7 @@ export default function Hero() {
         <Image
           src={"/robot.webp"}
           alt={"robot telemoji"}
-          className={"-mt-2 inline w-10 h-10 md:w-16 md:h-16"}
+          className={"-mt-2 inline w-8 h-8 md:w-16 md:h-16"}
           width="0"
           height="0"
         />{" "}
@@ -21,7 +21,7 @@ export default function Hero() {
           alt={"compass telemoji"}
           width="0"
           height="0"
-          className={"-mt-2 -mx-1 inline w-10 h-10 md:w-16 md:h-16"}
+          className={"-mt-2 -mx-0.5 md:-mx-1 inline w-8 h-8 md:w-16 md:h-16"}
         />{" "}
         location-based{" "}
         <Image
@@ -29,7 +29,7 @@ export default function Hero() {
           alt={"burning heart telemoji"}
           width="0"
           height="0"
-          className={"-mt-1 -mx-2.5 inline w-10 h-10 md:w-20 md:h-20"}
+          className={"-mt-1 -mx-1.5 md:-mx-2.5 inline w-9 h-9 md:w-20 md:h-20"}
         />{" "}
         postcard
       </div>
