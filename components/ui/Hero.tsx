@@ -10,16 +10,16 @@ export default function Hero() {
           src={"/robot.webp"}
           alt={"robot telemoji"}
           className={"-mt-2 inline w-10 h-10 md:w-16 md:h-16"}
-          width="50"
-          height="50"
+          width="70"
+          height="70"
         />{" "}
         ai-generated <br className={"hidden md:inline"} /> &
       </div>{" "}
       <Image
         src={"/compass.webp"}
         alt={"compass telemoji"}
-        width="0"
-        height="0"
+        width="70"
+        height="70"
         className={"-mt-2 -mx-0.5 md:-mx-1 inline w-10 h-10 md:w-16 md:h-16"}
       />{" "}
       location-based{" "}
@@ -29,8 +29,8 @@ export default function Hero() {
       <Image
         src={"/burningheart.webp"}
         alt={"burning heart telemoji"}
-        width="0"
-        height="0"
+        width="70"
+        height="70"
         className={"-mt-1 -mx-1.5 md:-mx-2.5 inline w-11 h-11 md:w-20 md:h-20"}
       />
       {"  "}
