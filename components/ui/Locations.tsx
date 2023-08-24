@@ -1,5 +1,10 @@
 "use client";
 export default function Locations({ selectedCountry, setSelectedCountry }) {
+  const handleChange = () => {
+    const country = e.target.value;
+    // change city to country code and tu upperCase
+    setSelectedCountry(country);
+  };
   return (
     <div className={"flex flex-col gap-8 md:gap-10 text-black"}>
       <div className={"self-start pl-2 md:pl-4 text-2xl md:text-4xl"}>
@@ -87,7 +92,8 @@ export default function Locations({ selectedCountry, setSelectedCountry }) {
         </button>
         <input
           placeholder={"other"}
-          value={selectedCountry ? selectedCountry.toLowerCase() : "other"}
+          value={selectedCountry.toLowerCase()}
+          onChange={handleChange}
           className={
             "col-span-6 md:col-span-4 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white"
           }
