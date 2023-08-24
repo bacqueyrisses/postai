@@ -6,7 +6,11 @@ import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Kelly from "@amcharts/amcharts5/themes/Kelly";
 
-const RotatingGlobe = ({ selectedCountry, setSelectedCountry }) => {
+const RotatingGlobe = ({
+  selectedCountry,
+  setSelectedCountry,
+  setSelectedGlobeCountry,
+}) => {
   const [country, setCountry] = useState(() => {
     return findIdByName("France");
   });
@@ -118,7 +122,23 @@ const RotatingGlobe = ({ selectedCountry, setSelectedCountry }) => {
     });
 
     polygonSeries.mapPolygons.template.events.on("click", function (event) {
-      return setSelectedCountry(event.target.dataItem.dataContext.name);
+      const country = event.target.dataItem.dataContext.name;
+      const fetchCapital = async () => {
+        try {
+          const response = await fetch(
+            `https://restcountries.com/v3.1//name/${country}?fullText=true`,
+          );
+          const data = await response.json();
+          if (data.length > 0) {
+            return setSelectedGlobeCountry(data[0].capital[0]);
+          } else {
+            return;
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+      return fetchCapital();
     });
 
     chartRef.current = chart;
@@ -157,7 +177,7 @@ const RotatingGlobe = ({ selectedCountry, setSelectedCountry }) => {
     // Make stuff animate on load
   }, [selectedCountry]);
 
-  return <div id="chartdiv" style={{ width: "100%", height: "170px" }}></div>;
+  return <div id="chartdiv" style={{ width: "100%", height: "200px" }}></div>;
 };
 
 export default RotatingGlobe;

@@ -5,14 +5,17 @@ import { useState } from "react";
 
 export default function Secondary() {
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedGlobeCountry, setSelectedGlobeCountry] = useState(null);
   return (
     <>
       <RotatingGlobe
         selectedCountry={selectedCountry}
+        setSelectedGlobeCountry={setSelectedGlobeCountry}
         setSelectedCountry={setSelectedCountry}
       />
       <Locations
         selectedCountry={selectedCountry}
+        selectedGlobeCountry={selectedGlobeCountry}
         setSelectedCountry={setSelectedCountry}
       />
     </>
