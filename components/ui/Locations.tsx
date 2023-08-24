@@ -20,7 +20,9 @@ export default function Locations({
   return (
     <div className={"flex flex-col text-black"}>
       <div
-        className={"relative flex items-center self-start text-2xl md:text-4xl"}
+        className={
+          "relative flex items-center self-start text-2xl md:text-4xl -mt-16"
+        }
       >
         <RotatingGlobe
           selectedCountry={selectedCountry}
