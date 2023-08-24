@@ -10,8 +10,8 @@ export default function Hero() {
           src={"/robot.webp"}
           alt={"robot telemoji"}
           className={"-mt-2 inline w-10 h-10 md:w-16 md:h-16"}
-          width="0"
-          height="0"
+          width="50"
+          height="50"
         />{" "}
         ai-generated <br className={"hidden md:inline"} /> &
       </div>{" "}

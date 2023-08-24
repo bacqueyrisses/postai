@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import * as am5 from "@amcharts/amcharts5";
@@ -16,6 +17,7 @@ const RotatingGlobe = ({
   });
   const chartRef = useRef(null);
   const polygonSeriesRef = useRef(null);
+  const rootRef = useRef(null);
 
   function findIdByName(targetName: string) {
     const features = am4geodata_worldLow.features;
@@ -36,6 +38,7 @@ const RotatingGlobe = ({
 
     // Set themes
     root.setThemes([am5themes_Animated.new(root), am5themes_Kelly.new(root)]);
+    rootRef.current = root;
 
     // Create the map chart
     const chart = root.container.children.push(
@@ -44,6 +47,7 @@ const RotatingGlobe = ({
         panY: "rotateY",
         projection: am5map.geoOrthographic(),
         maxZoomLevel: 1,
+        zoomLevel: 0.5,
         // panX: "none",
         // panY: "none",
       }),
@@ -57,7 +61,7 @@ const RotatingGlobe = ({
     );
 
     polygonSeries.mapPolygons.template.setAll({
-      tooltipText: "{name}",
+      // tooltipText: "{name}",
       toggleKey: "active",
       interactive: true,
     });
@@ -149,9 +153,11 @@ const RotatingGlobe = ({
     // Create the map chart
     const chart = chartRef.current;
     const polygonSeries = polygonSeriesRef.current;
+
     function selectCountry(id: string) {
       let dataItem = polygonSeries.getDataItemById(id);
       let target = dataItem?.get("mapPolygon");
+
       if (target) {
         let centroid = target.geoCentroid();
         if (centroid) {
@@ -177,7 +183,7 @@ const RotatingGlobe = ({
     // Make stuff animate on load
   }, [selectedCountry]);
 
-  return <div id="chartdiv" style={{ width: "100%", height: "200px" }}></div>;
+  return <div id="chartdiv" className={"md:w-32 md:h-32 h-24 w-24"}></div>;
 };
 
 export default RotatingGlobe;

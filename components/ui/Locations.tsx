@@ -1,23 +1,36 @@
+// @ts-nocheck
 "use client";
 
 import { useEffect } from "react";
+import RotatingGlobe from "@/components/RotatingGlobe";
 
 export default function Locations({
   selectedCountry,
   setSelectedCountry,
   selectedGlobeCountry,
+  setSelectedGlobeCountry,
 }) {
   const handleChange = (e) => {
     const country = e.target.value;
-    selectedGlobeCountry(country);
+    setSelectedGlobeCountry(country);
 
     // change city to country code and tu upperCase
   };
 
   return (
-    <div className={"flex flex-col gap-8 md:gap-10 text-black"}>
-      <div className={"self-start pl-2 md:pl-4 text-2xl md:text-4xl"}>
-        🏝️ Popular locations
+    <div className={"flex flex-col gap-6 md:gap-8 text-black"}>
+      <div
+        className={
+          "flex items-center md:gap-4 gap-5 self-start text-2xl md:text-4xl -ml-4"
+        }
+      >
+        <RotatingGlobe
+          selectedCountry={selectedCountry}
+          setSelectedGlobeCountry={setSelectedGlobeCountry}
+          setSelectedCountry={setSelectedCountry}
+        />
+
+        <div className={"-ml-8"}>Popular locations</div>
       </div>
       <div
         className={
@@ -76,7 +89,7 @@ export default function Locations({
           johannesburg
         </button>
         <button
-          onClick={() => setSelectedCountry("ES")}
+          onClick={() => setSelectedCountry("US")}
           className={
             "col-span-6 md:col-span-5 bg-red-500 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-red-500 hover:text-red-500 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
@@ -92,7 +105,7 @@ export default function Locations({
           dublin
         </button>
         <button
-          onClick={() => setSelectedCountry("US")}
+          onClick={() => setSelectedCountry("ES")}
           className={
             "col-span-4 md:col-span-3 border-green-600 text-green-600 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-green-600 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
           }
@@ -104,7 +117,7 @@ export default function Locations({
           value={selectedGlobeCountry?.toLowerCase()}
           onChange={handleChange}
           className={
-            "col-span-6 md:col-span-4 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white"
+            "col-span-6 md:col-span-4 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white focus:placeholder:text-transparent focus:outline-0 cursor-pointer focus:cursor-text"
           }
         ></input>
       </div>
