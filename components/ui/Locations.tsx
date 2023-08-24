@@ -18,11 +18,9 @@ export default function Locations({
   };
 
   return (
-    <div className={"flex flex-col gap-6 md:gap-8 text-black"}>
+    <div className={"flex flex-col text-black"}>
       <div
-        className={
-          "flex items-center md:gap-4 gap-5 self-start text-2xl md:text-4xl -ml-4"
-        }
+        className={"relative flex items-center self-start text-2xl md:text-4xl"}
       >
         <RotatingGlobe
           selectedCountry={selectedCountry}
@@ -30,7 +28,7 @@ export default function Locations({
           setSelectedCountry={setSelectedCountry}
         />
 
-        <div className={"-ml-8"}>Popular locations</div>
+        <div className={"-ml-3"}>Popular locations</div>
       </div>
       <div
         className={

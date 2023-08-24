@@ -46,7 +46,7 @@ const RotatingGlobe = ({
         panX: "rotateX",
         panY: "rotateY",
         projection: am5map.geoOrthographic(),
-        maxZoomLevel: 1,
+        maxZoomLevel: 0.5,
         zoomLevel: 0.5,
         // panX: "none",
         // panY: "none",
