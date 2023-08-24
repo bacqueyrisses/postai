@@ -1,4 +1,5 @@
-export default function Locations() {
+"use client";
+export default function Locations({ selectedCountry, setSelectedCountry }) {
   return (
     <div className={"flex flex-col gap-8 md:gap-10 text-black"}>
       <div className={"self-start pl-2 md:pl-4 text-2xl md:text-4xl"}>
@@ -36,55 +37,61 @@ export default function Locations() {
 
           <div>current location</div>
         </div>
-        <div
+        <button
+          onClick={() => setSelectedCountry("FR")}
           className={
             "col-span-4 md:col-span-3 border-2 md:border-3 border-emerald-700 text-emerald-700 rounded-full px-2.5 py-2 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           paris
-        </div>
-        <div
+        </button>
+        <button
+          onClick={() => setSelectedCountry("JP")}
           className={
             "col-span-3 bg-orange-400 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-orange-400 hover:text-orange-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           tokyo
-        </div>
-        <div
+        </button>
+        <button
+          onClick={() => setSelectedCountry("ZA")}
           className={
             "col-span-7 md:col-span-5 bg-yellow-400 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-yellow-400 hover:text-yellow-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           johannesburg
-        </div>
-        <div
+        </button>
+        <button
+          onClick={() => setSelectedCountry("ES")}
           className={
             "col-span-6 md:col-span-5 bg-red-500 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-red-500 hover:text-red-500 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
-          madrid
-        </div>
-        <div
+          washington
+        </button>
+        <button
+          onClick={() => setSelectedCountry("IE")}
           className={
             "col-span-4 md:col-span-3 bg-blue-600 text-white rounded-full px-2.5 py-2 md:py-4 border-2 md:border-3 border-blue-600 hover:text-blue-600 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
           dublin
-        </div>
-        <div
+        </button>
+        <button
+          onClick={() => setSelectedCountry("US")}
           className={
-            "col-span-5 md:col-span-4 border-green-600 text-green-600 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-green-600 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-4 md:col-span-3 border-green-600 text-green-600 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-green-600 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
           }
         >
-          washington
-        </div>
-        <div
+          madrid
+        </button>
+        <input
+          placeholder={"other"}
+          value={selectedCountry ? selectedCountry.toLowerCase() : "other"}
           className={
-            "col-span-5 md:col-span-3 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-6 md:col-span-4 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-2 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white"
           }
-        >
-          other
-        </div>
+        ></input>
       </div>
     </div>
   );

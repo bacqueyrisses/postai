@@ -1,7 +1,7 @@
 import Header from "@/components/ui/Header";
 import Hero from "@/components/ui/Hero";
 import Footer from "@/components/ui/Footer";
-import Locations from "@/components/ui/Locations";
+import Secondary from "@/components/Secondary";
 
 export default function Home() {
   return (
@@ -10,7 +10,8 @@ export default function Home() {
 
       <main className="flex flex-col grow justify-around text-center">
         <Hero />
-        <Locations />
+
+        <Secondary />
       </main>
 
       <Footer />

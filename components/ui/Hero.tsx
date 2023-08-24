@@ -2,14 +2,14 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className={"text-3xl md:text-6xl"}>
-      Create your virtual
+    <div className={"text-4xl md:text-6xl font-normal md:font-normal"}>
+      <span className={"font-medium md:font-normal"}>Create your virtual</span>
       <div className={"block md:inline"}>
         {" "}
         <Image
           src={"/robot.webp"}
           alt={"robot telemoji"}
-          className={"-mt-2 inline w-8 h-8 md:w-16 md:h-16"}
+          className={"-mt-2 inline w-10 h-10 md:w-16 md:h-16"}
           width="0"
           height="0"
         />{" "}
@@ -20,18 +20,21 @@ export default function Hero() {
         alt={"compass telemoji"}
         width="0"
         height="0"
-        className={"-mt-2 -mx-0.5 md:-mx-1 inline w-8 h-8 md:w-16 md:h-16"}
+        className={"-mt-2 -mx-0.5 md:-mx-1 inline w-10 h-10 md:w-16 md:h-16"}
       />{" "}
       location-based{" "}
+      <span className={"inline md:hidden"}>
+        <br />
+      </span>
       <Image
         src={"/burningheart.webp"}
         alt={"burning heart telemoji"}
         width="0"
         height="0"
-        className={"-mt-1 -mx-1.5 md:-mx-2.5 inline w-9 h-9 md:w-20 md:h-20"}
+        className={"-mt-1 -mx-1.5 md:-mx-2.5 inline w-11 h-11 md:w-20 md:h-20"}
       />
       {"  "}
-      postcard
+      <span className={"font-medium md:font-normal"}>postcard</span>
     </div>
   );
 }
