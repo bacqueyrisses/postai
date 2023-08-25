@@ -21,13 +21,17 @@ export default function Locations({
   };
 
   return (
-    <div className={"flex flex-col text-black gap-6 md:gap-10"}>
+    <div className={"flex flex-col text-black gap-4 md:gap-8"}>
       <div
         className={
-          "relative flex items-center self-start text-2xl md:text-4xl gap-2 md:gap-3 pl-2"
+          "relative flex items-center self-start text-2xl md:text-4xl gap-6 md:gap-2 pl-2"
         }
       >
-        <div className={"h-8 w-8 md:w-14 md:h-14"}>
+        <div
+          className={
+            "h-8 w-8 md:w-20 md:h-20 scale-[0.35] md:scale-[0.4] mb-6 md:mb-3"
+          }
+        >
           <RotatingGlobe
             userLocation={userLocation}
             selectedCountry={selectedCountry}

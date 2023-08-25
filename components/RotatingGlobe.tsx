@@ -194,7 +194,7 @@ const RotatingGlobe = ({
     // Make stuff animate on load
   }, [selectedCountry, userLocation]);
 
-  return <div id="chartdiv" className={"block w-full h-full"}></div>;
+  return <div id="chartdiv" className={"w-72 h-72"}></div>;
 };
 
 export default RotatingGlobe;
