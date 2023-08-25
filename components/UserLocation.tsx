@@ -3,24 +3,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function UserLocation({ setSelectedCountry }) {
-  const fetchApiData = async ({ latitude, longitude }) => {
-    const res = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
-        (latitude, longitude)
-      }&sensor=true&key=${process.env.GOOGLE_API}`,
-    );
-    const data = await res.json();
-    setMensen(data);
-  };
-
   const handleClick = async () => {
+    console.log(process.env);
     if ("geolocation" in navigator) {
       // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
       navigator.geolocation.getCurrentPosition(async ({ coords }) => {
         const res = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
             coords.latitude + "," + coords.longitude
-          }&sensor=true&key=${process.env.GOOGLE_API}`,
+          }&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
         );
         const data = await res.json();
         setSelectedCountry(data.results[0].address_components[5].short_name);
