@@ -46,8 +46,8 @@ const RotatingGlobe = ({
         panX: "rotateX",
         panY: "rotateY",
         projection: am5map.geoOrthographic(),
-        maxZoomLevel: 0.5,
-        zoomLevel: 0.5,
+        maxZoomLevel: 1,
+        zoomLevel: 1,
         // panX: "none",
         // panY: "none",
       }),
@@ -60,18 +60,13 @@ const RotatingGlobe = ({
       }),
     );
 
-    polygonSeries.mapPolygons.template.setAll({
-      // tooltipText: "{name}",
-      toggleKey: "active",
-      interactive: true,
-    });
-
     polygonSeries.mapPolygons.template.states.create("hover", {
       fill: root.interfaceColors.get("primaryButtonHover"),
     });
 
     polygonSeries.mapPolygons.template.states.create("active", {
-      fill: root.interfaceColors.get("primaryButtonHover"),
+      // fill: root.interfaceColors.get("alternativeBackground"),
+      fill: am5.color("#0000FF"),
     });
 
     // Create series for background fill
@@ -80,9 +75,19 @@ const RotatingGlobe = ({
     );
     backgroundSeries.mapPolygons.template.setAll({
       fill: root.interfaceColors.get("alternativeBackground"),
+      // fill: am5.color("#0000FF"),
       fillOpacity: 0.07,
       strokeOpacity: 0,
     });
+    polygonSeries.mapPolygons.template.setAll({
+      // tooltipText: "{name}",
+      // fill: root.interfaceColors.get("alternativeBackground"),
+
+      fill: am5.color("#047857"),
+      fillOpacity: 1,
+      toggleKey: "active",
+    });
+
     backgroundSeries.data.push({
       geometry: am5map.getGeoRectangle(90, 180, -90, -180),
     });
@@ -102,6 +107,8 @@ const RotatingGlobe = ({
     function selectCountry(id: string) {
       let dataItem = polygonSeries.getDataItemById(id);
       let target = dataItem.get("mapPolygon");
+      target.set("active", true);
+
       if (target) {
         let centroid = target.geoCentroid();
         if (centroid) {
@@ -157,6 +164,7 @@ const RotatingGlobe = ({
     function selectCountry(id: string) {
       let dataItem = polygonSeries.getDataItemById(id);
       let target = dataItem?.get("mapPolygon");
+      target.set("active", true);
 
       if (target) {
         let centroid = target.geoCentroid();
@@ -183,7 +191,7 @@ const RotatingGlobe = ({
     // Make stuff animate on load
   }, [selectedCountry]);
 
-  return <div id="chartdiv" className={"md:w-32 md:h-32 h-24 w-24"}></div>;
+  return <div id="chartdiv" className={"block w-full h-full"}></div>;
 };
 
 export default RotatingGlobe;

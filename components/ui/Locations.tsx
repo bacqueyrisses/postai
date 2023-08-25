@@ -18,19 +18,21 @@ export default function Locations({
   };
 
   return (
-    <div className={"flex flex-col text-black"}>
+    <div className={"flex flex-col text-black gap-6 md:gap-10"}>
       <div
         className={
-          "relative flex items-center self-start text-2xl md:text-4xl -mt-16"
+          "relative flex items-center self-start text-2xl md:text-4xl gap-2 md:gap-3 pl-2"
         }
       >
-        <RotatingGlobe
-          selectedCountry={selectedCountry}
-          setSelectedGlobeCountry={setSelectedGlobeCountry}
-          setSelectedCountry={setSelectedCountry}
-        />
+        <div className={"h-10 w-10 md:w-14 md:h-14"}>
+          <RotatingGlobe
+            selectedCountry={selectedCountry}
+            setSelectedGlobeCountry={setSelectedGlobeCountry}
+            setSelectedCountry={setSelectedCountry}
+          />
+        </div>
 
-        <div className={"-ml-3"}>Popular locations</div>
+        <div>Popular locations</div>
       </div>
       <div
         className={
