@@ -29,7 +29,7 @@ export default function Locations({
       >
         <div
           className={
-            "h-8 w-8 md:w-20 md:h-20 scale-[0.35] md:scale-[0.4] mb-6 md:mb-3"
+            "h-8 w-8 md:w-20 md:h-20 scale-[0.35] md:scale-[0.4] mb-5 md:mb-1"
           }
         >
           <RotatingGlobe
