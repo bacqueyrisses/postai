@@ -21,10 +21,10 @@ export default function Locations({
   };
 
   return (
-    <div className={"flex flex-col text-black gap-4 md:gap-8"}>
+    <div className={"flex flex-col text-black gap-3 md:gap-6"}>
       <div
         className={
-          "relative flex items-center self-start text-2xl md:text-4xl gap-6 md:gap-2"
+          "relative flex items-center self-start text-2xl md:text-4xl gap-6 md:gap-1"
         }
       >
         <div
@@ -40,7 +40,7 @@ export default function Locations({
           />
         </div>
 
-        <div>Popular locations</div>
+        <div>popular locations</div>
       </div>
       <div
         className={
