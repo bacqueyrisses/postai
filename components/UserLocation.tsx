@@ -11,7 +11,7 @@ export default function UserLocation({ setSelectedCountry }) {
   useEffect(() => {
     if (
       "geolocation" in navigator &&
-      localStorage.getItem("hasLocationPermission")
+      localStorage.getItem("hasLocationPermission") === "true"
     ) {
       // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
       navigator.geolocation.getCurrentPosition(
@@ -39,6 +39,7 @@ export default function UserLocation({ setSelectedCountry }) {
       );
     } else {
       setHasLocationPermission(false);
+      localStorage.setItem("hasLocationPermission", "false");
     }
   }, []);
   const handleClick = async () => {
