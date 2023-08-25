@@ -21,7 +21,7 @@ export default function Header() {
       <div className={"flex gap-14 items-center"}>
         <div
           className={
-            "group flex items-center gap-1 bg-emerald-500 rounded-3xl px-3 pr-4 md:px-5 md:pr-6 py-2 md:py-2.5 text-white hover:bg-blue-500 transition-colors cursor-pointer duration-300 text-sm md:text-base"
+            "group flex items-center md:gap-1 bg-emerald-500 rounded-3xl px-3 pr-4 md:px-5 md:pr-6 py-2 md:py-2.5 text-white hover:bg-blue-500 transition-colors cursor-pointer duration-300 text-sm md:text-base"
           }
         >
           <svg
