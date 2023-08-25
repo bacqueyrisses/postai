@@ -132,7 +132,7 @@ const RotatingGlobe = ({
     }
 
     polygonSeries.events.on("datavalidated", function () {
-      selectCountry(country);
+      selectCountry(selectedCountry ?? "AU");
     });
 
     polygonSeries.mapPolygons.template.events.on("click", function (event) {
@@ -187,12 +187,11 @@ const RotatingGlobe = ({
         }
       }
     }
-    // Uncomment this to pre-center the globe on a country when it loads
 
     selectedCountry && selectCountry(selectedCountry);
 
     // Make stuff animate on load
-  }, [selectedCountry, userLocation]);
+  }, [selectedCountry]);
 
   return <div id="chartdiv" className={"w-[50rem] h-[50rem]"}></div>;
 };

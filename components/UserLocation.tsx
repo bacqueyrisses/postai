@@ -4,10 +4,49 @@ import Link from "next/link";
 
 export default function UserLocation({ setSelectedCountry }) {
   const [userLocation, setUserLocation] = useState(null);
+  const [hasLocationPermission, setHasLocationPermission] = useState(
+    localStorage.getItem("hasLocationPermission") === "true",
+  );
+
+  useEffect(() => {
+    if (
+      "geolocation" in navigator &&
+      localStorage.getItem("hasLocationPermission")
+    ) {
+      // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
+      navigator.geolocation.getCurrentPosition(
+        async ({ coords }) => {
+          try {
+            setHasLocationPermission(true);
+            localStorage.setItem("hasLocationPermission", "true");
+            const res = await fetch(
+              `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
+            );
+            const data = await res.json();
+            setUserLocation(data?.results[0]?.address_components[2]?.long_name);
+            setSelectedCountry(
+              data?.results[0]?.address_components[5]?.short_name,
+            );
+          } catch (error) {
+            console.error("Error fetching location data:", error);
+          }
+        },
+        (error) => {
+          console.error("Error getting location permission:", error);
+          setHasLocationPermission(false);
+          localStorage.setItem("hasLocationPermission", "false");
+        },
+      );
+    } else {
+      setHasLocationPermission(false);
+    }
+  }, []);
   const handleClick = async () => {
     if ("geolocation" in navigator) {
       // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
       navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+        setHasLocationPermission(true);
+        localStorage.setItem("hasLocationPermission", "true");
         const res = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
             coords.latitude + "," + coords.longitude
