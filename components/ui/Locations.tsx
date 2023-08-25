@@ -24,7 +24,7 @@ export default function Locations({
     <div className={"flex flex-col text-black gap-3 md:gap-6"}>
       <div
         className={
-          "relative justify-center md:justify-start flex items-center text-2xl md:text-4xl gap-6 md:gap-1"
+          "relative justify-center md:justify-start flex items-center text-xl md:text-4xl gap-6 md:gap-1"
         }
       >
         <div
