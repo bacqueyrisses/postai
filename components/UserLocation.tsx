@@ -47,9 +47,9 @@ export default function UserLocation({ setSelectedCountry }) {
         />
       </svg>
 
-      <div onClick={handleClick}>
+      <button onClick={handleClick}>
         {userLocation?.toLowerCase() ?? "current location"}
-      </div>
+      </button>
     </button>
   );
 }
