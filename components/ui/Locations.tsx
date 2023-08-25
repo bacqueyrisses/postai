@@ -24,11 +24,11 @@ export default function Locations({
     <div className={"flex flex-col text-black gap-3 md:gap-6"}>
       <div
         className={
-          "relative justify-center md:justify-start flex items-center text-xl md:text-4xl gap-4 md:gap-3 z-0"
+          "relative justify-center md:justify-start flex items-center text-xl md:text-4xl gap-5 md:gap-3 z-0"
         }
       >
         <div
-          className={"h-8 w-8 md:w-20 md:h-20 scale-[0.1] md:scale-[0.2] mb-5"}
+          className={"h-8 w-8 md:w-20 md:h-20 scale-[0.2] md:scale-[0.25] mb-5"}
         >
           <RotatingGlobe
             userLocation={userLocation}
