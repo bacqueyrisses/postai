@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function UserLocation({ setSelectedCountry }) {
+  const [userLocation, setUserLocation] = useState(null);
   const handleClick = async () => {
     console.log(process.env);
     if ("geolocation" in navigator) {
@@ -14,7 +15,8 @@ export default function UserLocation({ setSelectedCountry }) {
           }&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
         );
         const data = await res.json();
-        setSelectedCountry(data.results[0].address_components[5].short_name);
+        setUserLocation(data?.results[0]?.address_components[2]?.long_name);
+        setSelectedCountry(data?.results[0]?.address_components[5]?.short_name);
       });
     }
   };
@@ -46,7 +48,7 @@ export default function UserLocation({ setSelectedCountry }) {
         />
       </svg>
 
-      <div>current location</div>
+      <div>{userLocation?.toLowerCase() ?? "current location"}</div>
     </button>
   );
 }
