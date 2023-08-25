@@ -24,7 +24,7 @@ export default function Locations({
     <div className={"flex flex-col text-black gap-3 md:gap-6"}>
       <div
         className={
-          "relative justify-center md:justify-start flex items-center text-xl md:text-4xl gap-6 md:gap-1"
+          "relative justify-center md:justify-start flex items-center text-xl md:text-4xl gap-6 md:gap-1 z-0"
         }
       >
         <div
@@ -44,7 +44,7 @@ export default function Locations({
       </div>
       <div
         className={
-          "grid grid-cols-10 gap-3 md:gap-5 md:text-4xl text-lg font-medium md:font-normal"
+          "grid grid-cols-10 gap-3 md:gap-5 md:text-4xl text-lg font-medium md:font-normal z-10"
         }
       >
         <UserLocation setSelectedCountry={setSelectedCountry} />
