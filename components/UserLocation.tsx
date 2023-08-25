@@ -4,9 +4,6 @@ import Link from "next/link";
 
 export default function UserLocation({ setSelectedCountry }) {
   const [userLocation, setUserLocation] = useState(null);
-  const [hasLocationPermission, setHasLocationPermission] = useState(
-    localStorage.getItem("hasLocationPermission") === "true",
-  );
 
   useEffect(() => {
     if (
@@ -17,7 +14,6 @@ export default function UserLocation({ setSelectedCountry }) {
       navigator.geolocation.getCurrentPosition(
         async ({ coords }) => {
           try {
-            setHasLocationPermission(true);
             localStorage.setItem("hasLocationPermission", "true");
             const res = await fetch(
               `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
@@ -33,12 +29,10 @@ export default function UserLocation({ setSelectedCountry }) {
         },
         (error) => {
           console.error("Error getting location permission:", error);
-          setHasLocationPermission(false);
           localStorage.setItem("hasLocationPermission", "false");
         },
       );
     } else {
-      setHasLocationPermission(false);
       localStorage.setItem("hasLocationPermission", "false");
     }
   }, []);
