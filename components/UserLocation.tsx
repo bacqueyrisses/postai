@@ -40,7 +40,6 @@ export default function UserLocation({ setSelectedCountry }) {
     if ("geolocation" in navigator) {
       // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
       navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-        setHasLocationPermission(true);
         localStorage.setItem("hasLocationPermission", "true");
         const res = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
