@@ -11,6 +11,7 @@ const RotatingGlobe = ({
   selectedCountry,
   setSelectedCountry,
   setSelectedGlobeCountry,
+  userLocation,
 }) => {
   const [country, setCountry] = useState(() => {
     return findIdByName("France");
@@ -189,7 +190,7 @@ const RotatingGlobe = ({
     selectedCountry && selectCountry(selectedCountry);
 
     // Make stuff animate on load
-  }, [selectedCountry]);
+  }, [selectedCountry, userLocation]);
 
   return <div id="chartdiv" className={"block w-full h-full"}></div>;
 };

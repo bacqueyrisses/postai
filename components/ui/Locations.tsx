@@ -3,12 +3,15 @@
 
 import { useEffect } from "react";
 import RotatingGlobe from "@/components/RotatingGlobe";
+import UserLocation from "@/components/UserLocation";
 
 export default function Locations({
   selectedCountry,
   setSelectedCountry,
   selectedGlobeCountry,
   setSelectedGlobeCountry,
+  setUserLocation,
+  userLocation,
 }) {
   const handleChange = (e) => {
     const country = e.target.value;
@@ -26,6 +29,7 @@ export default function Locations({
       >
         <div className={"h-8 w-8 md:w-14 md:h-14"}>
           <RotatingGlobe
+            userLocation={userLocation}
             selectedCountry={selectedCountry}
             setSelectedGlobeCountry={setSelectedGlobeCountry}
             setSelectedCountry={setSelectedCountry}
@@ -39,33 +43,7 @@ export default function Locations({
           "grid grid-cols-10 gap-3 md:gap-5 md:text-4xl text-lg font-medium md:font-normal"
         }
       >
-        <div
-          className={
-            "col-span-6 md:col-span-4 border-2 md:border-3 border-pink-400 text-pink-400 rounded-full px-2.5 py-1 md:py-4 hover:bg-pink-400 hover:text-white transition-colors ease-in-out cursor-pointer duration-300 inline-flex items-center justify-center gap-1 md:gap-2"
-          }
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-4 h-4 md:w-7 md:h-7 pt-0.5 md:pt-1"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-            />
-          </svg>
-
-          <div>current location</div>
-        </div>
+        <UserLocation setSelectedCountry={setSelectedCountry} />
         <button
           onClick={() => setSelectedCountry("FR")}
           className={
