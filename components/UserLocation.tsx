@@ -5,7 +5,6 @@ import Link from "next/link";
 export default function UserLocation({ setSelectedCountry }) {
   const [userLocation, setUserLocation] = useState(null);
   const handleClick = async () => {
-    console.log(process.env);
     if ("geolocation" in navigator) {
       // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
       navigator.geolocation.getCurrentPosition(async ({ coords }) => {

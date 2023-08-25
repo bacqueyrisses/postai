@@ -34,7 +34,9 @@ const RotatingGlobe = ({
 
   useEffect(() => {
     // Create root element
-    const root = am5.Root.new("chartdiv");
+    const root = am5.Root.new("chartdiv", {
+      useSafeResolution: false,
+    });
     root._logo.dispose();
 
     // Set themes
