@@ -20,7 +20,7 @@ export default function UserLocation({ setSelectedCountry }) {
         const res = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
             coords.latitude + "," + coords.longitude
-          }&sensor=true&key=AIzaSyDlPqMrC91_31ls5aOCjsfPwjT27MB7p-4`,
+          }&sensor=true&key=${process.env.GOOGLE_API}`,
         );
         const data = await res.json();
         setSelectedCountry(data.results[0].address_components[5].short_name);
