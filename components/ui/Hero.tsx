@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className={"text-4xl md:text-6xl font-normal md:font-normal"}>
+    <div className={"text-3xl md:text-6xl font-normal md:font-normal"}>
       <span className={"font-medium md:font-normal"}>Create your virtual</span>
       <div className={"block md:inline"}>
         {" "}
