@@ -79,7 +79,7 @@ const RotatingGlobe = ({
     backgroundSeries.mapPolygons.template.setAll({
       fill: root.interfaceColors.get("alternativeBackground"),
       // fill: am5.color("#0000FF"),
-      fillOpacity: 0.045,
+      fillOpacity: 0.05,
       strokeOpacity: 0,
     });
     polygonSeries.mapPolygons.template.setAll({
