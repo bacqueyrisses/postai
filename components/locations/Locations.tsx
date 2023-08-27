@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
-import RotatingGlobe from "@/components/RotatingGlobe";
-import UserLocation from "@/components/UserCurrentLocation";
-import UserCurrentLocation from "@/components/UserCurrentLocation";
+import RotatingGlobe from "@/components/hero/RotatingGlobe";
+import UserLocation from "@/components/locations/UserCurrentLocation";
+import UserCurrentLocation from "@/components/locations/UserCurrentLocation";
 
 export default function Locations({}) {
   const [selectedCountry, setSelectedCountry] = useState("");

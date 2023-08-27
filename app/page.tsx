@@ -1,10 +1,10 @@
 "use client";
-import Header from "@/components/ui/Header";
-import Hero from "@/components/ui/Hero";
-import Footer from "@/components/ui/Footer";
-import Locations from "@/components/ui/Locations";
+import Header from "@/components/Header";
+import Hero from "@/components/hero/Hero";
+import Footer from "@/components/Footer";
+import Locations from "@/components/locations/Locations";
 import { useState } from "react";
-import Postcard from "@/components/ui/Postcard";
+import Postcard from "@/components/postcard/Postcard";
 
 type PageType = "locations" | "postcard";
 
