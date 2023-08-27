@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import React, { useEffect, useRef } from "react";
 import * as am5 from "@amcharts/amcharts5";
@@ -56,7 +57,7 @@ const RotatingGlobe = ({
 
     polygonSeries.mapPolygons.template.states.create("active", {
       // fill: root.interfaceColors.get("alternativeBackground"),
-      fill: am5.color("#0000FF"),
+      fill: am5.color("#047857"),
     });
 
     // Create series for background fill
@@ -73,7 +74,7 @@ const RotatingGlobe = ({
       // tooltipText: "{name}",
       // fill: root.interfaceColors.get("alternativeBackground"),
 
-      fill: am5.color("#047857"),
+      fill: am5.color("#17A34A"),
       fillOpacity: 1,
       toggleKey: "active",
     });
