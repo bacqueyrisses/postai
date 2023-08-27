@@ -13,24 +13,21 @@ const RotatingGlobe = ({
   setSelectedGlobeCountry,
   userLocation,
 }) => {
-  const [country, setCountry] = useState(() => {
-    return findIdByName("France");
-  });
   const chartRef = useRef(null);
   const polygonSeriesRef = useRef(null);
   const rootRef = useRef(null);
 
-  function findIdByName(targetName: string) {
-    const features = am4geodata_worldLow.features;
-
-    for (const feature of features) {
-      if (feature.properties && feature.properties.name === targetName) {
-        return feature.properties.id;
-      }
-    }
-
-    return null; // Name not found
-  }
+  // function findIdByName(targetName: string) {
+  //   const features = am4geodata_worldLow.features;
+  //
+  //   for (const feature of features) {
+  //     if (feature.properties && feature.properties.name === targetName) {
+  //       return feature.properties.id;
+  //     }
+  //   }
+  //
+  //   return null;
+  // }
 
   useEffect(() => {
     // Create root element
