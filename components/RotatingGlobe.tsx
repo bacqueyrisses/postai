@@ -9,13 +9,11 @@ import am5themes_Kelly from "@amcharts/amcharts5/themes/Kelly";
 
 interface IRotatingGlobe {
   selectedCountry: string;
-  setSelectedInputCountry: (capital: string) => void;
   userCurrentLocationRef: React.MutableRefObject<string | null>;
 }
 
 const RotatingGlobe = ({
   selectedCountry,
-  setSelectedInputCountry,
   userCurrentLocationRef,
 }: IRotatingGlobe) => {
   const chartRef = useRef<am5.Chart | null>(null);
@@ -124,26 +122,6 @@ const RotatingGlobe = ({
     polygonSeries.events.on("datavalidated", function () {
       selectCountry(userCurrentLocationRef || selectedCountry || "US");
     });
-
-    // polygonSeries.mapPolygons.template.events.on("click", function (event) {
-    //   const country = event.target.dataItem?.dataContext?.name;
-    //   const fetchCapital = async () => {
-    //     try {
-    //       const response = await fetch(
-    //         `https://restcountries.com/v3.1//name/${country}?fullText=true`,
-    //       );
-    //       const data = await response.json();
-    //       if (data.length > 0) {
-    //         return setSelectedInputCountry(data[0].capital[0]);
-    //       } else {
-    //         return;
-    //       }
-    //     } catch (error) {
-    //       console.error("Error fetching data:", error);
-    //     }
-    //   };
-    //   return fetchCapital();
-    // });
 
     chartRef.current = chart;
     polygonSeriesRef.current = polygonSeries;
