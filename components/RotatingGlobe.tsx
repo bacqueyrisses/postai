@@ -9,7 +9,6 @@ import am5themes_Kelly from "@amcharts/amcharts5/themes/Kelly";
 
 interface IRotatingGlobe {
   selectedCountry: string;
-  userCurrentLocation: string;
   setSelectedInputCountry: (capital: string) => void;
   userCurrentLocationRef: React.MutableRefObject<string | null>;
 }
