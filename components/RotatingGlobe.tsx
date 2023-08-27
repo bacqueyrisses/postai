@@ -120,7 +120,7 @@ const RotatingGlobe = ({
     }
 
     polygonSeries.events.on("datavalidated", function () {
-      selectCountry(selectedCountry || "AU");
+      selectCountry(selectedCountry || "US");
     });
 
     // polygonSeries.mapPolygons.template.events.on("click", function (event) {

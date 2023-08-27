@@ -1,9 +1,16 @@
 import Image from "next/image";
 
-export default function Hero() {
+type PageType = "locations" | "postcard";
+interface IHero {
+  pageDisplayed: PageType;
+}
+export default function Hero({ pageDisplayed }: IHero) {
   return (
     <div className={"text-3xl md:text-6xl font-normal md:font-normal"}>
-      <span className={"font-medium md:font-normal"}>Create your virtual</span>
+      <span className={"font-medium md:font-normal"}>
+        <span>{pageDisplayed === "locations" ? "Create" : "Generating"}</span>{" "}
+        your virtual
+      </span>
       <div className={"block md:inline"}>
         {" "}
         <Image
