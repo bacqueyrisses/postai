@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import RotatingGlobe from "@/components/RotatingGlobe";
 import UserLocation from "@/components/UserLocation";
 
 export default function Locations({}) {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedInputCountry, setSelectedInputCountry] = useState("");
-  const [userCurrentLocation, setUserCurrentLocation] = useState("");
+  const userCurrentLocationRef = useRef<string | null>(null);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const country = e.target.value;
     setSelectedInputCountry(country);
@@ -26,6 +26,7 @@ export default function Locations({}) {
           <RotatingGlobe
             selectedCountry={selectedCountry}
             setSelectedInputCountry={setSelectedInputCountry}
+            userCurrentLocationRef={userCurrentLocationRef}
           />
         </div>
 
@@ -38,8 +39,7 @@ export default function Locations({}) {
       >
         <UserLocation
           setSelectedCountry={setSelectedCountry}
-          userCurrentLocation={userCurrentLocation}
-          setUserCurrentLocation={setUserCurrentLocation}
+          userCurrentLocationRef={userCurrentLocationRef}
         />
         <button
           onClick={() => setSelectedCountry("FR")}

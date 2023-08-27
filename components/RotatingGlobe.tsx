@@ -9,12 +9,15 @@ import am5themes_Kelly from "@amcharts/amcharts5/themes/Kelly";
 
 interface IRotatingGlobe {
   selectedCountry: string;
+  userCurrentLocation: string;
   setSelectedInputCountry: (capital: string) => void;
+  userCurrentLocationRef: React.MutableRefObject<string | null>;
 }
 
 const RotatingGlobe = ({
   selectedCountry,
   setSelectedInputCountry,
+  userCurrentLocationRef,
 }: IRotatingGlobe) => {
   const chartRef = useRef<am5.Chart | null>(null);
   const polygonSeriesRef = useRef<am5map.MapPolygonSeries | null>(null);
@@ -120,7 +123,7 @@ const RotatingGlobe = ({
     }
 
     polygonSeries.events.on("datavalidated", function () {
-      selectCountry(selectedCountry || "US");
+      selectCountry(userCurrentLocationRef || selectedCountry || "US");
     });
 
     // polygonSeries.mapPolygons.template.events.on("click", function (event) {

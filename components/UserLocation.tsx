@@ -1,15 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface IUserLocation {
   setSelectedCountry: React.Dispatch<React.SetStateAction<string>>;
-  setUserCurrentLocation: React.Dispatch<React.SetStateAction<string>>;
-  userCurrentLocation: string;
+  userCurrentLocationRef: React.MutableRefObject<string | null>;
 }
 export default function UserLocation({
   setSelectedCountry,
-  setUserCurrentLocation,
-  userCurrentLocation,
+  userCurrentLocationRef,
 }: IUserLocation) {
+  const [userCurrentLocation, setUserCurrentLocation] = useState("");
+
   useEffect(() => {
     if (
       "geolocation" in navigator &&
@@ -54,10 +54,13 @@ export default function UserLocation({
           }&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
         );
         const data = await res.json();
-        setUserCurrentLocation(
-          data?.results[0]?.address_components[2]?.long_name,
-        );
-        setSelectedCountry(data?.results[0]?.address_components[5]?.short_name);
+        const cityName: string =
+          data?.results[0]?.address_components[2]?.long_name;
+        const countryId: string =
+          data?.results[0]?.address_components[5]?.short_name;
+        setUserCurrentLocation(cityName);
+        setSelectedCountry(countryId);
+        userCurrentLocationRef.current = countryId;
       });
     }
   };
