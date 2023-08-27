@@ -1,10 +1,15 @@
-// @ts-nocheck
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useEffect } from "react";
 
-export default function UserLocation({ setSelectedCountry }) {
-  const [userLocation, setUserLocation] = useState(null);
-
+interface IUserLocation {
+  setSelectedCountry: React.Dispatch<React.SetStateAction<string>>;
+  setUserCurrentLocation: React.Dispatch<React.SetStateAction<string>>;
+  userCurrentLocation: string;
+}
+export default function UserLocation({
+  setSelectedCountry,
+  setUserCurrentLocation,
+  userCurrentLocation,
+}: IUserLocation) {
   useEffect(() => {
     if (
       "geolocation" in navigator &&
@@ -19,7 +24,9 @@ export default function UserLocation({ setSelectedCountry }) {
               `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
             );
             const data = await res.json();
-            setUserLocation(data?.results[0]?.address_components[2]?.long_name);
+            setUserCurrentLocation(
+              data?.results[0]?.address_components[2]?.long_name,
+            );
             setSelectedCountry(
               data?.results[0]?.address_components[5]?.short_name,
             );
@@ -47,7 +54,9 @@ export default function UserLocation({ setSelectedCountry }) {
           }&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
         );
         const data = await res.json();
-        setUserLocation(data?.results[0]?.address_components[2]?.long_name);
+        setUserCurrentLocation(
+          data?.results[0]?.address_components[2]?.long_name,
+        );
         setSelectedCountry(data?.results[0]?.address_components[5]?.short_name);
       });
     }
@@ -79,7 +88,7 @@ export default function UserLocation({ setSelectedCountry }) {
           d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
         />
       </svg>
-      {userLocation?.toLowerCase() ?? "current location"}
+      {userCurrentLocation?.toLowerCase() ?? "current location"}
     </button>
   );
 }

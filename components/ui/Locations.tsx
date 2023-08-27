@@ -1,23 +1,16 @@
-// @ts-nocheck
 "use client";
 
-import { useEffect } from "react";
+import { useState } from "react";
 import RotatingGlobe from "@/components/RotatingGlobe";
 import UserLocation from "@/components/UserLocation";
 
-export default function Locations({
-  selectedCountry,
-  setSelectedCountry,
-  selectedGlobeCountry,
-  setSelectedGlobeCountry,
-  setUserLocation,
-  userLocation,
-}) {
-  const handleChange = (e) => {
+export default function Locations({}) {
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedInputCountry, setSelectedInputCountry] = useState("");
+  const [userCurrentLocation, setUserCurrentLocation] = useState("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const country = e.target.value;
-    setSelectedGlobeCountry(country);
-
-    // change city to country code and tu upperCase
+    setSelectedInputCountry(country);
   };
 
   return (
@@ -31,10 +24,8 @@ export default function Locations({
           className={"h-8 w-8 md:w-20 md:h-20 scale-[0.2] md:scale-[0.25] mb-5"}
         >
           <RotatingGlobe
-            userLocation={userLocation}
             selectedCountry={selectedCountry}
-            setSelectedGlobeCountry={setSelectedGlobeCountry}
-            setSelectedCountry={setSelectedCountry}
+            setSelectedInputCountry={setSelectedInputCountry}
           />
         </div>
 
@@ -45,7 +36,11 @@ export default function Locations({
           "grid grid-cols-10 gap-3 md:gap-5 md:text-4xl text-lg font-medium md:font-normal z-10"
         }
       >
-        <UserLocation setSelectedCountry={setSelectedCountry} />
+        <UserLocation
+          setSelectedCountry={setSelectedCountry}
+          userCurrentLocation={userCurrentLocation}
+          setUserCurrentLocation={setUserCurrentLocation}
+        />
         <button
           onClick={() => setSelectedCountry("FR")}
           className={
@@ -96,7 +91,7 @@ export default function Locations({
         </button>
         <input
           placeholder={"other"}
-          value={selectedGlobeCountry?.toLowerCase()}
+          value={selectedInputCountry?.toLowerCase()}
           onChange={handleChange}
           className={
             "col-span-6 md:col-span-4 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white focus:placeholder:text-transparent focus:outline-none cursor-pointer focus:cursor-text"

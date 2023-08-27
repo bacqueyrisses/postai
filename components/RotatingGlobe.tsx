@@ -1,40 +1,30 @@
-// @ts-nocheck
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Kelly from "@amcharts/amcharts5/themes/Kelly";
 
+interface IRotatingGlobe {
+  selectedCountry: string;
+  setSelectedInputCountry: (capital: string) => void;
+}
+
 const RotatingGlobe = ({
   selectedCountry,
-  setSelectedCountry,
-  setSelectedGlobeCountry,
-  userLocation,
-}) => {
-  const chartRef = useRef(null);
-  const polygonSeriesRef = useRef(null);
-  const rootRef = useRef(null);
-
-  // function findIdByName(targetName: string) {
-  //   const features = am4geodata_worldLow.features;
-  //
-  //   for (const feature of features) {
-  //     if (feature.properties && feature.properties.name === targetName) {
-  //       return feature.properties.id;
-  //     }
-  //   }
-  //
-  //   return null;
-  // }
+  setSelectedInputCountry,
+}: IRotatingGlobe) => {
+  const chartRef = useRef<am5.Chart | null>(null);
+  const polygonSeriesRef = useRef<am5map.MapPolygonSeries | null>(null);
+  const rootRef = useRef<am5.Root | null>(null);
 
   useEffect(() => {
     // Create root element
     const root = am5.Root.new("chartdiv", {
       useSafeResolution: false,
     });
-    root._logo.dispose();
+    root._logo?.dispose();
 
     // Set themes
     root.setThemes([am5themes_Animated.new(root), am5themes_Kelly.new(root)]);
@@ -93,12 +83,12 @@ const RotatingGlobe = ({
     });
 
     // Set up events
-    let previousPolygon;
+    let previousPolygon: am5map.MapPolygon | null;
     polygonSeries.mapPolygons.template.on("active", function (active, target) {
       if (previousPolygon && previousPolygon !== target) {
         previousPolygon.set("active", false);
       }
-      if (target.get("active")) {
+      if (target?.get("active")) {
         selectCountry(target.dataItem.get("id"));
       }
       previousPolygon = target;
@@ -106,8 +96,8 @@ const RotatingGlobe = ({
 
     function selectCountry(id: string) {
       let dataItem = polygonSeries.getDataItemById(id);
-      let target = dataItem.get("mapPolygon");
-      target.set("active", true);
+      let target = dataItem?.get("mapPolygon");
+      target?.set("active", true);
 
       if (target) {
         let centroid = target.geoCentroid();
@@ -129,28 +119,28 @@ const RotatingGlobe = ({
     }
 
     polygonSeries.events.on("datavalidated", function () {
-      selectCountry(selectedCountry ?? "AU");
+      selectCountry(selectedCountry || "AU");
     });
 
-    polygonSeries.mapPolygons.template.events.on("click", function (event) {
-      const country = event.target.dataItem.dataContext.name;
-      const fetchCapital = async () => {
-        try {
-          const response = await fetch(
-            `https://restcountries.com/v3.1//name/${country}?fullText=true`,
-          );
-          const data = await response.json();
-          if (data.length > 0) {
-            return setSelectedGlobeCountry(data[0].capital[0]);
-          } else {
-            return;
-          }
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-      return fetchCapital();
-    });
+    // polygonSeries.mapPolygons.template.events.on("click", function (event) {
+    //   const country = event.target.dataItem?.dataContext?.name;
+    //   const fetchCapital = async () => {
+    //     try {
+    //       const response = await fetch(
+    //         `https://restcountries.com/v3.1//name/${country}?fullText=true`,
+    //       );
+    //       const data = await response.json();
+    //       if (data.length > 0) {
+    //         return setSelectedInputCountry(data[0].capital[0]);
+    //       } else {
+    //         return;
+    //       }
+    //     } catch (error) {
+    //       console.error("Error fetching data:", error);
+    //     }
+    //   };
+    //   return fetchCapital();
+    // });
 
     chartRef.current = chart;
     polygonSeriesRef.current = polygonSeries;
