@@ -44,10 +44,26 @@ export default function Locations({}) {
         <button
           onClick={() => setSelectedCountry("FR")}
           className={
-            "col-span-4 md:col-span-3 border-2 md:border-3 border-emerald-700 text-emerald-700 rounded-full px-2.5 py-1 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-4 md:col-span-3 border-2 md:border-3 border-emerald-700 text-emerald-700 rounded-full px-2.5 py-1 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300 group"
           }
         >
-          paris
+          <div className={"relative"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-4 h-4 md:w-7 md:h-7 pt-0.5 md:pt-1 hidden left-[6.5rem] bottom-1 group-active:absolute"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+            paris
+          </div>
         </button>
         <button
           onClick={() => setSelectedCountry("JP")}
@@ -91,6 +107,7 @@ export default function Locations({}) {
         </button>
         <input
           placeholder={"other"}
+          type={"text"}
           value={selectedInputCountry?.toLowerCase()}
           onChange={handleChange}
           className={

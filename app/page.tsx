@@ -10,14 +10,15 @@ type PageType = "locations" | "postcard";
 
 export default function Home() {
   const [pageDisplayed, setPageDisplayed] = useState<PageType>("locations");
+  const [postcardLoading, setPostcardLoading] = useState<boolean>(true);
   return (
     <>
-      <main className="flex flex-col justify-between text-center md:gap-14 gap-20">
+      <main className="flex flex-col justify-between text-center md:gap-16 gap-20">
         <Header
           setPageDisplayed={setPageDisplayed}
           pageDisplayed={pageDisplayed}
         />
-        <Hero pageDisplayed={pageDisplayed} />
+        <Hero pageDisplayed={pageDisplayed} postcardLoading={postcardLoading} />
         {pageDisplayed === "locations" && <Locations />}
         {pageDisplayed === "postcard" && <Postcard />}
       </main>

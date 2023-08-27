@@ -1,16 +1,15 @@
 import Image from "next/image";
+import { spans } from "next/dist/build/webpack/plugins/profiling-plugin";
 
 type PageType = "locations" | "postcard";
 interface IHero {
   pageDisplayed: PageType;
+  postcardLoading: boolean;
 }
-export default function Hero({ pageDisplayed }: IHero) {
-  return (
+export default function Hero({ pageDisplayed, postcardLoading }: IHero) {
+  return pageDisplayed === "locations" ? (
     <div className={"text-3xl md:text-6xl font-normal md:font-normal"}>
-      <span className={"font-medium md:font-normal"}>
-        <span>{pageDisplayed === "locations" ? "Create" : "Generating"}</span>{" "}
-        your virtual
-      </span>
+      <span className={"font-medium md:font-normal"}>Create your virtual</span>
       <div className={"block md:inline"}>
         {" "}
         <Image
@@ -42,6 +41,23 @@ export default function Hero({ pageDisplayed }: IHero) {
       />
       {"  "}
       <span className={"font-medium md:font-normal"}>postcard</span>
+    </div>
+  ) : (
+    <div className={"text-3xl md:text-6xl font-normal md:font-normal"}>
+      <span>
+        {postcardLoading
+          ? "Generating your virtual postcard"
+          : "Your postcard is ready ✨"}
+      </span>{" "}
+      <Image
+        src={"/sparkles.webp"}
+        alt={"sparkles telemoji"}
+        className={`-mt-2 w-10 h-10 md:w-16 md:h-16 ${
+          postcardLoading ? "inline" : "hidden"
+        }`}
+        width="70"
+        height="70"
+      />
     </div>
   );
 }
