@@ -34,13 +34,13 @@ const RotatingGlobe = ({
     // Create the map chart
     const chart = root.container.children.push(
       am5map.MapChart.new(root, {
-        panX: "rotateX",
-        panY: "rotateY",
+        // panX: "rotateX",
+        // panY: "rotateY",
         projection: am5map.geoOrthographic(),
         maxZoomLevel: 1,
         zoomLevel: 1,
-        // panX: "none",
-        // panY: "none",
+        panX: "none",
+        panY: "none",
       }),
     );
 
@@ -56,7 +56,6 @@ const RotatingGlobe = ({
     });
 
     polygonSeries.mapPolygons.template.states.create("active", {
-      // fill: root.interfaceColors.get("alternativeBackground"),
       fill: am5.color("#047857"),
     });
 
@@ -66,17 +65,13 @@ const RotatingGlobe = ({
     );
     backgroundSeries.mapPolygons.template.setAll({
       fill: root.interfaceColors.get("alternativeBackground"),
-      // fill: am5.color("#0000FF"),
       fillOpacity: 0.05,
       strokeOpacity: 0,
     });
     polygonSeries.mapPolygons.template.setAll({
-      // tooltipText: "{name}",
-      // fill: root.interfaceColors.get("alternativeBackground"),
-
       fill: am5.color("#17A34A"),
       fillOpacity: 1,
-      toggleKey: "active",
+      // toggleKey: "active",
     });
 
     backgroundSeries.data.push({

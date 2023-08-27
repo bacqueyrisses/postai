@@ -2,7 +2,8 @@
 
 import { useRef, useState } from "react";
 import RotatingGlobe from "@/components/RotatingGlobe";
-import UserLocation from "@/components/UserLocation";
+import UserLocation from "@/components/UserCurrentLocation";
+import UserCurrentLocation from "@/components/UserCurrentLocation";
 
 export default function Locations({}) {
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -25,7 +26,6 @@ export default function Locations({}) {
         >
           <RotatingGlobe
             selectedCountry={selectedCountry}
-            setSelectedInputCountry={setSelectedInputCountry}
             userCurrentLocationRef={userCurrentLocationRef}
           />
         </div>
@@ -37,7 +37,7 @@ export default function Locations({}) {
           "grid grid-cols-10 gap-3 md:gap-5 md:text-4xl text-lg font-medium md:font-normal z-10"
         }
       >
-        <UserLocation
+        <UserCurrentLocation
           setSelectedCountry={setSelectedCountry}
           userCurrentLocationRef={userCurrentLocationRef}
         />

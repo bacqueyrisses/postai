@@ -4,7 +4,7 @@ interface IUserLocation {
   setSelectedCountry: React.Dispatch<React.SetStateAction<string>>;
   userCurrentLocationRef: React.MutableRefObject<string | null>;
 }
-export default function UserLocation({
+export default function UserCurrentLocation({
   setSelectedCountry,
   userCurrentLocationRef,
 }: IUserLocation) {
