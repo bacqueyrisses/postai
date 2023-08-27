@@ -20,6 +20,30 @@ const RotatingGlobe = ({
   const polygonSeriesRef = useRef<am5map.MapPolygonSeries | null>(null);
   const rootRef = useRef<am5.Root | null>(null);
 
+  function selectCountry(id: string, currentPolygon, currentChart) {
+    let dataItem = currentPolygon.getDataItemById(id);
+    let target = dataItem?.get("mapPolygon");
+    target?.set("active", true);
+
+    if (target) {
+      let centroid = target.geoCentroid();
+      if (centroid) {
+        currentChart.animate({
+          key: "rotationX",
+          to: -centroid.longitude,
+          duration: 1500,
+          easing: am5.ease.inOut(am5.ease.cubic),
+        });
+        currentChart.animate({
+          key: "rotationY",
+          to: -centroid.latitude,
+          duration: 1500,
+          easing: am5.ease.inOut(am5.ease.cubic),
+        });
+      }
+    }
+  }
+
   useEffect(() => {
     // Create root element
     const root = am5.Root.new("chartdiv", {
@@ -34,8 +58,8 @@ const RotatingGlobe = ({
     // Create the map chart
     const chart = root.container.children.push(
       am5map.MapChart.new(root, {
-        // panX: "rotateX",
-        // panY: "rotateY",
+        // panX: "rotateX", Add user manual rotation
+        // panY: "rotateY", Add user manual rotation
         projection: am5map.geoOrthographic(),
         maxZoomLevel: 1,
         zoomLevel: 1,
@@ -71,7 +95,7 @@ const RotatingGlobe = ({
     polygonSeries.mapPolygons.template.setAll({
       fill: am5.color("#17A34A"),
       fillOpacity: 1,
-      // toggleKey: "active",
+      // toggleKey: "active", Add user manual selection
     });
 
     backgroundSeries.data.push({
@@ -85,37 +109,18 @@ const RotatingGlobe = ({
         previousPolygon.set("active", false);
       }
       if (target?.get("active")) {
-        selectCountry(target.dataItem.get("id"));
+        selectCountry(target.dataItem.get("id"), polygonSeries, chart);
       }
       previousPolygon = target;
     });
 
-    function selectCountry(id: string) {
-      let dataItem = polygonSeries.getDataItemById(id);
-      let target = dataItem?.get("mapPolygon");
-      target?.set("active", true);
-
-      if (target) {
-        let centroid = target.geoCentroid();
-        if (centroid) {
-          chart.animate({
-            key: "rotationX",
-            to: -centroid.longitude,
-            duration: 1500,
-            easing: am5.ease.inOut(am5.ease.cubic),
-          });
-          chart.animate({
-            key: "rotationY",
-            to: -centroid.latitude,
-            duration: 1500,
-            easing: am5.ease.inOut(am5.ease.cubic),
-          });
-        }
-      }
-    }
-
+    // Animate on load
     polygonSeries.events.on("datavalidated", function () {
-      selectCountry(userCurrentLocationRef || selectedCountry || "US");
+      selectCountry(
+        userCurrentLocationRef || selectedCountry || "US",
+        polygonSeries,
+        chart,
+      );
     });
 
     chartRef.current = chart;
@@ -123,37 +128,13 @@ const RotatingGlobe = ({
   }, []);
 
   useEffect(() => {
-    // Create the map chart
-    const chart = chartRef.current;
-    const polygonSeries = polygonSeriesRef.current;
-
-    function selectCountry(id: string) {
-      let dataItem = polygonSeries.getDataItemById(id);
-      let target = dataItem?.get("mapPolygon");
-      target.set("active", true);
-
-      if (target) {
-        let centroid = target.geoCentroid();
-        if (centroid) {
-          chart.animate({
-            key: "rotationX",
-            to: -centroid.longitude,
-            duration: 1500,
-            easing: am5.ease.inOut(am5.ease.cubic),
-          });
-          chart.animate({
-            key: "rotationY",
-            to: -centroid.latitude,
-            duration: 1500,
-            easing: am5.ease.inOut(am5.ease.cubic),
-          });
-        }
-      }
-    }
-
-    selectedCountry && selectCountry(selectedCountry);
-
-    // Make stuff animate on load
+    // Animate on value change
+    selectedCountry &&
+      selectCountry(
+        selectedCountry,
+        polygonSeriesRef.current,
+        chartRef.current,
+      );
   }, [selectedCountry]);
 
   return <div id="chartdiv" className={"w-[50rem] h-[50rem]"}></div>;
