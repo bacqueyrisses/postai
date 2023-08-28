@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import RotatingGlobe from "@/components/hero/RotatingGlobe";
+import RotatingGlobe from "@/components/locations/RotatingGlobe";
 import UserLocation from "@/components/locations/UserCurrentLocation";
 import UserCurrentLocation from "@/components/locations/UserCurrentLocation";
 

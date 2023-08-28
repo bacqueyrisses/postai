@@ -1,6 +1,6 @@
 "use client";
 import Header from "@/components/Header";
-import Hero from "@/components/hero/Hero";
+import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import Locations from "@/components/locations/Locations";
 import { useState } from "react";

@@ -117,7 +117,7 @@ const RotatingGlobe = ({
     // Animate on load
     polygonSeries.events.on("datavalidated", function () {
       selectCountry(
-        userCurrentLocationRef || selectedCountry || "US",
+        userCurrentLocationRef.current || selectedCountry || "US",
         polygonSeries,
         chart,
       );
