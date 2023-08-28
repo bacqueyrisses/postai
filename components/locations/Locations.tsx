@@ -45,6 +45,7 @@ export default function Locations({}) {
         <UserCurrentLocation
           setSelectedCountry={setSelectedCountry}
           userCurrentLocationRef={userCurrentLocationRef}
+          selectedCountry={selectedCountry}
         />
         <City
           selectedCountry={selectedCountry}

@@ -7,7 +7,7 @@ export default function Postcard({ postcardLoading }: IPostCard) {
   return (
     <div className={"inline-flex items-center justify-center"}>
       {!postcardLoading && (
-        <div className={"w-[700px] h-[459px] bg-emerald-300"}>
+        <div className={"w-[700px] h-[459px]"}>
           <Image
             src={"/postcard.jpg"}
             alt={"postcard postai"}

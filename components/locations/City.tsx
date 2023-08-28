@@ -1,10 +1,6 @@
 import { SelectedCountryType } from "@/types/global";
 
 type VariantType = "full" | "outline";
-type CountryType = {
-  city: string;
-  countryCode: string;
-};
 
 interface ICity {
   className: string;
@@ -12,7 +8,7 @@ interface ICity {
   unselectedClassName: string;
   setSelectedCountry: React.Dispatch<React.SetStateAction<SelectedCountryType>>;
   selectedCountry: SelectedCountryType;
-  country: CountryType;
+  country: SelectedCountryType;
   variant: VariantType;
 }
 export default function City({

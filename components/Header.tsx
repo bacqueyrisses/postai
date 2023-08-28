@@ -17,7 +17,7 @@ export default function Header({
     setPageDisplayed(newPage);
     setTimeout(() => {
       setPostcardLoading(false);
-    }, 3000);
+    }, 3500);
   };
 
   return (
