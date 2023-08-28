@@ -4,9 +4,13 @@ import { useRef, useState } from "react";
 import RotatingGlobe from "@/components/locations/RotatingGlobe";
 import UserCurrentLocation from "@/components/locations/UserCurrentLocation";
 import City from "@/components/locations/City";
+import { SelectedCountryType } from "@/types/global";
 
 export default function Locations({}) {
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState<SelectedCountryType>({
+    city: "",
+    countryCode: "",
+  });
   const [selectedInputCountry, setSelectedInputCountry] = useState("");
   const userCurrentLocationRef = useRef<string | null>(null);
 

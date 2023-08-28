@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { SelectedCountryType } from "@/types/global";
 
 interface IUserLocation {
-  setSelectedCountry: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedCountry: React.Dispatch<React.SetStateAction<SelectedCountryType>>;
   userCurrentLocationRef: React.MutableRefObject<string | null>;
 }
 
@@ -31,7 +32,7 @@ export default function UserCurrentLocation({
         ).short_name;
 
         setUserCurrentLocation(cityName);
-        setSelectedCountry(countryId);
+        setSelectedCountry({ city: cityName, countryCode: countryId });
         userCurrentLocationRef.current = countryId;
       } catch (error) {
         console.error("Error fetching location data:", error);

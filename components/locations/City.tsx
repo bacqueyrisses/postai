@@ -1,3 +1,5 @@
+import { SelectedCountryType } from "@/types/global";
+
 type VariantType = "full" | "outline";
 type CountryType = {
   city: string;
@@ -8,8 +10,8 @@ interface ICity {
   className: string;
   selectedClassName: string;
   unselectedClassName: string;
-  setSelectedCountry: React.Dispatch<React.SetStateAction<string>>;
-  selectedCountry: string;
+  setSelectedCountry: React.Dispatch<React.SetStateAction<SelectedCountryType>>;
+  selectedCountry: SelectedCountryType;
   country: CountryType;
   variant: VariantType;
 }
@@ -34,15 +36,20 @@ export default function City({
 
   return (
     <button
-      onClick={() => setSelectedCountry(country.countryCode)}
+      onClick={() =>
+        setSelectedCountry({
+          city: country.city,
+          countryCode: country.countryCode,
+        })
+      }
       className={`${
-        selectedCountry === country.countryCode
+        selectedCountry.city === country.city
           ? selectedClassName
           : unselectedClassName
       } border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 transition-colors ease-in-out duration-300`}
     >
       <div className={"relative w-fit mx-auto"}>
-        {selectedCountry === country.countryCode && (
+        {selectedCountry.city === country.city && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

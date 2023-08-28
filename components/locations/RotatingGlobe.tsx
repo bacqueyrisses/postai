@@ -6,9 +6,10 @@ import * as am5map from "@amcharts/amcharts5/map";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Kelly from "@amcharts/amcharts5/themes/Kelly";
+import { SelectedCountryType } from "@/types/global";
 
 interface IRotatingGlobe {
-  selectedCountry: string;
+  selectedCountry: SelectedCountryType;
   userCurrentLocationRef: React.MutableRefObject<string | null>;
 }
 
@@ -117,7 +118,7 @@ const RotatingGlobe = ({
     // Animate on load
     polygonSeries.events.on("datavalidated", function () {
       selectCountry(
-        userCurrentLocationRef.current || selectedCountry || "US",
+        userCurrentLocationRef.current || selectedCountry.countryCode || "US",
         polygonSeries,
         chart,
       );
@@ -129,13 +130,13 @@ const RotatingGlobe = ({
 
   useEffect(() => {
     // Animate on value change
-    selectedCountry &&
+    selectedCountry.countryCode &&
       selectCountry(
-        selectedCountry,
+        selectedCountry.countryCode,
         polygonSeriesRef.current,
         chartRef.current,
       );
-  }, [selectedCountry]);
+  }, [selectedCountry.countryCode]);
 
   return <div id="chartdiv" className={"w-[50rem] h-[50rem]"}></div>;
 };
