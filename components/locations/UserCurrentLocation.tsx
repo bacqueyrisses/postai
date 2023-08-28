@@ -42,10 +42,11 @@ export default function UserCurrentLocation({
 
   useEffect(() => {
     if (
-      !("geolocation" in navigator) &&
-      localStorage.getItem("hasLocationPermission") === "false"
+      !("geolocation" in navigator) ||
+      localStorage.getItem("hasLocationPermission") === "false" ||
+      !localStorage.getItem("hasLocationPermission")
     )
-      localStorage.setItem("hasLocationPermission", "false");
+      return localStorage.setItem("hasLocationPermission", "false");
 
     getUserCurrentLocation();
   }, []);
