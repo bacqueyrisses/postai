@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import RotatingGlobe from "@/components/locations/RotatingGlobe";
-import UserLocation from "@/components/locations/UserCurrentLocation";
 import UserCurrentLocation from "@/components/locations/UserCurrentLocation";
+import City from "@/components/locations/City";
 
 export default function Locations({}) {
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -41,70 +41,70 @@ export default function Locations({}) {
           setSelectedCountry={setSelectedCountry}
           userCurrentLocationRef={userCurrentLocationRef}
         />
-        <button
-          onClick={() => setSelectedCountry("FR")}
+        <City
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          city={"paris"}
           className={
-            "col-span-4 md:col-span-3 border-2 md:border-3 border-emerald-700 text-emerald-700 rounded-full px-2.5 py-1 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out cursor-pointer duration-300 group"
+            "col-span-4 md:col-span-3 border-emerald-700 hover:bg-emerald-700"
           }
-        >
-          <div className={"relative"}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-4 h-4 md:w-7 md:h-7 pt-0.5 md:pt-1 hidden left-[6.5rem] bottom-1 group-active:absolute"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 12.75l6 6 9-13.5"
-              />
-            </svg>
-            paris
-          </div>
-        </button>
-        <button
-          onClick={() => setSelectedCountry("JP")}
+          selectedClassName={"bg-emerald-700"}
+          unselectedClassName={"text-emerald-700"}
+          variant={"outline"}
+        />
+        <City
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          city={"tokyo"}
+          className={"col-span-3  border-orange-400 hover:text-orange-400"}
+          selectedClassName={"text-orange-400"}
+          unselectedClassName={"bg-orange-400"}
+          variant={"full"}
+        />
+        <City
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          city={"johannesburg"}
           className={
-            "col-span-3 bg-orange-400 text-white rounded-full px-2.5 py-1 md:py-4 border-2 md:border-3 border-orange-400 hover:text-orange-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-7 md:col-span-5 border-yellow-400 hover:text-yellow-400"
           }
-        >
-          tokyo
-        </button>
-        <button
-          onClick={() => setSelectedCountry("ZA")}
+          selectedClassName={"text-yellow-400"}
+          unselectedClassName={"bg-yellow-400"}
+          variant={"full"}
+        />
+        <City
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          city={"washington"}
           className={
-            "col-span-7 md:col-span-5 bg-yellow-400 text-white rounded-full px-2.5 py-1 md:py-4 border-2 md:border-3 border-yellow-400 hover:text-yellow-400 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-6 md:col-span-5 border-red-500 hover:text-red-500"
           }
-        >
-          johannesburg
-        </button>
-        <button
-          onClick={() => setSelectedCountry("US")}
+          selectedClassName={"text-red-500"}
+          unselectedClassName={"bg-red-500"}
+          variant={"full"}
+        />
+        <City
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          city={"dublin"}
           className={
-            "col-span-6 md:col-span-5 bg-red-500 text-white rounded-full px-2.5 py-1 md:py-4 border-2 md:border-3 border-red-500 hover:text-red-500 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-4 md:col-span-3 border-blue-600 hover:text-blue-600"
           }
-        >
-          washington
-        </button>
-        <button
-          onClick={() => setSelectedCountry("IE")}
+          selectedClassName={"text-blue-600"}
+          unselectedClassName={"bg-blue-600"}
+          variant={"full"}
+        />
+        <City
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          city={"madrid"}
           className={
-            "col-span-4 md:col-span-3 bg-blue-600 text-white rounded-full px-2.5 py-1 md:py-4 border-2 md:border-3 border-blue-600 hover:text-blue-600 hover:bg-transparent transition-colors ease-in-out cursor-pointer duration-300"
+            "col-span-4 md:col-span-3 border-green-600 hover:bg-green-600"
           }
-        >
-          dublin
-        </button>
-        <button
-          onClick={() => setSelectedCountry("ES")}
-          className={
-            "col-span-4 md:col-span-3 border-green-600 text-green-600 border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-green-600 hover:text-white transition-colors ease-in-out cursor-pointer duration-300"
-          }
-        >
-          madrid
-        </button>
+          selectedClassName={"bg-green-600"}
+          unselectedClassName={"text-green-600"}
+          variant={"outline"}
+        />
         <input
           placeholder={"other"}
           type={"text"}

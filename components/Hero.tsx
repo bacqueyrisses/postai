@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { spans } from "next/dist/build/webpack/plugins/profiling-plugin";
 
 type PageType = "locations" | "postcard";
 interface IHero {

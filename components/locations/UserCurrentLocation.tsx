@@ -10,58 +10,45 @@ export default function UserCurrentLocation({
 }: IUserLocation) {
   const [userCurrentLocation, setUserCurrentLocation] = useState("");
 
+  const getUserCurrentLocation = (): void => {
+    // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
+    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      try {
+        localStorage.setItem("hasLocationPermission", "true");
+        const res = await fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
+        );
+        const data = await res.json();
+        const cityName: string = data?.results[0]?.address_components.find(
+          (v: { short_name: string; long_name: string; types: string[] }) =>
+            v.types.includes("locality"),
+        ).long_name;
+        const countryId: string = data?.results[0]?.address_components.find(
+          (v: { short_name: string; long_name: string; types: string[] }) =>
+            v.types.includes("country"),
+        ).short_name;
+        setUserCurrentLocation(cityName);
+        setSelectedCountry(countryId);
+        userCurrentLocationRef.current = countryId;
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
+    });
+  };
+
   useEffect(() => {
     if (
       "geolocation" in navigator &&
       localStorage.getItem("hasLocationPermission") === "true"
     ) {
-      // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
-      navigator.geolocation.getCurrentPosition(
-        async ({ coords }) => {
-          try {
-            localStorage.setItem("hasLocationPermission", "true");
-            const res = await fetch(
-              `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
-            );
-            const data = await res.json();
-            setUserCurrentLocation(
-              data?.results[0]?.address_components[2]?.long_name,
-            );
-            setSelectedCountry(
-              data?.results[0]?.address_components[5]?.short_name,
-            );
-          } catch (error) {
-            console.error("Error fetching location data:", error);
-          }
-        },
-        (error) => {
-          console.error("Error getting location permission:", error);
-          localStorage.setItem("hasLocationPermission", "false");
-        },
-      );
+      getUserCurrentLocation();
     } else {
       localStorage.setItem("hasLocationPermission", "false");
     }
   }, []);
   const handleClick = async () => {
     if ("geolocation" in navigator) {
-      // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
-      navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-        localStorage.setItem("hasLocationPermission", "true");
-        const res = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
-            coords.latitude + "," + coords.longitude
-          }&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
-        );
-        const data = await res.json();
-        const cityName: string =
-          data?.results[0]?.address_components[2]?.long_name;
-        const countryId: string =
-          data?.results[0]?.address_components[5]?.short_name;
-        setUserCurrentLocation(cityName);
-        setSelectedCountry(countryId);
-        userCurrentLocationRef.current = countryId;
-      });
+      getUserCurrentLocation();
     }
   };
 
