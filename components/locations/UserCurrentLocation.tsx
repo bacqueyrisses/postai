@@ -4,6 +4,7 @@ interface IUserLocation {
   setSelectedCountry: React.Dispatch<React.SetStateAction<string>>;
   userCurrentLocationRef: React.MutableRefObject<string | null>;
 }
+
 export default function UserCurrentLocation({
   setSelectedCountry,
   userCurrentLocationRef,
@@ -19,6 +20,7 @@ export default function UserCurrentLocation({
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&sensor=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API}`,
         );
         const data = await res.json();
+
         const cityName: string = data?.results[0]?.address_components.find(
           (v: { short_name: string; long_name: string; types: string[] }) =>
             v.types.includes("locality"),
@@ -27,6 +29,7 @@ export default function UserCurrentLocation({
           (v: { short_name: string; long_name: string; types: string[] }) =>
             v.types.includes("country"),
         ).short_name;
+
         setUserCurrentLocation(cityName);
         setSelectedCountry(countryId);
         userCurrentLocationRef.current = countryId;
@@ -38,18 +41,15 @@ export default function UserCurrentLocation({
 
   useEffect(() => {
     if (
-      "geolocation" in navigator &&
-      localStorage.getItem("hasLocationPermission") === "true"
-    ) {
-      getUserCurrentLocation();
-    } else {
+      !("geolocation" in navigator) &&
+      localStorage.getItem("hasLocationPermission") === "false"
+    )
       localStorage.setItem("hasLocationPermission", "false");
-    }
+
+    getUserCurrentLocation();
   }, []);
   const handleClick = async () => {
-    if ("geolocation" in navigator) {
-      getUserCurrentLocation();
-    }
+    if ("geolocation" in navigator) getUserCurrentLocation();
   };
 
   return (
