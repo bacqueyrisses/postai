@@ -9,6 +9,7 @@ export default function Locations({}) {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedInputCountry, setSelectedInputCountry] = useState("");
   const userCurrentLocationRef = useRef<string | null>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const country = e.target.value;
     setSelectedInputCountry(country);
@@ -44,7 +45,7 @@ export default function Locations({}) {
         <City
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
-          city={"paris"}
+          country={{ city: "paris", countryCode: "FR" }}
           className={
             "col-span-4 md:col-span-3 border-emerald-700 hover:bg-emerald-700"
           }
@@ -55,7 +56,7 @@ export default function Locations({}) {
         <City
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
-          city={"tokyo"}
+          country={{ city: "tokyo", countryCode: "JP" }}
           className={"col-span-3  border-orange-400 hover:text-orange-400"}
           selectedClassName={"text-orange-400"}
           unselectedClassName={"bg-orange-400"}
@@ -64,7 +65,7 @@ export default function Locations({}) {
         <City
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
-          city={"johannesburg"}
+          country={{ city: "cape town", countryCode: "ZA" }}
           className={
             "col-span-7 md:col-span-5 border-yellow-400 hover:text-yellow-400"
           }
@@ -75,7 +76,7 @@ export default function Locations({}) {
         <City
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
-          city={"washington"}
+          country={{ city: "washington", countryCode: "US" }}
           className={
             "col-span-6 md:col-span-5 border-red-500 hover:text-red-500"
           }
@@ -86,7 +87,7 @@ export default function Locations({}) {
         <City
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
-          city={"dublin"}
+          country={{ city: "dublin", countryCode: "IE" }}
           className={
             "col-span-4 md:col-span-3 border-blue-600 hover:text-blue-600"
           }
@@ -97,7 +98,7 @@ export default function Locations({}) {
         <City
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
-          city={"madrid"}
+          country={{ city: "seoul", countryCode: "KR" }}
           className={
             "col-span-4 md:col-span-3 border-green-600 hover:bg-green-600"
           }

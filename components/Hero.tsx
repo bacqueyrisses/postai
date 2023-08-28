@@ -43,20 +43,23 @@ export default function Hero({ pageDisplayed, postcardLoading }: IHero) {
     </div>
   ) : (
     <div className={"text-3xl md:text-6xl font-normal md:font-normal"}>
-      <span>
-        {postcardLoading
-          ? "Generating your virtual postcard"
-          : "Your postcard is ready ✨"}
-      </span>{" "}
-      <Image
-        src={"/sparkles.webp"}
-        alt={"sparkles telemoji"}
-        className={`-mt-2 w-10 h-10 md:w-16 md:h-16 ${
-          postcardLoading ? "inline" : "hidden"
-        }`}
-        width="70"
-        height="70"
-      />
+      {!postcardLoading && <span>Your postcard is ready ✨</span>}
+
+      {postcardLoading && (
+        <>
+          <span>Generating your virtual postcard</span>
+
+          <Image
+            src={"/sparkles.webp"}
+            alt={"sparkles telemoji"}
+            className={`ml-2 w-10 h-10 md:w-16 md:h-16 ${
+              postcardLoading ? "inline" : "hidden"
+            }`}
+            width="70"
+            height="70"
+          />
+        </>
+      )}
     </div>
   );
 }

@@ -1,23 +1,29 @@
 import Image from "next/image";
-
-type PageType = "locations" | "postcard";
+import Link from "next/link";
+import { PageType } from "@/types/global";
 
 interface IHeader {
   setPageDisplayed: (newPage: PageType) => void;
   pageDisplayed: PageType;
+  setPostcardLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export default function Header({ setPageDisplayed, pageDisplayed }: IHeader) {
+export default function Header({
+  setPageDisplayed,
+  pageDisplayed,
+  setPostcardLoading,
+}: IHeader) {
   const handleClick = () => {
     const newPage = pageDisplayed === "locations" ? "postcard" : "locations";
     setPageDisplayed(newPage);
+    setTimeout(() => {
+      setPostcardLoading(false);
+    }, 3000);
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className={"flex items-center justify-between pt-5"}
-    >
-      <div
+    <div className={"flex items-center justify-between pt-5"}>
+      <Link
+        href={"/"}
         className={
           "text-2xl md:text-3xl flex items-center italic font-semibold"
         }
@@ -31,9 +37,10 @@ export default function Header({ setPageDisplayed, pageDisplayed }: IHeader) {
           className={"inline mt-1"}
         />
         <div>postai</div>
-      </div>
+      </Link>
 
-      <div
+      <button
+        onClick={handleClick}
         className={
           "w-36 md:w-44 group inline-flex justify-center items-center gap-1 bg-emerald-500 rounded-3xl py-2 md:py-2.5 text-white hover:bg-blue-500 transition-colors cursor-pointer duration-300 text-sm md:text-base"
         }
@@ -55,7 +62,7 @@ export default function Header({ setPageDisplayed, pageDisplayed }: IHeader) {
         <span className={"w-24 md:w-28 text-start -mr-1"}>
           {pageDisplayed === "locations" ? "New Postcard" : "New Location"}
         </span>
-      </div>
-    </button>
+      </button>
+    </div>
   );
 }

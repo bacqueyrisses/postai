@@ -5,22 +5,24 @@ import Footer from "@/components/Footer";
 import Locations from "@/components/locations/Locations";
 import { useState } from "react";
 import Postcard from "@/components/postcard/Postcard";
-
-type PageType = "locations" | "postcard";
+import { PageType } from "@/types/global";
 
 export default function Home() {
   const [pageDisplayed, setPageDisplayed] = useState<PageType>("locations");
   const [postcardLoading, setPostcardLoading] = useState<boolean>(true);
   return (
     <>
+      <Header
+        setPageDisplayed={setPageDisplayed}
+        pageDisplayed={pageDisplayed}
+        setPostcardLoading={setPostcardLoading}
+      />
       <main className="flex flex-col justify-between text-center md:gap-16 gap-20">
-        <Header
-          setPageDisplayed={setPageDisplayed}
-          pageDisplayed={pageDisplayed}
-        />
         <Hero pageDisplayed={pageDisplayed} postcardLoading={postcardLoading} />
         {pageDisplayed === "locations" && <Locations />}
-        {pageDisplayed === "postcard" && <Postcard />}
+        {pageDisplayed === "postcard" && (
+          <Postcard postcardLoading={postcardLoading} />
+        )}
       </main>
 
       <Footer />
