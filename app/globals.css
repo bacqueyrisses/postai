@@ -12,6 +12,14 @@
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+.pulse-shadow {
+    animation: pulseshadow 2.2s infinite;
+}
+
+@keyframes pulseshadow {
+    50% {box-shadow: 0 2px 19px 6px rgba(18,185,129,1);}
+}
+
 .bounce {
     animation-name: bounce;
     animation-duration: .5s;

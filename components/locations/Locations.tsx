@@ -112,11 +112,14 @@ export default function Locations({
               : ""
           }
           onClick={validateData}
-          className={`${selectedCountry.city && "animate-pulse pulse-slow"} ${
+          className={`${
+            selectedCountry.city &&
+            "shadow-[0px_0px_19px_6px_rgba(18,185,129,0.85)] pulse-shadow"
+          } ${
             error
-              ? "bounce shadow-[0px_4px_19px_6px_rgba(239,68,68,0.45)]"
-              : "shadow-[0px_4px_19px_6px_rgba(18,185,129,0.45)]"
-          } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-transparent hover:text-emerald-500 transition-colors ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer`}
+              ? "bounce shadow-[0px_2px_19px_6px_rgba(239,68,68,0.45)]"
+              : "shadow-[0px_2px_19px_6px_rgba(18,185,129,0.45)]"
+          } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-transparent hover:text-emerald-500 ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer transition`}
         >
           generate!
         </Link>
