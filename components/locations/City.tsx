@@ -6,7 +6,7 @@ interface ICity {
   className: string;
   selectedClassName: string;
   unselectedClassName: string;
-  setSelectedCountry: React.Dispatch<React.SetStateAction<SelectedCountryType>>;
+  setSelectedCountry: React.Dispatch<SelectedCountryType>;
   selectedCountry: SelectedCountryType;
   country: SelectedCountryType;
   variant: VariantType;

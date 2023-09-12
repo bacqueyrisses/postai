@@ -10,12 +10,11 @@ import { SelectedCountryType } from "@/types/global";
 
 interface IRotatingGlobe {
   selectedCountry: SelectedCountryType;
-  userCurrentLocationRef: React.MutableRefObject<string | null>;
+  userCurrentLocation: SelectedCountryType;
 }
-
 const RotatingGlobe = ({
   selectedCountry,
-  userCurrentLocationRef,
+  userCurrentLocation,
 }: IRotatingGlobe) => {
   const chartRef = useRef<am5.Chart | null>(null);
   const polygonSeriesRef = useRef<am5map.MapPolygonSeries | null>(null);
@@ -26,22 +25,22 @@ const RotatingGlobe = ({
     let target = dataItem?.get("mapPolygon");
     target?.set("active", true);
 
-    if (target) {
-      let centroid = target.geoCentroid();
-      if (centroid) {
-        currentChart.animate({
-          key: "rotationX",
-          to: -centroid.longitude,
-          duration: 1500,
-          easing: am5.ease.inOut(am5.ease.cubic),
-        });
-        currentChart.animate({
-          key: "rotationY",
-          to: -centroid.latitude,
-          duration: 1500,
-          easing: am5.ease.inOut(am5.ease.cubic),
-        });
-      }
+    if (!target) return;
+
+    let centroid = target.geoCentroid();
+    if (centroid) {
+      currentChart.animate({
+        key: "rotationX",
+        to: -centroid.longitude,
+        duration: 1500,
+        easing: am5.ease.inOut(am5.ease.cubic),
+      });
+      currentChart.animate({
+        key: "rotationY",
+        to: -centroid.latitude,
+        duration: 1500,
+        easing: am5.ease.inOut(am5.ease.cubic),
+      });
     }
   }
 
@@ -115,15 +114,6 @@ const RotatingGlobe = ({
       previousPolygon = target;
     });
 
-    // Animate on load
-    polygonSeries.events.on("datavalidated", function () {
-      selectCountry(
-        userCurrentLocationRef.current || selectedCountry.countryCode || "US",
-        polygonSeries,
-        chart,
-      );
-    });
-
     chartRef.current = chart;
     polygonSeriesRef.current = polygonSeries;
   }, []);
@@ -137,6 +127,16 @@ const RotatingGlobe = ({
         chartRef.current,
       );
   }, [selectedCountry.countryCode]);
+
+  useEffect(() => {
+    // Animate on value change
+    userCurrentLocation.countryCode &&
+      selectCountry(
+        userCurrentLocation.countryCode,
+        polygonSeriesRef.current,
+        chartRef.current,
+      );
+  }, [userCurrentLocation.countryCode]);
 
   return <div id="chartdiv" className={"w-[50rem] h-[50rem]"}></div>;
 };

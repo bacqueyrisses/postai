@@ -1,23 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SelectedCountryType } from "@/types/global";
 
 interface IUserLocation {
-  setSelectedCountry: React.Dispatch<React.SetStateAction<SelectedCountryType>>;
-  userCurrentLocationRef: React.MutableRefObject<string | null>;
+  setSelectedCountry: React.Dispatch<SelectedCountryType>;
   selectedCountry: SelectedCountryType;
+  setUserCurrentLocation: React.Dispatch<SelectedCountryType>;
+  userCurrentLocation: SelectedCountryType;
 }
 
 export default function UserCurrentLocation({
+  userCurrentLocation,
+  setUserCurrentLocation,
   setSelectedCountry,
-  userCurrentLocationRef,
   selectedCountry,
 }: IUserLocation) {
-  const [userCurrentLocation, setUserCurrentLocation] =
-    useState<SelectedCountryType>({
-      city: "",
-      countryCode: "",
-    });
-
   useEffect(() => {
     if (
       !("geolocation" in navigator) ||
@@ -28,6 +24,15 @@ export default function UserCurrentLocation({
 
     getUserCurrentLocation();
   }, []);
+
+  const handleClick = async () => {
+    if ("geolocation" in navigator && !userCurrentLocation.city)
+      getUserCurrentLocation();
+    setSelectedCountry({
+      city: userCurrentLocation.city,
+      countryCode: userCurrentLocation.countryCode,
+    });
+  };
 
   const getUserCurrentLocation = (): void => {
     // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
@@ -51,8 +56,6 @@ export default function UserCurrentLocation({
 
           if (cityName && countryId) {
             setUserCurrentLocation({ city: cityName, countryCode: countryId });
-            setSelectedCountry({ city: cityName, countryCode: countryId });
-            userCurrentLocationRef.current = countryId;
           } else {
             console.error(
               "Error: City name or country code not found in location data.",
@@ -67,15 +70,6 @@ export default function UserCurrentLocation({
         localStorage.setItem("hasLocationPermission", "false");
       },
     );
-  };
-
-  const handleClick = async () => {
-    if ("geolocation" in navigator && !userCurrentLocation)
-      getUserCurrentLocation();
-    setSelectedCountry({
-      city: userCurrentLocation.city,
-      countryCode: userCurrentLocation.countryCode,
-    });
   };
 
   return (
