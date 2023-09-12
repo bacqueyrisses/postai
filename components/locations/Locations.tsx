@@ -5,6 +5,7 @@ import City from "@/components/locations/City";
 import CityAutocomplete from "@/components/locations/CityAutocomplete";
 import { SelectedCountryType } from "@/types/global";
 import Link from "next/link";
+import { useState } from "react";
 
 interface ILocations {
   selectedCountry: SelectedCountryType;
@@ -22,6 +23,16 @@ export default function Locations({
   userCurrentLocation,
   setUserCurrentLocation,
 }: ILocations) {
+  const [error, setError] = useState(false);
+
+  const validateData = () => {
+    if (selectedCountry.city) return;
+
+    setTimeout(() => {
+      setError(true);
+    }, 10);
+    setError(false);
+  };
   return (
     <div className={"flex flex-col text-black gap-3 md:gap-6"}>
       <div
@@ -93,13 +104,18 @@ export default function Locations({
           setSelectedInputCountry={setSelectedInputCountry}
         />
         <Link
-          href={{
-            pathname: "/generation",
-            query: { city: selectedCountry.city },
-          }}
-          className={`${
-            selectedCountry.city && "animate-pulse pulse-slow"
-          } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-transparent hover:text-emerald-500 transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 hover:placeholder:text-white focus:placeholder:text-transparent focus:outline-none cursor-pointer focus:cursor-text shadow-[0px_4px_19px_6px_rgba(18,185,129,0.45)]`}
+          href={
+            selectedCountry.city
+              ? {
+                  pathname: "/generation",
+                  query: { city: selectedCountry.city },
+                }
+              : ""
+          }
+          onClick={validateData}
+          className={`${selectedCountry.city && "animate-pulse pulse-slow"} ${
+            error ? "bounce" : ""
+          } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-transparent hover:text-emerald-500 transition-colors ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer shadow-[0px_4px_19px_6px_rgba(18,185,129,0.45)]`}
         >
           generate!
         </Link>

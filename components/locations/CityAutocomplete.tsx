@@ -1,23 +1,6 @@
+import * as React from "react";
 import { useState } from "react";
 import { fetchData } from "@/utils/actions";
-
-import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
-
-import { cn } from "@/utils";
-import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
 const frameworks = [
   {
@@ -41,11 +24,14 @@ const frameworks = [
     label: "Astro",
   },
 ];
-
+interface ICityAutocomplete {
+  selectedInputCountry: string;
+  setSelectedInputCountry: React.Dispatch<string>;
+}
 export default function CityAutocomplete({
   selectedInputCountry,
   setSelectedInputCountry,
-}) {
+}: ICityAutocomplete) {
   const [inputText, setInputText] = useState("");
   const [predictions, setPredictions] = useState([]);
   const [open, setOpen] = React.useState(false);

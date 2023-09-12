@@ -17,7 +17,7 @@ export default function GenerationPage() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 4000);
   }, []);
 
   // const { data, error, isLoading } = useSWR(url, fetcher);
