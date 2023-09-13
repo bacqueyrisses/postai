@@ -17,7 +17,7 @@ export default function GenerationPage() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 4000);
+    }, 4500);
   }, []);
 
   // const { data, error, isLoading } = useSWR(url, fetcher);
@@ -39,18 +39,16 @@ export default function GenerationPage() {
           </Link>
         </div>
       ) : isLoading ? (
-        <>
-          <span>Generating your postcard </span>
+        <div className={"space-x-4"}>
+          <span>Generating your postcard</span>
           <Image
             src={"/sparkles.webp"}
             alt={"sparkles telemoji"}
             width="67"
             height="67"
-            className={
-              "-mt-2 -mx-1.5 md:-mx-2.5 inline w-11 h-11 md:w-20 md:h-20"
-            }
+            className={"inline w-11 h-11 md:w-20 md:h-20"}
           />
-        </>
+        </div>
       ) : (
         // <Image src={data} alt={"virtual postcard"} width={500} height={500} />
         <Image
