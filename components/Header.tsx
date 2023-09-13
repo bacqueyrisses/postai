@@ -2,19 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
-  // const handleClick = async () => {
-  //   const newPage = pageDisplayed === "locations" ? "postcard" : "locations";
-  //   setPageDisplayed(newPage);
-  //   const { data } = await axios.get("/api/replicate");
-  //   setImgUrl(data);
-  //   setPostcardLoading(false);
-  // };
-
   return (
     <div className={"flex items-center justify-between pt-5"}>
       <Link
         href={"/"}
-        // onClick={() => setPageDisplayed("locations")}
         className={
           "text-2xl md:text-3xl flex items-center italic font-semibold"
         }
@@ -31,7 +22,7 @@ export default function Header() {
       </Link>
 
       <Link
-        href={"/"}
+        href={"/profile"}
         className={
           "w-36 md:w-44 group inline-flex justify-center items-center gap-1.5 bg-emerald-500 rounded-3xl py-2 md:py-2.5 text-white hover:bg-blue-500 transition-colors cursor-pointer duration-300 text-sm md:text-base"
         }

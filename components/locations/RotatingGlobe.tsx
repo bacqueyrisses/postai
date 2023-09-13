@@ -114,6 +114,11 @@ const RotatingGlobe = ({
       previousPolygon = target;
     });
 
+    // Animate on load
+    polygonSeries.events.on("datavalidated", function () {
+      selectCountry("US", polygonSeries, chart);
+    });
+
     chartRef.current = chart;
     polygonSeriesRef.current = polygonSeries;
   }, []);

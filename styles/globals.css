@@ -26,7 +26,6 @@
     animation-delay: 0.25s;
 }
 
-/* This approximates the ease-in-out-bounce animation from easings.net, which would require a plug-in to use*/
 @keyframes bounce {
     0% {
         transform: translateX(0px);
@@ -59,6 +58,42 @@
     100% {
         transform: translateX(0px);
         timing-function: ease-in;
+    }
+}
+
+
+
+
+
+
+.enzo {
+    box-shadow: 0 0 3px 11px rgba(204,169,44, 0.55);
+    animation: enzo 1.9s infinite;
+}
+
+@-webkit-keyframes enzo {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(18, 185, 129, 0.55);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 3px 11px rgba(18, 185, 129, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(18, 185, 129, 0);
+    }
+}
+@keyframes enzo {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(18, 185, 129, 0.55);
+        box-shadow: 0 0 0 0 rgba(18, 185, 129, 0.55);
+    }
+    70% {
+        -moz-box-shadow: 0 0 3px 11px rgba(18, 185, 129, 0);
+        box-shadow: 0 0 3px 11px rgba(18, 185, 129, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(18, 185, 129, 0);
+        box-shadow: 0 0 0 0 rgba(18, 185, 129, 0);
     }
 }
 
