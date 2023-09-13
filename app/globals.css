@@ -17,7 +17,7 @@
 }
 
 @keyframes pulseshadow {
-    50% {box-shadow: 0 2px 19px 6px rgba(18,185,129,1);}
+    50% {box-shadow: 0 2px 19px 6px rgba(18,185,129,0.85);}
 }
 
 .bounce {
