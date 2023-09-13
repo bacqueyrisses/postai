@@ -15,7 +15,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // TODO: replace custom bg with bg primary
   return (
     <html lang="en">
       <body
