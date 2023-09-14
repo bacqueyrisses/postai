@@ -4,6 +4,8 @@ import CityAutocomplete from "@/components/locations/CityAutocomplete";
 import { SelectedCountryType } from "@/types/global";
 import Link from "next/link";
 import { useState } from "react";
+import DialogLocation from "@/components/locations/DialogLocation";
+import * as React from "react";
 
 interface ILocations {
   selectedCountry: SelectedCountryType;
@@ -13,7 +15,7 @@ interface ILocations {
   userCurrentLocation: SelectedCountryType;
   setUserCurrentLocation: React.Dispatch<SelectedCountryType>;
 }
-export default function Locations({
+export default function LocationsContainer({
   selectedCountry,
   setSelectedCountry,
   selectedInputCountry,
@@ -98,10 +100,12 @@ export default function Locations({
           unselectedClassName={"bg-blue-600"}
           variant={"full"}
         />
-        <CityAutocomplete
-          selectedInputCountry={selectedInputCountry}
-          setSelectedInputCountry={setSelectedInputCountry}
-        />
+        <CityAutocomplete />
+
+        {/*<CityAutocomplete*/}
+        {/*  selectedInputCountry={selectedInputCountry}*/}
+        {/*  setSelectedInputCountry={setSelectedInputCountry}*/}
+        {/*/>*/}
         <Link
           href={
             selectedCountry.city

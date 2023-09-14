@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
-import { fetcher } from "@/utils/fetcher";
+import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -9,18 +9,10 @@ import Link from "next/link";
 export default function GenerationPage() {
   const searchParams = useSearchParams();
   const city = searchParams.get("city");
-  const url = `/api/replicate?city=${encodeURIComponent(city!)}`;
+  const urlExtras = process.env.NEXT_PUBLIC_ENV === "test" ? "&test=true" : "";
+  const url = `/api/replicate?city=${encodeURIComponent(city!)}${urlExtras}`;
 
-  const [isLoading, setIsLoading] = useState(true);
-  const error = false;
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4500);
-  }, []);
-
-  // const { data, error, isLoading } = useSWR(url, fetcher);
+  const { data, error, isLoading } = useSWR(url, fetcher);
 
   return (
     <div
@@ -50,14 +42,14 @@ export default function GenerationPage() {
           />
         </div>
       ) : (
-        // <Image src={data} alt={"virtual postcard"} width={500} height={500} />
-        <Image
-          src={"/postcard.jpg"}
-          alt={"virtual postcard"}
-          width={800}
-          height={800}
-          className={"rounded-xl"}
-        />
+        <Image src={data} alt={"virtual postcard"} width={500} height={500} />
+        // <Image
+        //   src={"/postcard.jpg"}
+        //   alt={"virtual postcard"}
+        //   width={800}
+        //   height={800}
+        //   className={"rounded-xl"}
+        // />
       )}
     </div>
   );

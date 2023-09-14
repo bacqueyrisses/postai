@@ -1,106 +1,108 @@
-import * as React from "react";
-import { useState } from "react";
-import { fetchData } from "@/utils/actions";
+"use client";
+import { ChangeEvent, useMemo, useState } from "react";
+import useSWR from "swr";
+import { fetcher } from "@/lib/fetcher";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-];
-interface ICityAutocomplete {
-  selectedInputCountry: string;
-  setSelectedInputCountry: React.Dispatch<string>;
-}
-export default function CityAutocomplete({
-  selectedInputCountry,
-  setSelectedInputCountry,
-}: ICityAutocomplete) {
-  const [inputText, setInputText] = useState("");
-  const [predictions, setPredictions] = useState([]);
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+const getAutocompleteClassNames = (index: number) => {
+  switch (index) {
+    case 0:
+      return "bg-yellow-400";
+    case 1:
+      return "bg-orange-400";
+    case 2:
+      return "bg-emerald-500";
+    default:
+      return "bg-blue-600";
+  }
+};
 
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const city = e.target.value;
-    setSelectedInputCountry(city);
-    setInputText(city);
-    const response = await fetchData(city);
-    setPredictions(response.predictions);
+export default function CityAutocomplete() {
+  const [searchTerm, setSearchTerm] = useState<string | null>(null);
+  const [selectedInputCity, setSelectedInputCity] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const { data: cities = [], isLoading } = useSWR(
+    () => (searchTerm ? `/api/autocomplete?city=${searchTerm}` : null),
+    fetcher,
+  );
+
+  console.log(cities);
+
+  const debouncedHandleChange = useMemo(() => {
+    let debounceTimer: NodeJS.Timeout;
+    return function (event: ChangeEvent<HTMLInputElement>) {
+      clearTimeout(debounceTimer);
+      const newSearchTerm = event.target.value;
+      debounceTimer = setTimeout(() => {
+        setSearchTerm(newSearchTerm);
+      }, 300);
+    };
+  }, []);
+
+  const handleSubmit = (city: object) => {
+    setSelectedInputCity(city.structured_formatting.main_text.toLowerCase());
+    setIsOpen(false);
   };
 
   return (
-    <div
-      className={
-        "col-span-6 md:col-span-5 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white focus:placeholder:text-transparent focus:outline-none cursor-pointer focus:cursor-text"
-      }
-    >
-      select a city
-      {/*<Popover open={open} onOpenChange={setOpen}>*/}
-      {/*  <PopoverTrigger asChild>*/}
-      {/*    /!*<button*!/*/}
-      {/*    /!*  role="combobox"*!/*/}
-      {/*    /!*  aria-expanded={open}*!/*/}
-      {/*    /!*  className="w-[200px] justify-between"*!/*/}
-      {/*    /!*>*!/*/}
-      {/*    /!*  {value*!/*/}
-      {/*    /!*    ? frameworks.find((framework) => framework.value === value)?.label*!/*/}
-      {/*    /!*    : "Select framework..."}*!/*/}
-      {/*    /!*  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />*!/*/}
-      {/*    /!*</button>*!/*/}
-      {/*    <button*/}
-      {/*      placeholder={"other"}*/}
-      {/*      // value={selectedInputCountry?.toLowerCase()}*/}
-      {/*      // onChange={handleChange}*/}
-      {/*      className={""}*/}
-      {/*    >*/}
-      {/*      Other*/}
-      {/*    </button>*/}
-      {/*  </PopoverTrigger>*/}
-      {/*  <PopoverContent className="w-[200px] p-0">*/}
-      {/*<Command onChange={handleChange}>*/}
-      {/*  <CommandInput placeholder="Other" />*/}
-      {/*  <CommandGroup>*/}
-      {/*    {predictions.map((prediction: any) => (*/}
-      {/*      <CommandItem*/}
-      {/*        key={prediction.place_id}*/}
-      {/*        onSelect={(currentValue) => {*/}
-      {/*          setValue(currentValue === value ? "" : currentValue);*/}
-      {/*          setOpen(false);*/}
-      {/*        }}*/}
-      {/*      >*/}
-      {/*<Check*/}
-      {/*    className={cn(*/}
-      {/*        "mr-2 h-4 w-4",*/}
-      {/*        value === framework.value ? "opacity-100" : "opacity-0",*/}
-      {/*    )}*/}
-      {/*/>*/}
-      {/*        {prediction.description}*/}
-      {/*      </CommandItem>*/}
-      {/*    ))}*/}
-      {/*  </CommandGroup>*/}
-      {/*</Command>*/}
-      {/*  </PopoverContent>*/}
-      {/*</Popover>*/}
-      {/*<ul>*/}
-      {/*<li>{prediction.description}</li>*/}
-      {/*</ul>*/}
-    </div>
+    <Dialog open={isOpen} onOpenChange={() => setIsOpen(true)}>
+      <DialogTrigger asChild>
+        <div
+          className={
+            "col-span-6 md:col-span-5 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white focus:placeholder:text-transparent focus:outline-none cursor-pointer focus:cursor-text"
+          }
+        >
+          {selectedInputCity || "select a city"}
+        </div>
+      </DialogTrigger>
+      <DialogContent className="sm:rounded-3xl border-3 max-w-4xl top-[40%]">
+        <div
+          className={
+            "flex justify-center items-center flex-col gap-6 h-[200px]"
+          }
+        >
+          <DialogHeader
+            className={"basis-1/3 inline-flex justify-center items-center"}
+          >
+            <DialogTitle className={"text-center"}>
+              Choose your city
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="inline-flex justify-center items-center basis-1/3 inline-flex justify-center items-center">
+            <input
+              type="text"
+              placeholder="Enter a city"
+              onChange={debouncedHandleChange}
+              aria-label="Cities"
+              className={"placeholder:text-center text-center"}
+            />
+          </div>
+
+          <div className={"flex gap-4 justify-center basis-1/3 items-center"}>
+            {cities &&
+              cities.length > 0 &&
+              cities.map((city, index) => (
+                <button
+                  className={`${getAutocompleteClassNames(
+                    index,
+                  )} rounded-full px-6 py-1.5`}
+                  key={city.place_id}
+                  onClick={() => handleSubmit(city)}
+                >
+                  {city.description.toLowerCase()}
+                </button>
+              ))}
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }

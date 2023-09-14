@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import RotatingGlobe from "@/components/locations/RotatingGlobe";
-import Locations from "@/components/locations/Locations";
+import LocationsContainer from "@/components/locations/LocationsContainer";
 import { useState } from "react";
 import { SelectedCountryType } from "@/types/global";
 
@@ -60,7 +60,7 @@ export default function Hero() {
         {"  "}
         <span className={"font-medium md:font-normal"}>postcard</span>
       </div>
-      <Locations
+      <LocationsContainer
         setSelectedCountry={setSelectedCountry}
         selectedCountry={selectedCountry}
         selectedInputCountry={selectedInputCountry}

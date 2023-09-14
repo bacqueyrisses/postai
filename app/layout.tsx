@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 
-import { raleway } from "@/utils/fonts";
+import { raleway } from "@/lib/fonts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
