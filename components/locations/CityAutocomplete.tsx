@@ -11,6 +11,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+type City = {
+  place_id: string;
+  structured_formatting: {
+    main_text: string;
+  };
+  description: string;
+};
+
 const getAutocompleteClassNames = (index: number) => {
   switch (index) {
     case 0:
@@ -26,9 +34,11 @@ const getAutocompleteClassNames = (index: number) => {
 
 export default function CityAutocomplete() {
   const [searchTerm, setSearchTerm] = useState<string | null>(null);
-  const [selectedInputCity, setSelectedInputCity] = useState(null);
+  const [selectedInputCity, setSelectedInputCity] = useState<string | null>(
+    null,
+  );
   const [isOpen, setIsOpen] = useState(false);
-  const { data: cities = [], isLoading } = useSWR(
+  const { data: cities = [], isLoading } = useSWR<City[] | undefined>(
     () => (searchTerm ? `/api/autocomplete?city=${searchTerm}` : null),
     fetcher,
   );
@@ -46,8 +56,8 @@ export default function CityAutocomplete() {
     };
   }, []);
 
-  const handleSubmit = (city: object) => {
-    setSelectedInputCity(city.structured_formatting.main_text.toLowerCase());
+  const handleSubmit = (city: string) => {
+    setSelectedInputCity(city);
     setIsOpen(false);
   };
 
@@ -89,13 +99,17 @@ export default function CityAutocomplete() {
           <div className={"flex gap-4 justify-center basis-1/3 items-center"}>
             {cities &&
               cities.length > 0 &&
-              cities.map((city, index) => (
+              cities.map((city, index: number) => (
                 <button
                   className={`${getAutocompleteClassNames(
                     index,
                   )} rounded-full px-6 py-1.5`}
                   key={city.place_id}
-                  onClick={() => handleSubmit(city)}
+                  onClick={() =>
+                    handleSubmit(
+                      city.structured_formatting.main_text.toLowerCase(),
+                    )
+                  }
                 >
                   {city.description.toLowerCase()}
                 </button>
