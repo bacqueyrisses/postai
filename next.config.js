@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "pbxt.generate.delivery",
+        hostname: "pbxt.replicate.delivery",
         pathname: "/**",
       },
     ],
