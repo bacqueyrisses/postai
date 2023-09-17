@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { raleway } from "@/lib/fonts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Postai",
@@ -16,16 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={`${raleway.className} px-4 md:px-24 flex flex-col justify-between h-screen bg-[#E9E7DF]`}
-      >
-        <Header />
-        <main className="flex flex-col justify-between text-center md:gap-28 gap-20">
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${raleway.className} px-4 md:px-24 flex flex-col justify-between h-screen bg-[#E9E7DF]`}
+        >
+          <Header />
+          <main className="flex flex-col justify-between text-center md:gap-28 gap-20">
+            {children}
+          </main>
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -3,16 +3,33 @@ import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { SignIn, useAuth } from "@clerk/nextjs";
+import axios from "axios";
 
 export default function GenerationPage() {
+  const { isLoaded, userId } = useAuth();
+  const router = useRouter();
+
   const searchParams = useSearchParams();
   const city = searchParams.get("city");
   const urlExtras = process.env.NEXT_PUBLIC_ENV === "test" ? "&test=true" : "";
   const url = `/api/generate?city=${encodeURIComponent(city!)}${urlExtras}`;
 
-  const { data, error, isLoading } = useSWR(url, fetcher);
+  const { data: favoriteUrl, error, isLoading } = useSWR(url, fetcher);
+
+  const handleSaveButton = async () => {
+    try {
+      await axios.post(`http://localhost:3000/api/user/favorite/create`, {
+        favoriteUrl,
+        userId,
+      });
+      await router.prefetch("/favorite");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div
@@ -42,14 +59,22 @@ export default function GenerationPage() {
           />
         </div>
       ) : (
-        <Image src={data} alt={"virtual postcard"} width={500} height={500} />
-        // <Image
-        //   src={"/postcard.jpg"}
-        //   alt={"virtual postcard"}
-        //   width={800}
-        //   height={800}
-        //   className={"rounded-xl"}
-        // />
+        <div>
+          <Image
+            src={favoriteUrl}
+            alt={"virtual postcard"}
+            width={500}
+            height={500}
+          />
+          {!isLoaded || !userId ? (
+            <div>
+              <SignIn />
+              "bite"
+            </div>
+          ) : (
+            <button onClick={handleSaveButton}>Save</button>
+          )}
+        </div>
       )}
     </div>
   );
