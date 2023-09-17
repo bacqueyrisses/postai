@@ -42,6 +42,7 @@ export default function LocationsContainer({
           setUserCurrentLocation={setUserCurrentLocation}
           userCurrentLocation={userCurrentLocation}
         />
+
         <City
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}

@@ -31,7 +31,7 @@ export default function UserCurrentLocation({
     setSelectedCity({
       city: userCurrentLocation.city,
       countryCode: userCurrentLocation.countryCode,
-      type: "userLocation",
+      type: "currentLocation",
     });
   };
 
@@ -59,7 +59,7 @@ export default function UserCurrentLocation({
             setUserCurrentLocation({
               city: cityName,
               countryCode: countryId,
-              type: "userLocation",
+              type: "currentLocation",
             });
           } else {
             console.error(

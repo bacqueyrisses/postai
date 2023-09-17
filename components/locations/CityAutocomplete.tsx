@@ -80,7 +80,6 @@ export default function CityAutocomplete({
     setSelectedCity({
       city: currentCity,
       countryCode: currentCountryCode,
-      type: "userSelection",
     });
 
     setIsOpen(false);

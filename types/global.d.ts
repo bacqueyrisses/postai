@@ -1,11 +1,11 @@
-type SelectionType = "preSelection" | "userLocation" | "userSelection";
+type SelectionType = "default" | "currentLocation" | "userSelection";
 
 export type SelectedCityType = {
   city: string;
   countryCode: string;
-  type: SelectionType;
+  type?: SelectionType;
 };
 
 export type SelectedCityPreType = Omit<SelectedCityType, "type"> & {
-  type?: "preSelection";
+  type?: "default";
 };

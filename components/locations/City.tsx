@@ -18,7 +18,7 @@ export default function City({
   unselectedClassName,
   setSelectedCity,
   country = {
-    type: "preSelection",
+    type: "default",
     city: "",
     countryCode: "",
   },
@@ -41,7 +41,7 @@ export default function City({
         setSelectedCity({
           city: country.city,
           countryCode: country.countryCode,
-          type: "preSelection",
+          type: "default",
         })
       }
       className={`${
@@ -52,7 +52,7 @@ export default function City({
     >
       <div className={"relative w-fit mx-auto"}>
         {selectedCity.city === country.city &&
-          selectedCity.type === "preSelection" && (
+          selectedCity.type === "default" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

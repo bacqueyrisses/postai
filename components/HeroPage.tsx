@@ -1,22 +1,22 @@
 "use client";
 import Image from "next/image";
-import RotatingGlobe from "@/components/locations/RotatingGlobe";
+import RotatingGlobe from "@/components/RotatingGlobe";
 import LocationsContainer from "@/components/locations/LocationsContainer";
 import { useState } from "react";
 import { SelectedCityType } from "@/types/global";
 
-export default function Hero() {
+export default function HeroPage() {
   const [selectedCity, setSelectedCity] = useState<SelectedCityType>({
     city: "",
     countryCode: "",
-    type: "preSelection",
+    type: "default",
   });
 
   const [userCurrentLocation, setUserCurrentLocation] =
     useState<SelectedCityType>({
       city: "",
       countryCode: "",
-      type: "userLocation",
+      type: "currentLocation",
     });
 
   return (

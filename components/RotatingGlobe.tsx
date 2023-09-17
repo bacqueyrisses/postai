@@ -12,10 +12,10 @@ interface IRotatingGlobe {
   selectedCity: SelectedCityType;
   userCurrentLocation: SelectedCityType;
 }
-const RotatingGlobe = ({
+export default function RotatingGlobe({
   selectedCity,
   userCurrentLocation,
-}: IRotatingGlobe) => {
+}: IRotatingGlobe) {
   const chartRef = useRef<am5.Chart | null>(null);
   const polygonSeriesRef = useRef<am5map.MapPolygonSeries | null>(null);
   const rootRef = useRef<am5.Root | null>(null);
@@ -145,6 +145,4 @@ const RotatingGlobe = ({
   }, [userCurrentLocation.countryCode]);
 
   return <div id="chartdiv" className={"w-[50rem] h-[50rem]"}></div>;
-};
-
-export default RotatingGlobe;
+}
