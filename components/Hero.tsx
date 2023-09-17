@@ -10,7 +10,6 @@ export default function Hero() {
     city: "",
     countryCode: "",
   });
-  const [selectedInputCountry, setSelectedInputCountry] = useState("");
 
   const [userCurrentLocation, setUserCurrentLocation] =
     useState<SelectedCountryType>({
@@ -63,8 +62,6 @@ export default function Hero() {
       <LocationsContainer
         setSelectedCountry={setSelectedCountry}
         selectedCountry={selectedCountry}
-        selectedInputCountry={selectedInputCountry}
-        setSelectedInputCountry={setSelectedInputCountry}
         setUserCurrentLocation={setUserCurrentLocation}
         userCurrentLocation={userCurrentLocation}
       />

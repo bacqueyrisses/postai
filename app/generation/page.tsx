@@ -10,7 +10,7 @@ export default function GenerationPage() {
   const searchParams = useSearchParams();
   const city = searchParams.get("city");
   const urlExtras = process.env.NEXT_PUBLIC_ENV === "test" ? "&test=true" : "";
-  const url = `/api/replicate?city=${encodeURIComponent(city!)}${urlExtras}`;
+  const url = `/api/generate?city=${encodeURIComponent(city!)}${urlExtras}`;
 
   const { data, error, isLoading } = useSWR(url, fetcher);
 

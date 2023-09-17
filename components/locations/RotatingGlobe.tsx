@@ -20,7 +20,7 @@ const RotatingGlobe = ({
   const polygonSeriesRef = useRef<am5map.MapPolygonSeries | null>(null);
   const rootRef = useRef<am5.Root | null>(null);
 
-  function selectCountry(id: string, currentPolygon, currentChart) {
+  function selectCountry(id: string, currentPolygon: any, currentChart: any) {
     let dataItem = currentPolygon.getDataItemById(id);
     let target = dataItem?.get("mapPolygon");
     target?.set("active", true);
@@ -124,6 +124,7 @@ const RotatingGlobe = ({
   }, []);
 
   useEffect(() => {
+    console.log();
     // Animate on value change
     selectedCountry.countryCode &&
       selectCountry(

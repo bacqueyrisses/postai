@@ -9,16 +9,12 @@ import * as React from "react";
 interface ILocations {
   selectedCountry: SelectedCountryType;
   setSelectedCountry: React.Dispatch<SelectedCountryType>;
-  selectedInputCountry: string;
-  setSelectedInputCountry: React.Dispatch<string>;
   userCurrentLocation: SelectedCountryType;
   setUserCurrentLocation: React.Dispatch<SelectedCountryType>;
 }
 export default function LocationsContainer({
   selectedCountry,
   setSelectedCountry,
-  selectedInputCountry,
-  setSelectedInputCountry,
   userCurrentLocation,
   setUserCurrentLocation,
 }: ILocations) {
@@ -99,12 +95,9 @@ export default function LocationsContainer({
           unselectedClassName={"bg-blue-600"}
           variant={"full"}
         />
-        <CityAutocomplete />
 
-        {/*<CityAutocomplete*/}
-        {/*  selectedInputCountry={selectedInputCountry}*/}
-        {/*  setSelectedInputCountry={setSelectedInputCountry}*/}
-        {/*/>*/}
+        <CityAutocomplete setSelectedCountry={setSelectedCountry} />
+
         <Link
           href={
             selectedCountry.city
