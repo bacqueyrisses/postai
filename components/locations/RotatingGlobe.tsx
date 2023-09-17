@@ -6,14 +6,14 @@ import * as am5map from "@amcharts/amcharts5/map";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Kelly from "@amcharts/amcharts5/themes/Kelly";
-import { SelectedCountryType } from "@/types/global";
+import { SelectedCityType } from "@/types/global";
 
 interface IRotatingGlobe {
-  selectedCountry: SelectedCountryType;
-  userCurrentLocation: SelectedCountryType;
+  selectedCity: SelectedCityType;
+  userCurrentLocation: SelectedCityType;
 }
 const RotatingGlobe = ({
-  selectedCountry,
+  selectedCity,
   userCurrentLocation,
 }: IRotatingGlobe) => {
   const chartRef = useRef<am5.Chart | null>(null);
@@ -126,13 +126,13 @@ const RotatingGlobe = ({
   useEffect(() => {
     console.log();
     // Animate on value change
-    selectedCountry.countryCode &&
+    selectedCity.countryCode &&
       selectCountry(
-        selectedCountry.countryCode,
+        selectedCity.countryCode,
         polygonSeriesRef.current,
         chartRef.current,
       );
-  }, [selectedCountry.countryCode]);
+  }, [selectedCity.countryCode]);
 
   useEffect(() => {
     // Animate on value change

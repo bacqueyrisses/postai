@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import axios from "axios";
 import * as React from "react";
-import { SelectedCountryType } from "@/types/global";
+import { SelectedCityType } from "@/types/global";
 
 type City = {
   place_id: string;
@@ -34,10 +34,12 @@ const getAutocompleteClassNames = (index: number) => {
 };
 
 interface ICityAutocomplete {
-  setSelectedCountry: React.Dispatch<SelectedCountryType>;
+  setSelectedCity: React.Dispatch<SelectedCityType>;
+  selectedCity: SelectedCityType;
 }
 export default function CityAutocomplete({
-  setSelectedCountry,
+  setSelectedCity,
+  selectedCity,
 }: ICityAutocomplete) {
   const [searchTerm, setSearchTerm] = useState<string | null>(null);
   const [selectedInputCity, setSelectedInputCity] = useState<string | null>(
@@ -62,19 +64,24 @@ export default function CityAutocomplete({
   }, []);
 
   const handleSubmit = async (city: City) => {
-    const currentCity = city.structured_formatting.main_text.toLowerCase();
-    setSelectedInputCity(currentCity);
-
     const { data } = await axios.get(
-      `http://localhost:3000/api/country?placeId=${city.place_id}`,
+      `http://localhost:3000/api/countrycode?placeId=${city.place_id}`,
     );
+
+    const currentInputCity = city.structured_formatting.main_text.toLowerCase();
+    const currentCity = city.description;
 
     const currentCountryCode = data?.results[0]?.address_components.find(
       (v: { short_name: string; long_name: string; types: string[] }) =>
         v.types.includes("country"),
     )?.short_name;
 
-    setSelectedCountry({ city: currentCity, countryCode: currentCountryCode });
+    setSelectedInputCity(currentInputCity);
+    setSelectedCity({
+      city: currentCity,
+      countryCode: currentCountryCode,
+      type: "userSelection",
+    });
 
     setIsOpen(false);
   };
@@ -87,7 +94,26 @@ export default function CityAutocomplete({
             "col-span-6 md:col-span-5 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white focus:placeholder:text-transparent focus:outline-none cursor-pointer focus:cursor-text"
           }
         >
-          {selectedInputCity || "select a city"}
+          {(selectedCity.type === "userSelection" && (
+            <div className={"relative w-fit mx-auto"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-4 h-4 md:w-7 md:h-7 pt-0.5 md:pt-1 -left-8 -translate-y-1/2 top-1/2 absolute"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 12.75l6 6 9-13.5"
+                />
+              </svg>
+              {selectedInputCity}
+            </div>
+          )) ||
+            "select a city"}
         </div>
       </DialogTrigger>
       <DialogContent className="sm:rounded-3xl border-3 max-w-4xl top-[40%]">

@@ -55,7 +55,7 @@
 
 .pulse-success {
   box-shadow: 0 0 3px 11px rgba(204,169,44, 0.55);
-  animation: pulsecustom 1.9s infinite;
+  animation: pulsecustom 1.5s infinite;
 }
 
 @-webkit-keyframes pulsecustom {

@@ -1,27 +1,27 @@
 import UserCurrentLocation from "@/components/locations/UserCurrentLocation";
 import City from "@/components/locations/City";
 import CityAutocomplete from "@/components/locations/CityAutocomplete";
-import { SelectedCountryType } from "@/types/global";
+import { SelectedCityType } from "@/types/global";
 import Link from "next/link";
 import { useState } from "react";
 import * as React from "react";
 
 interface ILocations {
-  selectedCountry: SelectedCountryType;
-  setSelectedCountry: React.Dispatch<SelectedCountryType>;
-  userCurrentLocation: SelectedCountryType;
-  setUserCurrentLocation: React.Dispatch<SelectedCountryType>;
+  selectedCity: SelectedCityType;
+  setSelectedCity: React.Dispatch<SelectedCityType>;
+  userCurrentLocation: SelectedCityType;
+  setUserCurrentLocation: React.Dispatch<SelectedCityType>;
 }
 export default function LocationsContainer({
-  selectedCountry,
-  setSelectedCountry,
+  selectedCity,
+  setSelectedCity,
   userCurrentLocation,
   setUserCurrentLocation,
 }: ILocations) {
   const [error, setError] = useState(false);
 
   const validateData = () => {
-    if (selectedCountry.city) return;
+    if (selectedCity.city) return;
 
     setTimeout(() => {
       setError((prev) => !prev);
@@ -37,14 +37,14 @@ export default function LocationsContainer({
         }
       >
         <UserCurrentLocation
-          setSelectedCountry={setSelectedCountry}
-          selectedCountry={selectedCountry}
+          setSelectedCity={setSelectedCity}
+          selectedCity={selectedCity}
           setUserCurrentLocation={setUserCurrentLocation}
           userCurrentLocation={userCurrentLocation}
         />
         <City
-          selectedCountry={selectedCountry}
-          setSelectedCountry={setSelectedCountry}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
           country={{ city: "paris", countryCode: "FR" }}
           className={
             "col-span-4 md:col-span-3 border-emerald-700 hover:bg-emerald-700"
@@ -54,8 +54,8 @@ export default function LocationsContainer({
           variant={"outline"}
         />
         <City
-          selectedCountry={selectedCountry}
-          setSelectedCountry={setSelectedCountry}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
           country={{ city: "tokyo", countryCode: "JP" }}
           className={"col-span-3  border-orange-400 hover:text-orange-400"}
           selectedClassName={"text-orange-400"}
@@ -63,8 +63,8 @@ export default function LocationsContainer({
           variant={"full"}
         />
         <City
-          selectedCountry={selectedCountry}
-          setSelectedCountry={setSelectedCountry}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
           country={{ city: "cape town", countryCode: "ZA" }}
           className={
             "col-span-7 md:col-span-5 border-yellow-400 hover:text-yellow-400"
@@ -74,8 +74,8 @@ export default function LocationsContainer({
           variant={"full"}
         />
         <City
-          selectedCountry={selectedCountry}
-          setSelectedCountry={setSelectedCountry}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
           country={{ city: "washington", countryCode: "US" }}
           className={
             "col-span-5 md:col-span-5 border-red-500 hover:text-red-500"
@@ -85,8 +85,8 @@ export default function LocationsContainer({
           variant={"full"}
         />
         <City
-          selectedCountry={selectedCountry}
-          setSelectedCountry={setSelectedCountry}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
           country={{ city: "dublin", countryCode: "IE" }}
           className={
             "col-span-5 md:col-span-3 border-blue-600 hover:text-blue-600"
@@ -96,19 +96,22 @@ export default function LocationsContainer({
           variant={"full"}
         />
 
-        <CityAutocomplete setSelectedCountry={setSelectedCountry} />
+        <CityAutocomplete
+          setSelectedCity={setSelectedCity}
+          selectedCity={selectedCity}
+        />
 
         <Link
           href={
-            selectedCountry.city
+            selectedCity.city
               ? {
                   pathname: "/generation",
-                  query: { city: selectedCountry.city },
+                  query: { city: selectedCity.city },
                 }
               : ""
           }
           onClick={validateData}
-          className={`${selectedCountry.city && "pulse-success"} ${
+          className={`${selectedCity.city && "pulse-success"} ${
             error &&
             "bounce-error shadow-[0px_0px_3px_6px_rgba(239,68,68,0.25)]"
           } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-transparent hover:text-emerald-500 ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer transition-all`}

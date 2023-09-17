@@ -3,19 +3,22 @@ import Image from "next/image";
 import RotatingGlobe from "@/components/locations/RotatingGlobe";
 import LocationsContainer from "@/components/locations/LocationsContainer";
 import { useState } from "react";
-import { SelectedCountryType } from "@/types/global";
+import { SelectedCityType } from "@/types/global";
 
 export default function Hero() {
-  const [selectedCountry, setSelectedCountry] = useState<SelectedCountryType>({
+  const [selectedCity, setSelectedCity] = useState<SelectedCityType>({
     city: "",
     countryCode: "",
+    type: "preSelection",
   });
 
   const [userCurrentLocation, setUserCurrentLocation] =
-    useState<SelectedCountryType>({
+    useState<SelectedCityType>({
       city: "",
       countryCode: "",
+      type: "userLocation",
     });
+
   return (
     <>
       <div className={"text-3xl md:text-6xl font-normal md:font-normal"}>
@@ -39,7 +42,7 @@ export default function Hero() {
           }
         >
           <RotatingGlobe
-            selectedCountry={selectedCountry}
+            selectedCity={selectedCity}
             userCurrentLocation={userCurrentLocation}
           />
         </div>{" "}
@@ -59,9 +62,10 @@ export default function Hero() {
         {"  "}
         <span className={"font-medium md:font-normal"}>postcard</span>
       </div>
+
       <LocationsContainer
-        setSelectedCountry={setSelectedCountry}
-        selectedCountry={selectedCountry}
+        setSelectedCity={setSelectedCity}
+        selectedCity={selectedCity}
         setUserCurrentLocation={setUserCurrentLocation}
         userCurrentLocation={userCurrentLocation}
       />

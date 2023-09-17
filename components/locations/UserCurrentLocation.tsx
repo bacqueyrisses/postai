@@ -1,18 +1,18 @@
-import { useEffect } from "react";
-import { SelectedCountryType } from "@/types/global";
+import { Dispatch, useEffect } from "react";
+import { SelectedCityType } from "@/types/global";
 
 interface IUserLocation {
-  setSelectedCountry: React.Dispatch<SelectedCountryType>;
-  selectedCountry: SelectedCountryType;
-  setUserCurrentLocation: React.Dispatch<SelectedCountryType>;
-  userCurrentLocation: SelectedCountryType;
+  setSelectedCity: Dispatch<SelectedCityType>;
+  selectedCity: SelectedCityType;
+  setUserCurrentLocation: Dispatch<SelectedCityType>;
+  userCurrentLocation: SelectedCityType;
 }
 
 export default function UserCurrentLocation({
   userCurrentLocation,
   setUserCurrentLocation,
-  setSelectedCountry,
-  selectedCountry,
+  setSelectedCity,
+  selectedCity,
 }: IUserLocation) {
   useEffect(() => {
     if (
@@ -28,9 +28,10 @@ export default function UserCurrentLocation({
   const handleClick = async () => {
     if ("geolocation" in navigator && !userCurrentLocation.city)
       getUserCurrentLocation();
-    setSelectedCountry({
+    setSelectedCity({
       city: userCurrentLocation.city,
       countryCode: userCurrentLocation.countryCode,
+      type: "userLocation",
     });
   };
 
@@ -55,10 +56,14 @@ export default function UserCurrentLocation({
           )?.short_name;
 
           if (cityName && countryId) {
-            setUserCurrentLocation({ city: cityName, countryCode: countryId });
+            setUserCurrentLocation({
+              city: cityName,
+              countryCode: countryId,
+              type: "userLocation",
+            });
           } else {
             console.error(
-              "Error: City name or country code not found in location data.",
+              "Error: City name or countrycode code not found in location data.",
             );
           }
         } catch (error) {
@@ -80,8 +85,8 @@ export default function UserCurrentLocation({
       }
     >
       <div className={"relative w-fit mx-auto"}>
-        {selectedCountry.countryCode &&
-        selectedCountry.city === userCurrentLocation.city ? (
+        {selectedCity.countryCode &&
+        selectedCity.city === userCurrentLocation.city ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
