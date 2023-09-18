@@ -3,10 +3,12 @@ import Image from "next/image";
 interface ISaveToFavButton {
   handleSaveButton: () => void;
   isSaved: boolean;
+  size: number;
 }
 export default function SaveToFavButton({
   handleSaveButton,
   isSaved,
+  size,
 }: ISaveToFavButton) {
   return (
     <button
@@ -17,8 +19,8 @@ export default function SaveToFavButton({
     >
       {isSaved ? (
         <Image
-          width={33}
-          height={33}
+          width={size}
+          height={size}
           src={
             "https://em-content.zobj.net/source/apple/354/check-mark-button_2705.png"
           }
@@ -26,8 +28,8 @@ export default function SaveToFavButton({
         />
       ) : (
         <Image
-          width={33}
-          height={33}
+          width={size}
+          height={size}
           src={
             "https://em-content.zobj.net/source/apple/354/floppy-disk_1f4be.png"
           }

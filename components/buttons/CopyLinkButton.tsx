@@ -7,13 +7,13 @@ import Image from "next/image";
 interface ICopyLinkToClipboard {
   city: string;
   countryCode: string;
-  url: string;
+  favoriteUrl: string;
   size: number;
 }
 export default function CopyLinkButton({
   city,
   countryCode,
-  url,
+  favoriteUrl,
   size,
 }: ICopyLinkToClipboard) {
   const [isCopied, setIsCopied] = useState(false);
@@ -28,7 +28,7 @@ export default function CopyLinkButton({
 
   return (
     <CopyToClipboard
-      text={`http://localhost:3000/link?city=${city}&countryCode=${countryCode}&url=${url}`}
+      text={`http://localhost:3000/link?city=${city}&countryCode=${countryCode}&url=${favoriteUrl}`}
       onCopy={handleCopy}
     >
       <button

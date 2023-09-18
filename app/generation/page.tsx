@@ -4,13 +4,14 @@ import useSWRImmutable from "swr/immutable";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
-import { SignIn, useAuth } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
 import CopyLinkButton from "@/components/buttons/CopyLinkButton";
 import { useState } from "react";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
+import SignUpAndSaveToFav from "@/components/buttons/SignUpAndSaveToFav";
 
 export default function GenerationPage() {
   const { isLoaded, userId } = useAuth();
@@ -23,9 +24,13 @@ export default function GenerationPage() {
   const countryCode = searchParams.get("countryCode");
 
   const urlExtras = process.env.NEXT_PUBLIC_ENV === "test" ? "&test=true" : "";
-  const url = `/api/generate?city=${encodeURIComponent(city!)}${urlExtras}`;
+  const apiUrl = `/api/generate?city=${encodeURIComponent(city!)}${urlExtras}`;
 
-  const { data: favoriteUrl, error, isLoading } = useSWRImmutable(url, fetcher);
+  const {
+    data: favoriteUrl,
+    error,
+    isLoading,
+  } = useSWRImmutable(apiUrl, fetcher);
 
   const handleSaveButton = async () => {
     if (isSaved) return;
@@ -67,25 +72,35 @@ export default function GenerationPage() {
             className={"inline w-11 h-11 md:w-20 md:h-20"}
           />
         </div>
-      ) : !isLoaded || !userId ? (
-        <div>
-          <SignIn />
-        </div>
       ) : (
-        <PostcardContainer city={city!} countryCode={countryCode!} url={url}>
+        <PostcardContainer
+          city={city!}
+          countryCode={countryCode!}
+          favoriteUrl={favoriteUrl}
+        >
           <EmailLinkButton size={50} city={city!} />
 
           <CopyLinkButton
-            url={favoriteUrl}
+            favoriteUrl={favoriteUrl}
             countryCode={countryCode!}
             city={city!}
             size={37}
           />
 
-          <SaveToFavButton
-            handleSaveButton={handleSaveButton}
-            isSaved={isSaved}
-          />
+          {userId ? (
+            <SaveToFavButton
+              handleSaveButton={handleSaveButton}
+              isSaved={isSaved}
+              size={33}
+            />
+          ) : (
+            <SignUpAndSaveToFav
+              size={30}
+              favoriteUrl={favoriteUrl}
+              city={city!}
+              countryCode={countryCode!}
+            />
+          )}
         </PostcardContainer>
       )}
     </div>

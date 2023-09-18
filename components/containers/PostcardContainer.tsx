@@ -5,13 +5,13 @@ import { ReactNode } from "react";
 interface IPostcardContainer {
   city: string;
   countryCode: string;
-  url: string;
+  favoriteUrl: string;
   children: ReactNode;
 }
 export default function PostcardContainer({
   city,
   countryCode,
-  url,
+  favoriteUrl,
   children,
 }: IPostcardContainer) {
   return (
@@ -25,7 +25,7 @@ export default function PostcardContainer({
           "w-[700px] h-[500px] flex items-end justify-evenly rounded-2xl group"
         }
         style={{
-          backgroundImage: `url(${url})`,
+          backgroundImage: `url(${favoriteUrl})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
