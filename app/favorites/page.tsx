@@ -1,6 +1,6 @@
 import { currentUser } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
-import FavoritePostcard from "@/components/favorites/FavoritePostcard";
+import FavoritePostcard from "@/components/containers/FavoritePostcard";
 import axios from "axios";
 
 export const revalidate = 1;

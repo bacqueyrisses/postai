@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import RotatingGlobe from "@/components/locations/RotatingGlobe";
-import LocationsContainer from "@/components/locations/LocationsContainer";
+import LocationsContainer from "@/components/containers/LocationsContainer";
 import { useState } from "react";
 import { SelectedCityType } from "@/types/global";
 

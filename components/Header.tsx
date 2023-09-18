@@ -26,7 +26,7 @@ export default function Header() {
         <UserButton afterSignOutUrl="/" />
 
         <Link
-          href={"/favorites"}
+          href={"/containers"}
           className={
             "w-36 md:w-44 group inline-flex justify-center items-center gap-1.5 bg-emerald-500 rounded-3xl py-2 md:py-2.5 text-white hover:bg-blue-500 transition-colors cursor-pointer duration-300 text-sm md:text-base"
           }

@@ -7,9 +7,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const test = searchParams.get("test");
 
   if (test === "true") {
-    return NextResponse.json(
-      "https://pbxt.replicate.delivery/PEM77u5hZh50PpJ55i8Dct5sepOIEnu2vLxg0b7qeD55XOkRA/out-0.png",
-    );
+    return NextResponse.json("./postcard.jpg");
   }
 
   const city = searchParams.get("city");

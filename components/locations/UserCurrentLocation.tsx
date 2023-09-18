@@ -57,7 +57,7 @@ export default function UserCurrentLocation({
 
           if (cityName && countryId) {
             setUserCurrentLocation({
-              city: cityName,
+              city: cityName.toLowerCase(),
               countryCode: countryId,
               type: "currentLocation",
             });

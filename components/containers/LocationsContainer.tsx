@@ -3,8 +3,8 @@ import City from "@/components/locations/City";
 import CityAutocomplete from "@/components/locations/CityAutocomplete";
 import { SelectedCityType } from "@/types/global";
 import Link from "next/link";
-import { useState } from "react";
 import * as React from "react";
+import { useState } from "react";
 
 interface ILocations {
   selectedCity: SelectedCityType;
@@ -47,7 +47,7 @@ export default function LocationsContainer({
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
           country={{ city: "paris, france", countryCode: "FR" }}
-          inputCity={"france"}
+          inputCity={"paris"}
           className={
             "col-span-4 md:col-span-3 border-emerald-700 hover:bg-emerald-700"
           }

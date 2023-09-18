@@ -1,7 +1,8 @@
 "use client";
+// @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
+import countryCodeEmoji from "country-code-emoji";
 import Image from "next/image";
 import { useSearchParams, redirect } from "next/navigation";
-import countryCodeEmoji from "country-code-emoji";
 
 export default function LinkPage({}) {
   const searchParams = useSearchParams();

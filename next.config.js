@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "pbxt.replicate.delivery",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "em-content.zobj.net",
+        pathname: "/**",
+      },
     ],
   },
 };
