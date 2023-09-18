@@ -24,7 +24,7 @@ export default async function FavoritesPage() {
   );
 
   return (
-    <div className={"flex gap-4 flex-wrap"}>
+    <div className={"flex gap-8 flex-wrap justify-center items-center"}>
       {data &&
         data.map((favorite) => (
           <FavoritePostcard

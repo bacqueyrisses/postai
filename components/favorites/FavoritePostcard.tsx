@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import PostcardDeleteAlert from "@/components/favorites/PostcardDeleteAlert";
 import countryCodeEmoji from "country-code-emoji";
+import CopyLinkToClipboard from "@/components/general/CopyLinkToClipboard";
+import { Link2 } from "lucide-react";
 
 interface IFavoritePostcard {
   favorite: {
@@ -37,14 +39,11 @@ export default function FavoritePostcard({
       <Image
         src={url}
         alt={"virtual postcard"}
-        width={300}
-        height={300}
+        width={320}
+        height={320}
         className={"rounded-xl cursor-pointer"}
       />
       <div className={"flex gap-4"}>
-        <PostcardDeleteAlert
-          handleDeleteButton={() => handleDeleteButton(id)}
-        />
         <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +51,7 @@ export default function FavoritePostcard({
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-6 h-6 hover:text-neutral-600 transition-colors"
           >
             <path
               strokeLinecap="round"
@@ -61,6 +60,15 @@ export default function FavoritePostcard({
             />
           </svg>
         </button>
+        <CopyLinkToClipboard
+          url={url}
+          countryCode={countryCode}
+          city={city}
+          className={"w-6 h-6"}
+        />
+        <PostcardDeleteAlert
+          handleDeleteButton={() => handleDeleteButton(id)}
+        />
       </div>
     </div>
   ) : null;

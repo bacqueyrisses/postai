@@ -10,6 +10,7 @@ interface ICity {
   setSelectedCity: Dispatch<SelectedCityType>;
   selectedCity: SelectedCityType;
   country: SelectedCityPreType;
+  inputCity: string;
   variant: VariantType;
 }
 export default function City({
@@ -22,6 +23,7 @@ export default function City({
     city: "",
     countryCode: "",
   },
+  inputCity,
   selectedCity,
   variant,
 }: ICity) {
@@ -68,7 +70,7 @@ export default function City({
               />
             </svg>
           )}
-        {country.city}
+        {inputCity}
       </div>
     </button>
   );

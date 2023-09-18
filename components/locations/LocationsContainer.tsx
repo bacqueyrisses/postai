@@ -46,7 +46,8 @@ export default function LocationsContainer({
         <City
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
-          country={{ city: "paris", countryCode: "FR" }}
+          country={{ city: "paris, france", countryCode: "FR" }}
+          inputCity={"france"}
           className={
             "col-span-4 md:col-span-3 border-emerald-700 hover:bg-emerald-700"
           }
@@ -57,7 +58,8 @@ export default function LocationsContainer({
         <City
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
-          country={{ city: "tokyo", countryCode: "JP" }}
+          country={{ city: "tokyo, japan", countryCode: "JP" }}
+          inputCity={"tokyo"}
           className={"col-span-3  border-orange-400 hover:text-orange-400"}
           selectedClassName={"text-orange-400"}
           unselectedClassName={"bg-orange-400"}
@@ -66,7 +68,8 @@ export default function LocationsContainer({
         <City
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
-          country={{ city: "cape town", countryCode: "ZA" }}
+          country={{ city: "cape town, south africa", countryCode: "ZA" }}
+          inputCity={"cape town"}
           className={
             "col-span-7 md:col-span-5 border-yellow-400 hover:text-yellow-400"
           }
@@ -77,7 +80,8 @@ export default function LocationsContainer({
         <City
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
-          country={{ city: "washington", countryCode: "US" }}
+          country={{ city: "washington, usa", countryCode: "US" }}
+          inputCity={"washington"}
           className={
             "col-span-5 md:col-span-5 border-red-500 hover:text-red-500"
           }
@@ -88,7 +92,8 @@ export default function LocationsContainer({
         <City
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
-          country={{ city: "dublin", countryCode: "IE" }}
+          country={{ city: "dublin, ireland", countryCode: "IE" }}
+          inputCity={"dublin"}
           className={
             "col-span-5 md:col-span-3 border-blue-600 hover:text-blue-600"
           }
