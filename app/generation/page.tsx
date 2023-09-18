@@ -37,7 +37,7 @@ export default function GenerationPage() {
       city,
       countryCode,
     });
-    router.prefetch("/containers");
+    router.prefetch("/favorites");
   };
 
   return (
