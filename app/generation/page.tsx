@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -14,21 +14,21 @@ export default function GenerationPage() {
 
   const searchParams = useSearchParams();
   const city = searchParams.get("city");
+  const countryCode = searchParams.get("countryCode");
+
   const urlExtras = process.env.NEXT_PUBLIC_ENV === "test" ? "&test=true" : "";
   const url = `/api/generate?city=${encodeURIComponent(city!)}${urlExtras}`;
 
-  const { data: favoriteUrl, error, isLoading } = useSWR(url, fetcher);
+  const { data: favoriteUrl, error, isLoading } = useSWRImmutable(url, fetcher);
 
   const handleSaveButton = async () => {
-    try {
-      await axios.post(`http://localhost:3000/api/user/favorite/create`, {
-        favoriteUrl,
-        userId,
-      });
-      await router.prefetch("/favorite");
-    } catch (error) {
-      console.log(error);
-    }
+    await axios.post("http://localhost:3000/api/user/favorite/create", {
+      favoriteUrl,
+      userId,
+      city,
+      countryCode,
+    });
+    router.prefetch("/favorites");
   };
 
   return (
@@ -69,10 +69,11 @@ export default function GenerationPage() {
           {!isLoaded || !userId ? (
             <div>
               <SignIn />
-              "bite"
             </div>
           ) : (
-            <button onClick={handleSaveButton}>Save</button>
+            <div>
+              <button onClick={handleSaveButton}>Save</button>
+            </div>
           )}
         </div>
       )}

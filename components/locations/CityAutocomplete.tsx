@@ -69,7 +69,7 @@ export default function CityAutocomplete({
     );
 
     const currentInputCity = city.structured_formatting.main_text.toLowerCase();
-    const currentCity = city.description;
+    const currentCity = city.description.toLowerCase();
 
     const currentCountryCode = data?.results[0]?.address_components.find(
       (v: { short_name: string; long_name: string; types: string[] }) =>

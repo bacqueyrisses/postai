@@ -1,5 +1,5 @@
-import HeroPage from "@/components/HeroPage";
+import ClientHomePage from "@/app/client-page";
 
 export default function HomePage() {
-  return <HeroPage />;
+  return <ClientHomePage />;
 }

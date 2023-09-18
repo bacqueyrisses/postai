@@ -29,7 +29,7 @@ export default function UserCurrentLocation({
     if ("geolocation" in navigator && !userCurrentLocation.city)
       getUserCurrentLocation();
     setSelectedCity({
-      city: userCurrentLocation.city,
+      city: userCurrentLocation.city.toLowerCase(),
       countryCode: userCurrentLocation.countryCode,
       type: "currentLocation",
     });

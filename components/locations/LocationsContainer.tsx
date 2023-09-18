@@ -107,7 +107,10 @@ export default function LocationsContainer({
             selectedCity.city
               ? {
                   pathname: "/generation",
-                  query: { city: selectedCity.city },
+                  query: {
+                    city: selectedCity.city,
+                    countryCode: selectedCity.countryCode,
+                  },
                 }
               : ""
           }

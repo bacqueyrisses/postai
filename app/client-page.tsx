@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import RotatingGlobe from "@/components/RotatingGlobe";
+import RotatingGlobe from "@/components/locations/RotatingGlobe";
 import LocationsContainer from "@/components/locations/LocationsContainer";
 import { useState } from "react";
 import { SelectedCityType } from "@/types/global";
 
-export default function HeroPage() {
+export default function ClientHomePage() {
   const [selectedCity, setSelectedCity] = useState<SelectedCityType>({
     city: "",
     countryCode: "",
