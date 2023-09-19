@@ -123,7 +123,7 @@ export default function UserCurrentLocation({
           </svg>
         )}
 
-        {userCurrentLocation.city?.toLowerCase() || "current location"}
+        {userCurrentLocation.city?.toLowerCase() || "my location"}
       </div>
     </button>
   );
