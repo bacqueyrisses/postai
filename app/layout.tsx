@@ -27,7 +27,7 @@ export default function RootLayout({
           footerActionLink:
             "text-blue-600 hover:text-blue-700 hover:no-underline",
           formFieldInput:
-            "rounded-full shadow-none focus:shadow-none focus:scale-100 accent-green-600",
+            "rounded-full shadow-none focus:shadow-none focus:scale-100 focus:border-emerald-700 outline-none",
           socialButtonsIconButton: "rounded-full",
           socialButtonsIconButton__apple:
             "border-yellow-400 bg-yellow-400 shadow-none hover:bg-white",
@@ -35,7 +35,9 @@ export default function RootLayout({
             "bg-emerald-400 border-emerald-400 shadow-none hover:bg-white",
           socialButtonsIconButton__github:
             "bg-pink-400 border-pink-400 shadow-none hover:bg-white",
-          card: "shadow-none border-none",
+          card: "shadow-none border-3 border-emerald-700",
+          profileSectionPrimaryButton: "shadow-none",
+          navbarButton: "shadow-none mb-2",
         },
       }}
     >

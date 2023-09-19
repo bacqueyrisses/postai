@@ -12,7 +12,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 
   const city = searchParams.get("city");
-  const prompt = `a picture of ${city}`;
+  const prompt = `a postcard of ${city}`;
 
   try {
     const output: any = await replicate.run(model, { input: { prompt } });
