@@ -10,7 +10,7 @@ import { NEXT_URL } from "@/lib/utils";
 
 interface IFavoritePostcard {
   favorite: {
-    id: string;
+    id: number;
     url: string;
     city: string;
     countryCode: string;
@@ -23,7 +23,7 @@ export default function FavoritePostcard({
   const router = useRouter();
   const [isActive, setIsActive] = useState(true);
 
-  const handleDeleteButton = async (id: string) => {
+  const handleDeleteButton = async (id: number) => {
     setIsActive(false);
     await axios.delete(`${NEXT_URL}/api/user/favorite/delete?favoriteId=${id}`);
     router.prefetch("/favorites");

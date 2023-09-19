@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Favorite {
-  id          String @id @default(uuid())
+  id          Int    @id @default(autoincrement())
   url         String @unique
   city        String
   countryCode String

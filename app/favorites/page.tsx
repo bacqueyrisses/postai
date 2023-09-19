@@ -7,7 +7,7 @@ import { NEXT_URL } from "@/lib/utils";
 export const revalidate = 1;
 
 type Favorites = {
-  id: string;
+  id: number;
   url: string;
   city: string;
   countryCode: string;
@@ -26,7 +26,8 @@ export default async function FavoritesPage() {
 
   return (
     <div className={"flex gap-8 flex-wrap justify-center items-center"}>
-      {data &&
+      {data.length === 0 && "bite"}
+      {data.length > 0 &&
         data.map((favorite) => (
           <FavoritePostcard
             key={favorite.id}
