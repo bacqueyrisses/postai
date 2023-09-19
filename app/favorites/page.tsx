@@ -2,11 +2,12 @@ import { currentUser } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
 import FavoritePostcard from "@/components/containers/FavoritePostcard";
 import axios from "axios";
+import { NEXT_URL } from "@/lib/utils";
 
 export const revalidate = 1;
 
 type Favorites = {
-  id: number;
+  id: string;
   url: string;
   city: string;
   countryCode: string;
@@ -20,7 +21,7 @@ interface IData {
 export default async function FavoritesPage() {
   const user: User | null = await currentUser();
   const { data }: IData = await axios.get(
-    `http://localhost:3000/api/user/favorite/select-all?userId=${user?.id}`,
+    `${NEXT_URL}/api/user/favorite/select-all?userId=${user?.id}`,
   );
 
   return (

@@ -6,10 +6,11 @@ import DeleteButton from "@/components/buttons/DeleteButton";
 import CopyLinkButton from "@/components/buttons/CopyLinkButton";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
+import { NEXT_URL } from "@/lib/utils";
 
 interface IFavoritePostcard {
   favorite: {
-    id: number;
+    id: string;
     url: string;
     city: string;
     countryCode: string;
@@ -22,11 +23,9 @@ export default function FavoritePostcard({
   const router = useRouter();
   const [isActive, setIsActive] = useState(true);
 
-  const handleDeleteButton = async (id: number) => {
+  const handleDeleteButton = async (id: string) => {
     setIsActive(false);
-    await axios.delete(
-      `http://localhost:3000/api/user/favorite/delete?favoriteId=${id}`,
-    );
+    await axios.delete(`${NEXT_URL}/api/user/favorite/delete?favoriteId=${id}`);
     router.prefetch("/favorites");
   };
 

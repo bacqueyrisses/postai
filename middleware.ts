@@ -1,5 +1,6 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import { NEXT_URL } from "@/lib/utils";
 
 export default authMiddleware({
   afterAuth(auth, req) {
@@ -30,27 +31,22 @@ export default authMiddleware({
       const splitValues: string[] = newCookieValues?.split("&");
 
       const createNewFavorite = async () => {
-        const response = await fetch(
-          "http://localhost:3000/api/user/favorite/create",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              favoriteUrl: splitValues[0],
-              userId: auth.userId,
-              city: splitValues[1],
-              countryCode: splitValues[2],
-            }),
+        const response = await fetch(`${NEXT_URL}/api/user/favorite/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+          body: JSON.stringify({
+            favoriteUrl: splitValues[0],
+            userId: auth.userId,
+            city: splitValues[1],
+            countryCode: splitValues[2],
+          }),
+        });
 
         if (response.ok) {
           await response.json();
-          const nextResponse = NextResponse.redirect(
-            "http://localhost:3000/favorites",
-          );
+          const nextResponse = NextResponse.redirect(`${NEXT_URL}/favorites`);
           nextResponse.cookies.set("newFavorite", "");
           nextResponse.cookies.delete("newFavorite");
           return nextResponse;

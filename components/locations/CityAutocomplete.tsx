@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import * as React from "react";
 import { SelectedCityType } from "@/types/global";
+import { NEXT_URL } from "@/lib/utils";
 
 type City = {
   place_id: string;
@@ -65,7 +66,7 @@ export default function CityAutocomplete({
 
   const handleSubmit = async (city: City) => {
     const { data } = await axios.get(
-      `http://localhost:3000/api/countrycode?placeId=${city.place_id}`,
+      `${NEXT_URL}/api/countrycode?placeId=${city.place_id}`,
     );
 
     const currentInputCity = city.structured_formatting.main_text.toLowerCase();
