@@ -10,7 +10,7 @@ export default function EmailLinkButton({ city, size }: ISendLinkByMail) {
       className={
         "bg-slate-300/80 transition hover:bg-slate-300/90 w-1/5 h-3/4 rounded-3xl inline-flex justify-center items-center"
       }
-      href={`mailto:x@y.com?subject=check out my postcard from ${city}!&body=hey! I generated a postcard just for you: https://pbxt.replicate.delivery/zbZHbwtsMf0RXiHmVZa6D9ey3DB7FUzffZcIISvaTy5ErIWGB/out-0.png`}
+      href={`mailto:?subject=check out my postcard from ${city}!&body=hey! I generated a postcard just for you: https://pbxt.replicate.delivery/zbZHbwtsMf0RXiHmVZa6D9ey3DB7FUzffZcIISvaTy5ErIWGB/out-0.png`}
     >
       <Image
         width={size}
