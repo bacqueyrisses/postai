@@ -5,6 +5,7 @@ import { raleway } from "@/lib/fonts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { neobrutalism } from "@clerk/themes";
 
 export const metadata: Metadata = {
   title: "Postai",
@@ -17,7 +18,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: neobrutalism,
+        elements: {
+          formButtonPrimary:
+            "rounded-full shadow-none bg-emerald-500 border-emerald-500 text-white hover:bg-transparent hover:text-emerald-500 py-3",
+          footerActionLink:
+            "text-blue-600 hover:text-blue-700 hover:no-underline",
+          formFieldInput:
+            "rounded-full shadow-none focus:shadow-none focus:scale-100 accent-green-600",
+          socialButtonsIconButton: "rounded-full",
+          socialButtonsIconButton__apple:
+            "border-yellow-400 bg-yellow-400 shadow-none hover:bg-white",
+          socialButtonsIconButton__google:
+            "bg-emerald-400 border-emerald-400 shadow-none hover:bg-white",
+          socialButtonsIconButton__github:
+            "bg-pink-400 border-pink-400 shadow-none hover:bg-white",
+          card: "shadow-none border-none",
+        },
+      }}
+    >
       <html lang="en">
         <body
           className={`${raleway.className} px-4 md:px-24 flex flex-col justify-between h-screen bg-[#E9E7DF]`}

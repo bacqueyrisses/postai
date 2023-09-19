@@ -11,6 +11,7 @@
     "@amcharts/amcharts4-geodata": "^4.1.27",
     "@amcharts/amcharts5": "^5.4.4",
     "@clerk/nextjs": "^4.23.5",
+    "@clerk/themes": "^1.7.5",
     "@prisma/client": "^5.3.1",
     "@radix-ui/react-alert-dialog": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.4",

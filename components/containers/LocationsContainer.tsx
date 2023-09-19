@@ -83,10 +83,10 @@ export default function LocationsContainer({
           country={{ city: "washington, usa", countryCode: "US" }}
           inputCity={"washington"}
           className={
-            "col-span-5 md:col-span-5 border-red-500 hover:text-red-500"
+            "col-span-5 md:col-span-5 border-red-600 hover:text-red-600"
           }
-          selectedClassName={"text-red-500"}
-          unselectedClassName={"bg-red-500"}
+          selectedClassName={"text-red-600"}
+          unselectedClassName={"bg-red-600"}
           variant={"full"}
         />
         <City

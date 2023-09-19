@@ -8,6 +8,11 @@
   }
 }
 
+.cartoon {
+  box-shadow: rgb(0, 0, 0) 4px 3px 0;
+  border: 3px solid rgb(0, 0, 0);
+}
+
 @keyframes pulseshadow {
   50% {box-shadow: 0 2px 19px 6px rgba(18,185,129,0.85);}
 }
@@ -161,5 +166,7 @@
   position: absolute;
 }
 
-
+[data-floating-ui-portal] {
+  position: absolute;
+}
 

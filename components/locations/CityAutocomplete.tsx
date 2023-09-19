@@ -23,11 +23,11 @@ type City = {
 const getAutocompleteClassNames = (index: number) => {
   switch (index) {
     case 0:
-      return "bg-yellow-400";
+      return "bg-yellow-400 border-yellow-400 text-white hover:bg-transparent hover:text-yellow-400";
     case 1:
-      return "bg-orange-400";
+      return "bg-orange-400 border-orange-400 text-white hover:bg-transparent hover:text-orange-400";
     case 2:
-      return "bg-emerald-500";
+      return "bg-emerald-500 border-emerald-500 text-white hover:bg-transparent hover:text-emerald-500";
     default:
       return "bg-blue-600";
   }
@@ -87,7 +87,7 @@ export default function CityAutocomplete({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={() => setIsOpen(true)}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <div
           className={
@@ -116,7 +116,7 @@ export default function CityAutocomplete({
             "select a city"}
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:rounded-3xl border-3 max-w-4xl top-[40%]">
+      <DialogContent className="sm:rounded-3xl border-2 border-black max-w-4xl top-[40%]">
         <div
           className={
             "flex justify-center items-center flex-col gap-6 h-[200px]"
@@ -125,29 +125,31 @@ export default function CityAutocomplete({
           <DialogHeader
             className={"basis-1/3 inline-flex justify-center items-center"}
           >
-            <DialogTitle className={"text-center"}>
+            <DialogTitle className={"text-center text-xl"}>
               Choose your city
             </DialogTitle>
           </DialogHeader>
+          <input
+            type="text"
+            onChange={debouncedHandleChange}
+            aria-label="Cities"
+            className={
+              "text-lg placeholder:text-center text-center w-fit h-fit inline-flex justify-center items-center basis-1/4 rounded-full border-2 border-black accent-green-600 outline-offset-2"
+            }
+          />
 
-          <div className="inline-flex justify-center items-center basis-1/3">
-            <input
-              type="text"
-              placeholder="Enter a city"
-              onChange={debouncedHandleChange}
-              aria-label="Cities"
-              className={"placeholder:text-center text-center"}
-            />
-          </div>
-
-          <div className={"flex gap-4 justify-center basis-1/3 items-center"}>
+          <div
+            className={
+              "flex gap-4 justify-center basis-1/3 items-center text-lg"
+            }
+          >
             {cities &&
               cities.length > 0 &&
               cities.map((city, index: number) => (
                 <button
                   className={`${getAutocompleteClassNames(
                     index,
-                  )} rounded-full px-6 py-1.5`}
+                  )} rounded-full px-7 py-2 border-2 transition-colors ease-in-out duration-300`}
                   key={city.place_id}
                   onClick={() => handleSubmit(city)}
                 >
