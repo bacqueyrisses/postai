@@ -1,6 +1,5 @@
-"use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ISignUpAndSaveToFav {
   favoriteUrl: string;
@@ -8,26 +7,15 @@ interface ISignUpAndSaveToFav {
   city: string;
   countryCode: string;
 }
-export default function SignUpAndSaveToFav({
+export default function SignUpAndSaveFav({
   favoriteUrl,
   size,
   city,
   countryCode,
 }: ISignUpAndSaveToFav) {
-  const router = useRouter();
-
-  const newFavorite = {
-    url: favoriteUrl,
-    city,
-    countryCode,
-  };
-  const saveUrlToLocalStorage = () => {
-    localStorage.setItem("savedFavorite", JSON.stringify(newFavorite));
-    router.push("/sign-in");
-  };
   return (
-    <button
-      onClick={saveUrlToLocalStorage}
+    <Link
+      href={`/favorites?url=${favoriteUrl}&city=${city}&countryCode=${countryCode}`}
       className={
         "bg-slate-300/80 transition hover:bg-slate-300/90 w-1/5 h-3/4 rounded-3xl inline-flex justify-center items-center"
       }
@@ -40,6 +28,6 @@ export default function SignUpAndSaveToFav({
         }
         alt={"floppy disk emoji"}
       />
-    </button>
+    </Link>
   );
 }

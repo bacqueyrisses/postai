@@ -2,7 +2,6 @@ import { currentUser } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
 import FavoritePostcard from "@/components/containers/FavoritePostcard";
 import axios from "axios";
-import NewFavoritePostcard from "@/components/containers/NewFavoritePostcard";
 
 export const revalidate = 1;
 
@@ -26,7 +25,6 @@ export default async function FavoritesPage() {
 
   return (
     <div className={"flex gap-8 flex-wrap justify-center items-center"}>
-      <NewFavoritePostcard />
       {data &&
         data.map((favorite) => (
           <FavoritePostcard

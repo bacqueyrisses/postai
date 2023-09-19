@@ -9,8 +9,13 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
   }
 
-  const { rows } =
-    await sql`SELECT * FROM "Favorite" WHERE "userId" = ${userId};`;
+  try {
+    const { rows } =
+      await sql`SELECT * FROM "Favorite" WHERE "userId" = ${userId} ORDER BY "id" DESC;`;
 
-  return NextResponse.json(rows);
+    return NextResponse.json(rows);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ selected: "ERROR" });
+  }
 }

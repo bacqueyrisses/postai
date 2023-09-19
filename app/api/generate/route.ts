@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { replicate, model } from "@/lib/replicate";
+import { sql } from "@vercel/postgres";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
@@ -13,7 +14,12 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const city = searchParams.get("city");
   const prompt = `a picture of ${city}`;
 
-  const output: any = await replicate.run(model, { input: { prompt } });
+  try {
+    const output: any = await replicate.run(model, { input: { prompt } });
 
-  return NextResponse.json(output[0]);
+    return NextResponse.json(output[0]);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ created: "ERROR" });
+  }
 }

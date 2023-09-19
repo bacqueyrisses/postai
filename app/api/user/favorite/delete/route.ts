@@ -12,6 +12,6 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json(rows);
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ created: "ERROR" });
+    return NextResponse.json({ deleted: "ERROR" });
   }
 }

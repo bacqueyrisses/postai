@@ -11,7 +11,7 @@ import { useState } from "react";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
-import SignUpAndSaveToFav from "@/components/buttons/SignUpAndSaveToFav";
+import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
 
 export default function GenerationPage() {
   const { isLoaded, userId } = useAuth();
@@ -94,7 +94,7 @@ export default function GenerationPage() {
               size={33}
             />
           ) : (
-            <SignUpAndSaveToFav
+            <SignUpAndSaveFav
               size={30}
               favoriteUrl={favoriteUrl}
               city={city!}

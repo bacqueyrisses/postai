@@ -16,7 +16,7 @@ export default function PostcardContainer({
 }: IPostcardContainer) {
   return (
     <div className={"flex flex-col gap-3 justify-center items-center"}>
-      <div className={"text-xl space-x-3"}>
+      <div className={"text-3xl space-x-3"}>
         <span>{city}</span>
         <span>{countryCodeEmoji(countryCode)}</span>
       </div>
