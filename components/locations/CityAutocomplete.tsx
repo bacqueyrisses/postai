@@ -116,7 +116,7 @@ export default function CityAutocomplete({
             "select a city"}
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:rounded-3xl border-2 border-black max-w-4xl top-[40%]">
+      <DialogContent className="sm:rounded-3xl max-w-4xl top-[40%]">
         <div
           className={
             "flex justify-center items-center flex-col gap-6 h-[200px]"
