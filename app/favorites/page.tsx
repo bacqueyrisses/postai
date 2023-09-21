@@ -4,7 +4,7 @@ import FavoritePostcard from "@/components/containers/FavoritePostcard";
 import axios from "axios";
 import { NEXT_URL } from "@/lib/utils";
 
-export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 type Favorites = {
   id: number;

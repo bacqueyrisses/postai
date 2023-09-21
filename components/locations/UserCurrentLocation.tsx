@@ -23,6 +23,7 @@ export default function UserCurrentLocation({
       return localStorage.setItem("hasLocationPermission", "false");
 
     getUserCurrentLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = async () => {

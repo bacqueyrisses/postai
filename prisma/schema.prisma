@@ -13,5 +13,5 @@ model Favorite {
   url         String
   city        String
   countryCode String
-  userId      String @unique
+  userId      String
 }
