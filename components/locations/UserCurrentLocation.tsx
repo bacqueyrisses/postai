@@ -35,7 +35,7 @@ export default function UserCurrentLocation({
     });
   };
 
-  const getUserCurrentLocation = (): void => {
+  function getUserCurrentLocation(): void {
     // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
     navigator.geolocation.getCurrentPosition(
       async ({ coords }) => {
@@ -75,7 +75,7 @@ export default function UserCurrentLocation({
         localStorage.setItem("hasLocationPermission", "false");
       },
     );
-  };
+  }
 
   return (
     <button

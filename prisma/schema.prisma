@@ -10,8 +10,8 @@ datasource db {
 
 model Favorite {
   id          Int    @id @default(autoincrement())
-  url         String @unique
+  url         String
   city        String
   countryCode String
-  userId      String
+  userId      String @unique
 }

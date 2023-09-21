@@ -1,17 +1,20 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { NEXT_URL } from "@/lib/utils";
+import { AuthObject } from "@clerk/backend";
 
 export default authMiddleware({
-  afterAuth(auth, req) {
-    const { searchParams } = new URL(req.url);
+  afterAuth(auth, request) {
+    const { searchParams } = new URL(request.url);
     const url = searchParams.get("url");
     const city = searchParams.get("city");
     const countryCode = searchParams.get("countryCode");
 
-    // handle users who aren't authenticated & created a postcard
+    // handle users who aren't authenticated & have created a postcard
     if (!auth.userId && url && city && countryCode) {
-      const nextResponse = NextResponse.redirect(new URL(`/sign-in`, req.url));
+      const nextResponse = NextResponse.redirect(
+        new URL(`/sign-in`, request.url),
+      );
       const cookiesValues = `${url}&${city}&${countryCode}`;
       nextResponse.cookies.set({ name: "newFavorite", value: cookiesValues });
 
@@ -19,46 +22,46 @@ export default authMiddleware({
     }
 
     // handle users who aren't authenticated
-    if (!auth.userId) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
-    }
+    if (!auth.userId)
+      return NextResponse.redirect(new URL("/sign-in", request.url));
 
     // handle authenticated users
-    if (auth.userId) {
-      const newCookieValues = req.cookies.get("newFavorite")?.value!;
-      if (!newCookieValues) return NextResponse.next();
+    const newCookieValues = request.cookies.get("newFavorite")?.value;
+    if (!newCookieValues) return NextResponse.next();
 
-      const splitValues: string[] = newCookieValues?.split("&");
+    void createNewFavorite(newCookieValues, auth);
 
-      const createNewFavorite = async () => {
-        const response = await fetch(`${NEXT_URL}/api/user/favorite/create`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            favoriteUrl: splitValues[0],
-            userId: auth.userId,
-            city: splitValues[1],
-            countryCode: splitValues[2],
-          }),
-        });
+    const nextResponse = NextResponse.next();
+    nextResponse.cookies.set("newFavorite", "");
 
-        if (response.ok) {
-          await response.json();
-          const nextResponse = NextResponse.redirect(`${NEXT_URL}/favorites`);
-          nextResponse.cookies.set("newFavorite", "");
-          nextResponse.cookies.delete("newFavorite");
-          return nextResponse;
-        } else {
-          console.error("Error creating favorite:", response.status);
-        }
-      };
-
-      void createNewFavorite();
-    }
+    return nextResponse;
   },
 });
+
+async function createNewFavorite(
+  newCookieValues: string,
+  auth: AuthObject & { isPublicRoute: boolean; isApiRoute: boolean },
+) {
+  const splitValues: string[] = newCookieValues?.split("&");
+  const response = await fetch(`${NEXT_URL}/api/user/favorite/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      favoriteUrl: splitValues[0],
+      userId: auth.userId,
+      city: splitValues[1],
+      countryCode: splitValues[2],
+    }),
+  });
+
+  if (response.ok) {
+    await response.json();
+  } else {
+    console.error("Error creating favorite:", response.status);
+  }
+}
 
 export const config = {
   matcher: ["/favorites"],

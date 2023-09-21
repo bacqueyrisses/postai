@@ -27,6 +27,7 @@ export default function FavoritePostcard({
     setIsActive(false);
     await axios.delete(`${NEXT_URL}/api/user/favorite/delete?favoriteId=${id}`);
     router.prefetch("/favorites");
+    router.refresh();
   };
 
   return isActive ? (
