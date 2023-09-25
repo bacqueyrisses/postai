@@ -61,7 +61,7 @@ export default function City({
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-4 h-4 md:w-7 md:h-7 pt-0.5 md:pt-1 -left-8 -translate-y-1/2 top-1/2 absolute"
+              className="w-4 h-4 md:w-7 md:h-7 pt-0.5 md:pt-1 md:-left-8 -left-5 -translate-y-1/2 top-1/2 absolute"
             >
               <path
                 strokeLinecap="round"
