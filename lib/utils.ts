@@ -6,4 +6,3 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const NEXT_URL = process.env.NEXT_PUBLIC_URL;
-export const NEXT_SERVER_URL = process.env.NEXT_SERVER_URL;

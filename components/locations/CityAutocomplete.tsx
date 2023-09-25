@@ -1,3 +1,4 @@
+import * as React from "react";
 import { ChangeEvent, useMemo, useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
@@ -9,9 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import axios from "axios";
-import * as React from "react";
 import { SelectedCityType } from "@/types/global";
-import { NEXT_URL } from "@/lib/utils";
 
 type City = {
   place_id: string;
@@ -66,7 +65,7 @@ export default function CityAutocomplete({
 
   const handleSubmit = async (city: City) => {
     const { data } = await axios.get(
-      `${NEXT_URL}/api/countrycode?placeId=${city.place_id}`,
+      `/api/countrycode?placeId=${city.place_id}`,
     );
 
     const currentInputCity = city.structured_formatting.main_text.toLowerCase();

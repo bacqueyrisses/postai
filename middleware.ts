@@ -1,6 +1,5 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { NEXT_SERVER_URL } from "@/lib/utils";
 import { AuthObject } from "@clerk/backend";
 
 export default authMiddleware({
@@ -44,7 +43,7 @@ async function createNewFavorite(
 ) {
   const splitValues: string[] = newCookieValues?.split("&");
 
-  const response = await fetch(`${NEXT_SERVER_URL}/api/user/favorite/create`, {
+  const response = await fetch(`/api/user/favorite/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

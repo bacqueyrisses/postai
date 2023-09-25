@@ -12,7 +12,6 @@ import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
 import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
-import { NEXT_URL } from "@/lib/utils";
 
 export default function GenerationPage() {
   const { isLoaded, userId } = useAuth();
@@ -37,7 +36,7 @@ export default function GenerationPage() {
     if (isSaved) return;
     setIsSaved(true);
 
-    await axios.post(`${NEXT_URL}/api/user/favorite/create`, {
+    await axios.post(`/api/user/favorite/create`, {
       favoriteUrl,
       userId,
       city,
