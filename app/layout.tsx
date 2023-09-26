@@ -8,8 +8,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { neobrutalism } from "@clerk/themes";
 
 export const metadata: Metadata = {
-  title: "Postai",
-  description: "Generate a unique postcard.",
+  title: "💌 Postai",
+  description:
+    "Create your virtual ai-generated location-based burning postcard",
 };
 
 export default function RootLayout({
