@@ -12,6 +12,8 @@ import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
 import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
+import { revalidatePath } from "next/cache";
+import useSWR from "swr";
 
 export default function GenerationPage() {
   const { isLoaded, userId } = useAuth();
@@ -30,20 +32,20 @@ export default function GenerationPage() {
     data: favoriteUrl,
     error,
     isLoading,
-  } = useSWRImmutable(apiUrl, fetcher);
+  } = useSWR(apiUrl, fetcher, { revalidateOnReconnect: true });
 
   const handleSaveButton = async () => {
     if (isSaved) return;
     setIsSaved(true);
 
-    await axios.post(`/api/user/favorite/create`, {
-      favoriteUrl,
-      userId,
-      city,
-      countryCode,
-    });
-
-    router.prefetch("/favorites");
+    await axios
+      .post(`/api/user/favorite/create`, {
+        favoriteUrl,
+        userId,
+        city,
+        countryCode,
+      })
+      .catch((error) => console.error(error));
   };
 
   return (

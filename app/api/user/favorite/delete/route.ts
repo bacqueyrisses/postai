@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
+import { revalidatePath } from "next/cache";
 
 export async function DELETE(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
@@ -8,6 +9,8 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
   try {
     const { rows } =
       await sql`DELETE FROM "Favorite" WHERE "id" = ${favoriteId};`;
+
+    revalidatePath("/favorites");
 
     return NextResponse.json(rows);
   } catch (error) {

@@ -1,6 +1,8 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { AuthObject } from "@clerk/backend";
+import { NEXT_URL } from "@/lib/utils";
+import { revalidatePath } from "next/cache";
 
 export default authMiddleware({
   afterAuth(auth, request) {
@@ -30,6 +32,8 @@ export default authMiddleware({
 
     void createNewFavorite(newCookieValues, auth);
 
+    revalidatePath("/favorites");
+
     const nextResponse = NextResponse.next();
     nextResponse.cookies.set("newFavorite", "");
 
@@ -43,7 +47,7 @@ async function createNewFavorite(
 ) {
   const splitValues: string[] = newCookieValues?.split("&");
 
-  const response = await fetch(`/api/user/favorite/create`, {
+  const response = await fetch(`${NEXT_URL}/api/user/favorite/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

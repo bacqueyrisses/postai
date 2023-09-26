@@ -6,6 +6,7 @@ import DeleteButton from "@/components/buttons/DeleteButton";
 import CopyLinkButton from "@/components/buttons/CopyLinkButton";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
+import { revalidatePath } from "next/cache";
 
 interface IFavoritePostcard {
   favorite: {
@@ -24,9 +25,14 @@ export default function FavoritePostcard({
 
   const handleDeleteButton = async (id: number) => {
     setIsActive(false);
-    await axios.delete(`/api/user/favorite/delete?favoriteId=${id}`);
-    router.prefetch("/favorites");
-    router.refresh();
+
+    await axios
+      .delete(`http://localhost:3000/api/user/favorite/delete?favoriteId=${id}`)
+      .catch((error) => console.error(error));
+
+    // revalidatePath("/favorites");
+
+    // router.refresh();
   };
 
   return isActive ? (

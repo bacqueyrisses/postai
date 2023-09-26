@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { replicate, model } from "@/lib/replicate";
 import { sql } from "@vercel/postgres";
+import { revalidatePath } from "next/cache";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
@@ -16,6 +17,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
   try {
     const output: any = await replicate.run(model, { input: { prompt } });
+
+    revalidatePath("/favorites");
 
     return NextResponse.json(output[0]);
   } catch (error) {
