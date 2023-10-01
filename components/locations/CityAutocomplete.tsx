@@ -63,10 +63,16 @@ export default function CityAutocomplete({
     };
   }, []);
 
+  async function getCountryCode(placeId: string) {
+    const response = await fetch(`/api/countrycode?placeId=${placeId}`);
+
+    if (!response.ok) throw new Error("Failed to fetch data");
+
+    return response.json();
+  }
+
   const handleSubmit = async (city: City) => {
-    const { data } = await axios.get(
-      `/api/countrycode?placeId=${city.place_id}`,
-    );
+    const data = await getCountryCode(city.place_id);
 
     const currentInputCity = city.structured_formatting.main_text.toLowerCase();
     const currentCity = city.description.toLowerCase();

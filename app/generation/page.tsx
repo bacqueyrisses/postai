@@ -1,6 +1,5 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import useSWRImmutable from "swr/immutable";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
 import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
-import { revalidatePath } from "next/cache";
 import useSWR from "swr";
 
 export default function GenerationPage() {

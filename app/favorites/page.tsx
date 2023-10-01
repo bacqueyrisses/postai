@@ -13,6 +13,7 @@ type Favorites = {
   userId: string;
 };
 
+async function getFavorites(userId) {}
 export default async function FavoritesPage() {
   const user: User | null = await currentUser();
 
@@ -25,7 +26,7 @@ export default async function FavoritesPage() {
 
   return (
     <div className={"flex gap-8 flex-wrap justify-center items-center"}>
-      {(!data || data.length === 0) && "bite"}
+      {(!data || data.length === 0) && "No cards."}
       {data?.length > 0 &&
         data.map((favorite) => (
           <FavoritePostcard

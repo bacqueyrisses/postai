@@ -1,12 +1,10 @@
 "use client";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import DeleteButton from "@/components/buttons/DeleteButton";
 import CopyLinkButton from "@/components/buttons/CopyLinkButton";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
-import { revalidatePath } from "next/cache";
 
 interface IFavoritePostcard {
   favorite: {
@@ -16,21 +14,26 @@ interface IFavoritePostcard {
     countryCode: string;
   };
 }
+async function deleteFavorite(favoriteId: number) {
+  try {
+    await fetch(`/api/user/favorite/delete?favoriteId=${favoriteId}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export default function FavoritePostcard({
   favorite: { id, url, city, countryCode },
 }: IFavoritePostcard) {
-  const router = useRouter();
+  // const router = useRouter();
   const [isActive, setIsActive] = useState(true);
 
   const handleDeleteButton = async (id: number) => {
     setIsActive(false);
 
-    await axios
-      .delete(`http://localhost:3000/api/user/favorite/delete?favoriteId=${id}`)
-      .catch((error) => console.error(error));
-
-    // revalidatePath("/favorites");
+    await deleteFavorite(id);
 
     // router.refresh();
   };
