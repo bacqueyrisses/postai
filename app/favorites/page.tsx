@@ -13,7 +13,7 @@ type Favorites = {
   userId: string;
 };
 
-async function getFavorites(userId) {}
+async function getFavorites(userId: string) {}
 export default async function FavoritesPage() {
   const user: User | null = await currentUser();
 
