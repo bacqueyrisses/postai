@@ -28,7 +28,7 @@ export default function CopyLinkButton({
 
   return (
     <CopyToClipboard
-      text={`${process.env.NEXT_SERVER_URL}/link?city=${city}&countryCode=${countryCode}&url=${favoriteUrl}`}
+      text={`${process.env.NEXT_PUBLIC_URL}/link?city=${city}&countryCode=${countryCode}&url=${favoriteUrl}`}
       onCopy={handleCopy}
     >
       <button
