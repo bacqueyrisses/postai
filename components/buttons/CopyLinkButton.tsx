@@ -3,7 +3,6 @@
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import Image from "next/image";
-import { NEXT_URL } from "@/lib/utils";
 
 interface ICopyLinkToClipboard {
   city: string;
@@ -29,7 +28,7 @@ export default function CopyLinkButton({
 
   return (
     <CopyToClipboard
-      text={`${NEXT_URL}/link?city=${city}&countryCode=${countryCode}&url=${favoriteUrl}`}
+      text={`${process.env.NEXT_SERVER_URL}/link?city=${city}&countryCode=${countryCode}&url=${favoriteUrl}`}
       onCopy={handleCopy}
     >
       <button

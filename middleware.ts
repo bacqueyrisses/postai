@@ -1,7 +1,6 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { AuthObject } from "@clerk/backend";
-import { NEXT_URL } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 
 export default authMiddleware({
@@ -47,18 +46,21 @@ async function createNewFavorite(
 ) {
   const splitValues: string[] = newCookieValues?.split("&");
 
-  const response = await fetch(`${NEXT_URL}/api/user/favorite/create`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `${process.env.NEXT_SERVER_URL}/api/user/favorite/create`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        favoriteUrl: splitValues[0],
+        userId: auth.userId,
+        city: splitValues[1],
+        countryCode: splitValues[2],
+      }),
     },
-    body: JSON.stringify({
-      favoriteUrl: splitValues[0],
-      userId: auth.userId,
-      city: splitValues[1],
-      countryCode: splitValues[2],
-    }),
-  });
+  );
 
   if (!response.ok) console.error("Error creating favorite:", response.status);
 }
