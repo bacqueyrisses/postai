@@ -2,8 +2,11 @@ import { currentUser } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
 import FavoritePostcard from "@/components/containers/FavoritePostcard";
 import axios from "axios";
+import { fetcher } from "@/lib/fetcher";
+import useSWR from "swr";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 1;
 
 type Favorites = {
   id: number;
@@ -13,16 +16,14 @@ type Favorites = {
   userId: string;
 };
 
-async function getFavorites(userId: string) {}
 export default async function FavoritesPage() {
   const user: User | null = await currentUser();
 
-  const data: Favorites[] = await axios
-    .get(
-      `${process.env.NEXT_SERVER_URL}/api/user/favorite/select-all?userId=${user?.id}`,
-    )
-    .then((response) => response.data)
-    .catch((error) => console.error(error));
+  const response = await fetch(
+    `${process.env.NEXT_SERVER_URL}/api/user/favorite/select-all?userId=${user?.id}`,
+    { next: { revalidate: 0 }, cache: "no-cache" },
+  );
+  const data: Favorites[] = await response.json();
 
   return (
     <div className={"flex gap-8 flex-wrap justify-center items-center"}>
