@@ -7,6 +7,7 @@ export default authMiddleware({
   afterAuth(auth, request) {
     // return for authenticated users from homepage
     const previousUrl = request.headers.get("referer");
+    console.log(previousUrl);
     if (previousUrl === process.env.NEXT_SERVER_URL) return;
 
     const { searchParams } = new URL(request.url);

@@ -34,8 +34,6 @@ export default function FavoritePostcard({
     setIsActive(false);
 
     await deleteFavorite(id);
-
-    // router.refresh();
   };
 
   return isActive ? (

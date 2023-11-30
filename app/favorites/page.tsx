@@ -19,7 +19,7 @@ export default async function FavoritesPage() {
 
   const data: Favorites[] = await axios
     .get(
-      `http://localhost:3000/api/user/favorite/select-all?userId=${user?.id}`,
+      `${process.env.NEXT_SERVER_URL}/api/user/favorite/select-all?userId=${user?.id}`,
     )
     .then((response) => response.data)
     .catch((error) => console.error(error));
