@@ -5,7 +5,10 @@ import { revalidatePath } from "next/cache";
 
 export default authMiddleware({
   afterAuth(auth, request) {
-    if (auth.userId) return;
+    // return for authenticated users from homepage
+    const previousUrl = request.headers.get("referer");
+    if (previousUrl === process.env.NEXT_SERVER_URL) return;
+
     const { searchParams } = new URL(request.url);
     const url = searchParams.get("url");
     const city = searchParams.get("city");
@@ -31,8 +34,6 @@ export default authMiddleware({
     if (!newCookieValues) return NextResponse.next();
 
     void createNewFavorite(newCookieValues, auth);
-
-    revalidatePath("/favorites");
 
     const nextResponse = NextResponse.next();
     nextResponse.cookies.set("newFavorite", "");

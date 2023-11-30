@@ -78,7 +78,12 @@ export default function GenerationPage() {
           countryCode={countryCode!}
           favoriteUrl={favoriteUrl}
         >
-          <EmailLinkButton size={50} city={city!} />
+          <EmailLinkButton
+            favoriteUrl={favoriteUrl}
+            countryCode={countryCode!}
+            size={50}
+            city={city!}
+          />
 
           <CopyLinkButton
             favoriteUrl={favoriteUrl}
