@@ -12,6 +12,7 @@ import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
 import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
 import useSWRImmutable from "swr/immutable";
+import { revalidatePath } from "next/cache";
 
 export default function GenerationPage() {
   const { isLoaded, userId } = useAuth();
@@ -43,6 +44,8 @@ export default function GenerationPage() {
         countryCode,
       })
       .catch((error) => console.error(error));
+
+    revalidatePath("/favorites");
   };
 
   return (

@@ -63,6 +63,7 @@ async function createNewFavorite(
       }),
     },
   );
+
   revalidatePath("/favorites");
 
   if (!response.ok) console.error("Error creating favorite:", response.status);
