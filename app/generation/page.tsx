@@ -44,8 +44,6 @@ export default function GenerationPage() {
         countryCode,
       })
       .catch((error) => console.error(error));
-
-    revalidatePath("/favorites");
   };
 
   return (
