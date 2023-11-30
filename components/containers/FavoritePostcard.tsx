@@ -40,7 +40,12 @@ export default function FavoritePostcard({
 
   return isActive ? (
     <PostcardContainer city={city} countryCode={countryCode} favoriteUrl={url}>
-      <EmailLinkButton city={city} size={50} />
+      <EmailLinkButton
+        city={city}
+        countryCode={countryCode}
+        favoriteUrl={url}
+        size={50}
+      />
       <CopyLinkButton
         favoriteUrl={url}
         countryCode={countryCode}
