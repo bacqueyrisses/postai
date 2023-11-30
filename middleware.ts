@@ -1,6 +1,7 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { AuthObject } from "@clerk/backend";
+import { revalidatePath } from "next/cache";
 
 export default authMiddleware({
   afterAuth(auth, request) {
@@ -62,6 +63,7 @@ async function createNewFavorite(
       }),
     },
   );
+  revalidatePath("/favorites");
 
   if (!response.ok) console.error("Error creating favorite:", response.status);
 }
