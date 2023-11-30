@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { replicate, model } from "@/lib/replicate";
-import { sql } from "@vercel/postgres";
+import { model, replicate } from "@/lib/replicate";
 import { revalidatePath } from "next/cache";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {

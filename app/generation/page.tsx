@@ -1,5 +1,5 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,11 +11,10 @@ import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
 import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 
 export default function GenerationPage() {
   const { isLoaded, userId } = useAuth();
-  const router = useRouter();
 
   const [isSaved, setIsSaved] = useState(false);
 
@@ -30,7 +29,7 @@ export default function GenerationPage() {
     data: favoriteUrl,
     error,
     isLoading,
-  } = useSWR(apiUrl, fetcher, { revalidateOnReconnect: true });
+  } = useSWRImmutable(apiUrl, fetcher);
 
   const handleSaveButton = async () => {
     if (isSaved) return;
