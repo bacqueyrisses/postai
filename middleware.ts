@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 
 export default authMiddleware({
   afterAuth(auth, request) {
+    if (auth.userId) return;
     const { searchParams } = new URL(request.url);
     const url = searchParams.get("url");
     const city = searchParams.get("city");

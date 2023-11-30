@@ -9,6 +9,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "replicate.delivery",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "em-content.zobj.net",
         pathname: "/**",
       },
