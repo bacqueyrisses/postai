@@ -1,13 +1,11 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { AuthObject } from "@clerk/backend";
-import { revalidatePath } from "next/cache";
 
 export default authMiddleware({
   afterAuth(auth, request) {
-    // return for authenticated users from homepage
+    // early return for authenticated users from homepage
     const previousUrl = request.headers.get("referer");
-    console.log(previousUrl);
     if (previousUrl === process.env.NEXT_SERVER_URL) return;
 
     const { searchParams } = new URL(request.url);
