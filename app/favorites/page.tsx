@@ -17,6 +17,7 @@ async function fetchFavorites(user: User) {
   try {
     const response = await fetch(
       `${process.env.NEXT_SERVER_URL}/api/user/favorite/select-all?userId=${user?.id}`,
+      { next: { revalidate: 0 } },
     );
     const data: Favorites[] = await response.json();
     return data;
