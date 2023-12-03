@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
+import { revalidatePath } from "next/cache";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
@@ -12,6 +13,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { rows } =
       await sql`SELECT * FROM "Favorite" WHERE "userId" = ${userId} ORDER BY "id" DESC;`;
+
+    revalidatePath("/favorites");
 
     return NextResponse.json(rows);
   } catch (error) {
