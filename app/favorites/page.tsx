@@ -17,13 +17,13 @@ async function fetchFavorites(user: User) {
   try {
     const response = await fetch(
       `${process.env.NEXT_SERVER_URL}/api/user/favorite/select-all?userId=${user?.id}`,
-      { next: { revalidate: 0 } },
+      { next: { revalidate: 0 }, cache: "no-store" },
     );
     const data: Favorites[] = await response.json();
     return data;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch data.");
+    throw new Error("Failed to fetch favorites data.");
   }
 }
 
