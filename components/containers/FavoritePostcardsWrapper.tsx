@@ -17,8 +17,6 @@ type Favorites = {
 async function fetchFavorites(user: User) {
   noStore();
   try {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const data =
       await sql<Favorites>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "id" DESC LIMIT 2;`;
 
