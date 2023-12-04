@@ -3,6 +3,8 @@ import type { User } from "@clerk/nextjs/api";
 import FavoritePostcard from "@/components/containers/FavoritePostcard";
 
 import { unstable_noStore as noStore } from "next/cache";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type Favorites = {
   id: number;
