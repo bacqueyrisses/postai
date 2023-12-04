@@ -36,10 +36,10 @@ export default async function FavoritesPage() {
 
   return (
     <div className={"flex gap-8 flex-wrap justify-center items-center"}>
-      {(!data || data.length === 0) && "No cards."}
-      {data?.length > 0 &&
-        data.map((favorite) => (
-          <Suspense fallback={"Loading"}>
+      <Suspense fallback={"Loading..."}>
+        {(!data || data.length === 0) && "No cards."}
+        {data?.length > 0 &&
+          data.map((favorite) => (
             <FavoritePostcard
               key={favorite.id}
               favorite={{
@@ -49,8 +49,8 @@ export default async function FavoritesPage() {
                 countryCode: favorite.countryCode,
               }}
             />
-          </Suspense>
-        ))}
+          ))}
+      </Suspense>
     </div>
   );
 }
