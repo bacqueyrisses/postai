@@ -18,7 +18,7 @@ async function fetchFavorites(user: User) {
   noStore();
   try {
     const data =
-      await sql<Favorites>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "id" DESC LIMIT 2;`;
+      await sql<Favorites>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "id" DESC;`;
 
     return data.rows;
   } catch (error) {
