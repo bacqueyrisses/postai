@@ -108,6 +108,7 @@ export default function LocationsContainer({
         />
 
         <Link
+          prefetch={false}
           href={
             selectedCity.city
               ? {

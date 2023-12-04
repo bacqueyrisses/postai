@@ -5,12 +5,6 @@ import { revalidatePath } from "next/cache";
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
 
-  const test = searchParams.get("test");
-
-  if (test === "true") {
-    return NextResponse.json("./postcard.jpg");
-  }
-
   const city = searchParams.get("city");
   const prompt = `a postcard of ${city}`;
 

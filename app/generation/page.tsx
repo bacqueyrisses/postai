@@ -1,5 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { notFound, useSearchParams } from "next/navigation";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,8 @@ import SaveToFavButton from "@/components/buttons/SaveToFavButton";
 import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
 import useSWRImmutable from "swr/immutable";
 import { revalidatePath } from "next/cache";
+import { sql } from "@vercel/postgres";
+import { createFavorite } from "@/lib/actions";
 
 export default function GenerationPage() {
   const { isLoaded, userId } = useAuth();
@@ -32,18 +34,18 @@ export default function GenerationPage() {
     isLoading,
   } = useSWRImmutable(apiUrl, fetcher);
 
+  if (!city || !countryCode) return notFound();
+
   const handleSaveButton = async () => {
-    if (isSaved) return;
+    if (isSaved || !userId) return;
     setIsSaved(true);
 
-    await axios
-      .post(`/api/user/favorite/create`, {
-        favoriteUrl,
-        userId,
-        city,
-        countryCode,
-      })
-      .catch((error) => console.error(error));
+    void createFavorite({
+      favoriteUrl,
+      userId,
+      city,
+      countryCode,
+    });
   };
 
   return (

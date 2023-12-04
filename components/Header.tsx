@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
 
 export default function Header() {
   return (
@@ -24,7 +25,6 @@ export default function Header() {
 
       <div className={"flex items-center gap-4"}>
         <UserButton afterSignOutUrl="/" />
-
         <Link
           href={"/favorites"}
           className={

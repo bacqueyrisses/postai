@@ -2,6 +2,7 @@ import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { AuthObject } from "@clerk/backend";
 import { revalidatePath } from "next/cache";
+import { createFavorite } from "@/lib/actions";
 
 export default authMiddleware({
   afterAuth(auth, request) {
@@ -33,7 +34,14 @@ export default authMiddleware({
     const newCookieValues = request.cookies.get("newFavorite")?.value;
     if (!newCookieValues) return NextResponse.next();
 
-    void createNewFavorite(newCookieValues, auth);
+    const splitValues: string[] = newCookieValues?.split("&");
+
+    void createFavorite({
+      favoriteUrl: splitValues[0],
+      userId: auth.userId!,
+      city: splitValues[1],
+      countryCode: splitValues[2],
+    });
 
     const nextResponse = NextResponse.next();
     nextResponse.cookies.set("newFavorite", "");
@@ -41,33 +49,6 @@ export default authMiddleware({
     return nextResponse;
   },
 });
-
-async function createNewFavorite(
-  newCookieValues: string,
-  auth: AuthObject & { isPublicRoute: boolean; isApiRoute: boolean },
-) {
-  const splitValues: string[] = newCookieValues?.split("&");
-
-  const response = await fetch(
-    `${process.env.NEXT_SERVER_URL}/api/user/favorite/create`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        favoriteUrl: splitValues[0],
-        userId: auth.userId,
-        city: splitValues[1],
-        countryCode: splitValues[2],
-      }),
-    },
-  );
-
-  revalidatePath("/favorites");
-
-  if (!response.ok) console.error("Error creating favorite:", response.status);
-}
 
 export const config = {
   matcher: ["/favorites"],
