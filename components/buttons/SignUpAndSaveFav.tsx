@@ -16,6 +16,7 @@ export default function SignUpAndSaveFav({
   return (
     <Link
       href={`/favorites?url=${favoriteUrl}&city=${city}&countryCode=${countryCode}`}
+      className={"my-auto"}
     >
       <Image
         width={size}
