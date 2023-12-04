@@ -4,6 +4,8 @@ import FavoritePostcard from "@/components/containers/FavoritePostcard";
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 
+export const revalidate = 0;
+
 type Favorites = {
   id: number;
   url: string;
