@@ -23,7 +23,7 @@ export default function ClientHomePage() {
     <>
       <div className={"text-3xl md:text-6xl font-normal md:font-normal"}>
         <span className={"font-medium md:font-normal"}>
-          Create your virtual
+          create your virtual
         </span>
         <div className={"block md:inline"}>
           {" "}

@@ -3,8 +3,6 @@ import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 import type { User } from "@clerk/nextjs/api";
 import { currentUser } from "@clerk/nextjs";
-import { FavoriteSkeleton } from "@/components/skeletons/FavoriteSkeleton";
-import { Suspense } from "react";
 
 type Favorites = {
   id: number;

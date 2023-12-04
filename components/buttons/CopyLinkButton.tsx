@@ -39,7 +39,8 @@ export default function CopyLinkButton({
             src={
               "https://em-content.zobj.net/source/apple/354/clipboard_1f4cb.png"
             }
-            alt={"link emoji"}
+            alt={"clipboard emoji"}
+            className={"hover:scale-105 transition-all"}
           />
         ) : (
           <Image
@@ -47,6 +48,7 @@ export default function CopyLinkButton({
             height={size}
             src={"https://em-content.zobj.net/source/apple/354/link_1f517.png"}
             alt={"link emoji"}
+            className={"hover:scale-105 transition-all"}
           />
         )}
       </button>

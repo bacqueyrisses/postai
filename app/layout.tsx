@@ -10,7 +10,7 @@ import { neobrutalism } from "@clerk/themes";
 export const metadata: Metadata = {
   title: "💌 Postai",
   description:
-    "Create your virtual ai-generated location-based burning postcard",
+    "create your virtual ai-generated location-based burning postcard",
 };
 
 export default function RootLayout({

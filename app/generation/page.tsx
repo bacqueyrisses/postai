@@ -66,7 +66,7 @@ export default function GenerationPage() {
         </div>
       ) : isLoading ? (
         <div className={"space-x-4"}>
-          <span>Generating your postcard</span>
+          <span>generating your postcard</span>
           <Image
             src={"/sparkles.webp"}
             alt={"sparkles telemoji"}

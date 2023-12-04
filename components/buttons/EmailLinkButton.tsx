@@ -33,7 +33,7 @@ export default function EmailLinkButton({
           "https://em-content.zobj.net/source/apple/354/love-letter_1f48c.png"
         }
         alt={"love letter emoji"}
-        className={"hover:animate-ping"}
+        className={"hover:scale-105 transition-all"}
       />
     </a>
   );

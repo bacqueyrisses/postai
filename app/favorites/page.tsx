@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import { FavoriteSkeleton } from "@/components/skeletons/FavoriteSkeleton";
+
 import FavoritePostcardWrapper from "@/components/containers/FavoritePostcardsWrapper";
+import { FavoriteSkeleton } from "@/components/Skeletons";
 
 export const revalidate = 0;
 
