@@ -27,6 +27,7 @@ export default function SignUpAndSaveFav({
           "https://em-content.zobj.net/source/apple/354/floppy-disk_1f4be.png"
         }
         alt={"floppy disk emoji"}
+        className={"hover:scale-105 transition-all"}
       />
     </Link>
   );

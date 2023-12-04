@@ -104,7 +104,7 @@ export default function GenerationPage() {
             />
           ) : (
             <SignUpAndSaveFav
-              size={30}
+              size={23}
               favoriteUrl={favoriteUrl}
               city={city!}
               countryCode={countryCode!}
