@@ -73,6 +73,7 @@ export default function GenerationPage() {
             width="67"
             height="67"
             className={"inline w-11 h-11 md:w-20 md:h-20"}
+            priority={true}
           />
         </div>
       ) : (
