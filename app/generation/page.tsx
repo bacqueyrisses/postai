@@ -85,7 +85,7 @@ export default function GenerationPage() {
           <EmailLinkButton
             favoriteUrl={favoriteUrl}
             countryCode={countryCode!}
-            size={50}
+            size={38}
             city={city!}
           />
 
@@ -93,14 +93,14 @@ export default function GenerationPage() {
             favoriteUrl={favoriteUrl}
             countryCode={countryCode!}
             city={city!}
-            size={37}
+            size={25}
           />
 
           {userId ? (
             <SaveToFavButton
               handleSaveButton={handleSaveButton}
               isSaved={isSaved}
-              size={33}
+              size={23}
             />
           ) : (
             <SignUpAndSaveFav

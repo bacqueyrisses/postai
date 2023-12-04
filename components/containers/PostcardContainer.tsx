@@ -22,22 +22,15 @@ export default function PostcardContainer({
       </div>
       <div
         className={
-          "w-[700px] h-[500px] flex items-end justify-evenly rounded-2xl group"
+          "w-[700px] h-[500px] flex items-end justify-evenly rounded-2xl"
         }
         style={{
           backgroundImage: `url(${favoriteUrl})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-        <div
-          className={
-            "mb-6 hidden group-hover:flex h-1/4 w-5/6 rounded-3xl justify-evenly items-center"
-          }
-        >
-          {children}
-        </div>
-      </div>
+      ></div>
+      <div className={"flex gap-10"}>{children}</div>
     </div>
   );
 }

@@ -11,12 +11,7 @@ export default function SaveToFavButton({
   size,
 }: ISaveToFavButton) {
   return (
-    <button
-      onClick={handleSaveButton}
-      className={
-        "bg-slate-300/80 transition hover:bg-slate-300/90 w-1/5 h-3/4 rounded-3xl inline-flex justify-center items-center"
-      }
-    >
+    <button onClick={handleSaveButton}>
       {isSaved ? (
         <Image
           width={size}

@@ -25,12 +25,7 @@ export default function EmailLinkButton({
   )}`;
 
   return (
-    <a
-      className={
-        "bg-slate-300/80 transition hover:bg-slate-300/90 w-1/5 h-3/4 rounded-3xl inline-flex justify-center items-center"
-      }
-      href={mailtoLink}
-    >
+    <a href={mailtoLink}>
       <Image
         width={size}
         height={size}
@@ -38,6 +33,7 @@ export default function EmailLinkButton({
           "https://em-content.zobj.net/source/apple/354/love-letter_1f48c.png"
         }
         alt={"love letter emoji"}
+        className={"hover:animate-ping"}
       />
     </a>
   );

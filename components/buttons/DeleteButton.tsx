@@ -23,11 +23,7 @@ export default function DeleteButton({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button
-          className={
-            "bg-slate-300/80 transition hover:bg-slate-300/90 w-1/5 h-3/4 rounded-3xl inline-flex justify-center items-center"
-          }
-        >
+        <button>
           <Image
             width={size}
             height={size}

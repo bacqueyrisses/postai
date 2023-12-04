@@ -31,11 +31,7 @@ export default function CopyLinkButton({
       text={`${process.env.NEXT_PUBLIC_URL}/link?city=${city}&countryCode=${countryCode}&url=${favoriteUrl}`}
       onCopy={handleCopy}
     >
-      <button
-        className={
-          "bg-slate-300/80 transition hover:bg-slate-300/90 w-1/5 h-3/4 rounded-3xl inline-flex justify-center items-center"
-        }
-      >
+      <button>
         {isCopied ? (
           <Image
             width={size}

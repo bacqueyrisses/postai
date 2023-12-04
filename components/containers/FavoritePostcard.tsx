@@ -27,17 +27,17 @@ export default function FavoritePostcard({
         city={city}
         countryCode={countryCode}
         favoriteUrl={url}
-        size={50}
+        size={38}
       />
       <CopyLinkButton
         favoriteUrl={url}
         countryCode={countryCode}
         city={city}
-        size={35}
+        size={25}
       />
       <DeleteButton
         handleDeleteButton={() => handleDeleteButton(id)}
-        size={27}
+        size={23}
       />
     </PostcardContainer>
   );

@@ -6,7 +6,7 @@ export const revalidate = 0;
 
 export default async function FavoritesPage() {
   return (
-    <div className={"flex gap-14 flex-wrap justify-center items-center py-14"}>
+    <div className={"flex gap-20 flex-wrap justify-center items-center py-14"}>
       <Suspense fallback={<FavoriteSkeleton />}>
         <FavoritePostcardWrapper />
       </Suspense>
