@@ -7,6 +7,13 @@ module.exports = {
     "./src/**/*.{ts,tsx}",
   ],
   theme: {
+    keyframes: {
+      shimmer: {
+        "100%": {
+          transform: "translateX(100%)",
+        },
+      },
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -75,5 +82,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")],
 };

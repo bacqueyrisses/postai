@@ -1,11 +1,8 @@
 "use client";
-import { useState } from "react";
 import DeleteButton from "@/components/buttons/DeleteButton";
 import CopyLinkButton from "@/components/buttons/CopyLinkButton";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
-import { revalidatePath } from "next/cache";
-import { useRouter } from "next/navigation";
 import { deleteFavorite } from "@/lib/actions";
 
 interface IFavoritePostcard {
