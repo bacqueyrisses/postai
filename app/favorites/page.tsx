@@ -35,7 +35,7 @@ export default async function FavoritesPage() {
   const data = await fetchFavorites(user);
 
   return (
-    <div className={"flex gap-8 flex-wrap justify-center items-center"}>
+    <div className={"flex gap-14 flex-wrap justify-center items-center py-14"}>
       <Suspense fallback={"Loading..."}>
         {(!data || data.length === 0) && "No cards."}
         {data?.length > 0 &&

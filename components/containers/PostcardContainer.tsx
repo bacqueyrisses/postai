@@ -6,7 +6,7 @@ interface IPostcardContainer {
   city: string;
   countryCode: string;
   favoriteUrl: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 export default function PostcardContainer({
   city,
@@ -15,7 +15,7 @@ export default function PostcardContainer({
   children,
 }: IPostcardContainer) {
   return (
-    <div className={"flex flex-col gap-3 justify-center items-center"}>
+    <div className={"flex flex-col gap-4 justify-center items-center"}>
       <div className={"text-3xl space-x-3"}>
         <span>{city}</span>
         <span>{countryCodeEmoji(countryCode)}</span>
