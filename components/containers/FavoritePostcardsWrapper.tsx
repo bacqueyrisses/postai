@@ -3,6 +3,8 @@ import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 import type { User } from "@clerk/nextjs/api";
 import { currentUser } from "@clerk/nextjs";
+import Link from "next/link";
+import Image from "next/image";
 
 type Favorites = {
   id: number;
@@ -33,7 +35,28 @@ export default async function FavoritePostcardWrapper() {
 
   return (
     <>
-      {(!favorites || favorites.length === 0) && "No cards."}
+      {(!favorites || favorites.length === 0) && (
+        <div className={"flex gap-8 flex-col"}>
+          <div className={"text-xl flex items-center justify-center gap-1"}>
+            <span>you got no postcards </span>
+            <Image
+              width={30}
+              height={30}
+              src={
+                "https://em-content.zobj.net/source/apple/354/broken-heart_1f494.png"
+              }
+              alt={"clipboard emoji"}
+              className={"hover:scale-105 transition-all"}
+            />
+          </div>
+          <Link
+            href={"/"}
+            className={"text-5xl hover:text-green-600 transition-all"}
+          >
+            go create one
+          </Link>
+        </div>
+      )}
       {favorites?.length > 0 &&
         favorites.map((favorite) => (
           <FavoritePostcard
