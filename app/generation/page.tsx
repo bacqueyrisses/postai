@@ -1,4 +1,5 @@
 "use client";
+export const revalidate = 0;
 
 import { notFound, useSearchParams } from "next/navigation";
 import { fetcher } from "@/lib/fetcher";
