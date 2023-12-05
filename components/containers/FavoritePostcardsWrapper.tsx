@@ -45,8 +45,9 @@ export default async function FavoritePostcardWrapper() {
               src={
                 "https://em-content.zobj.net/source/apple/354/broken-heart_1f494.png"
               }
-              alt={"clipboard emoji"}
-              className={"hover:scale-105 transition-all"}
+              alt={"broken heart emoji"}
+              priority={true}
+              className={"transition-colors"}
             />
           </div>
           <Link
