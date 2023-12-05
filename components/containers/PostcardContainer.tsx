@@ -49,33 +49,40 @@ export default function PostcardContainer({
         <span>{city}</span>
         <span>{countryCodeEmoji(countryCode)}</span>
       </div>
-      <div className={"relative"}>
-        <button className={"group"} onClick={handleDownloadImage}>
-          <div
-            className={
-              "w-[768px] h-[512px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition"
-            }
-            style={{
-              backgroundImage: `url(${favoriteUrl})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            {imageError && <ImageErrorSkeleton />}
-            <img
-              src={favoriteUrl}
-              alt="favorite postcard image postai"
-              style={{ display: "none" }}
-              onError={handleImageError}
-              width={300}
-              height={300}
-            />
-          </div>
-        </button>
+
+      <button className={"group"} onClick={handleDownloadImage}>
         <div
           className={
-            "absolute top-full right-0 flex items-baseline justify-end gap-1.5 mt-4"
+            "w-[768px] h-[512px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition"
           }
+          style={{
+            backgroundImage: `url(${favoriteUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {imageError && <ImageErrorSkeleton />}
+          <img
+            src={favoriteUrl}
+            alt="favorite postcard image postai"
+            style={{ display: "none" }}
+            onError={handleImageError}
+            width={300}
+            height={300}
+          />
+        </div>
+      </button>
+      <div className={"w-[768px] flex items-center justify-between"}>
+        <div className={"basis-1/3"} />
+        <div
+          className={
+            "flex gap-10 basis-1/3 justify-center items-center h-8 mt-1.5"
+          }
+        >
+          {children}
+        </div>
+        <div
+          className={"flex items-baseline justify-end gap-1.5 basis-1/3 h-8"}
         >
           <Image
             src={"/swing-arrow.png"}
@@ -87,7 +94,6 @@ export default function PostcardContainer({
           <span className={"text-sm"}>Click to download</span>
         </div>
       </div>
-      <div className={"flex gap-10"}>{children}</div>
     </div>
   );
 }

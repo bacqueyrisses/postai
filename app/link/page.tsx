@@ -18,12 +18,13 @@ export default function LinkPage({}) {
         city={city}
         countryCode={countryCode}
         favoriteUrl={url}
-      />
-      {user && (
-        <div className={"italic font-light"}>
-          created and shared by {user.toLowerCase()}
-        </div>
-      )}
+      >
+        {user && (
+          <div className={"italic font-light flex items-end"}>
+            created and shared by {user.toLowerCase()}
+          </div>
+        )}
+      </PostcardContainer>
     </div>
   );
 }
