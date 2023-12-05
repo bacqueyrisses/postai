@@ -6,7 +6,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
 
   const city = searchParams.get("city");
-  const prompt = `a great and unique postcard of ${city}, I want you to make a cliché postcard of that city.`;
+  const prompt = `In the style of HISGH. Create a single vibrant, picturesque postcard image that captures the essence of ${city}. Incorporate iconic landmarks, the cityscape, or elements that symbolize its culture, history, and unique atmosphere. Emphasize vivid colors, bustling streets, and a lively ambiance to evoke a sense of wonder and excitement for anyone receiving this postcard.`;
 
   try {
     const output: any = await replicate.run(model, { input: { prompt } });
