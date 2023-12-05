@@ -1,5 +1,5 @@
 "use client";
-export const revalidate = 0;
+
 import { notFound, useSearchParams } from "next/navigation";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
@@ -29,7 +29,7 @@ export default function GenerationPage() {
     data: favoriteUrl,
     error,
     isLoading,
-  } = useSWRImmutable(apiUrl, fetcher, { revalidateOnMount: true });
+  } = useSWRImmutable(apiUrl, fetcher);
 
   if (!city || !countryCode) return notFound();
 
