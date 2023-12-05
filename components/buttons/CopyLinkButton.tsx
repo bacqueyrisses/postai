@@ -3,6 +3,7 @@
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
 
 interface ICopyLinkToClipboard {
   city: string;
@@ -17,6 +18,7 @@ export default function CopyLinkButton({
   size,
 }: ICopyLinkToClipboard) {
   const [isCopied, setIsCopied] = useState(false);
+  const { user } = useUser();
 
   const handleCopy = () => {
     if (isCopied) return;
@@ -28,7 +30,11 @@ export default function CopyLinkButton({
 
   return (
     <CopyToClipboard
-      text={`${process.env.NEXT_PUBLIC_URL}/link?city=${city}&countryCode=${countryCode}&url=${favoriteUrl}`}
+      text={`${
+        process.env.NEXT_PUBLIC_URL
+      }/link?city=${city}&countryCode=${countryCode}&url=${favoriteUrl}&user=${
+        user?.firstName ?? ""
+      }`}
       onCopy={handleCopy}
     >
       <button>

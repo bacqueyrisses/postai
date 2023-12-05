@@ -67,6 +67,7 @@ export default async function FavoritePostcardWrapper() {
               url: favorite.url,
               city: favorite.city,
               countryCode: favorite.countryCode,
+              user: user.firstName ?? "",
             }}
           />
         ))}

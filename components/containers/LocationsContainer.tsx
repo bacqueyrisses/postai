@@ -5,6 +5,8 @@ import { SelectedCityType } from "@/types/global";
 import Link from "next/link";
 import * as React from "react";
 import { useState } from "react";
+import { currentUser } from "@clerk/nextjs";
+import { User } from "@clerk/nextjs/api";
 
 interface ILocations {
   selectedCity: SelectedCityType;

@@ -4,7 +4,6 @@ import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
-import axios from "axios";
 import CopyLinkButton from "@/components/buttons/CopyLinkButton";
 import { useState } from "react";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
@@ -12,12 +11,10 @@ import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
 import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
 import useSWRImmutable from "swr/immutable";
-import { revalidatePath } from "next/cache";
-import { sql } from "@vercel/postgres";
 import { createFavorite } from "@/lib/actions";
 
 export default function GenerationPage() {
-  const { isLoaded, userId } = useAuth();
+  const { userId } = useAuth();
 
   const [isSaved, setIsSaved] = useState(false);
 

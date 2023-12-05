@@ -11,6 +11,7 @@ interface IFavoritePostcard {
     url: string;
     city: string;
     countryCode: string;
+    user: string;
   };
 }
 

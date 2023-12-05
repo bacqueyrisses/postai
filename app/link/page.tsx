@@ -8,14 +8,22 @@ export default function LinkPage({}) {
   const url = searchParams.get("url");
   const city = searchParams.get("city");
   const countryCode = searchParams.get("countryCode");
+  const user = searchParams.get("user");
 
   if (!url || !city || !countryCode) redirect("/");
 
   return (
-    <PostcardContainer
-      city={city}
-      countryCode={countryCode}
-      favoriteUrl={url}
-    />
+    <div>
+      <PostcardContainer
+        city={city}
+        countryCode={countryCode}
+        favoriteUrl={url}
+      />
+      {user && (
+        <div className={"italic font-light"}>
+          created and shared by {user.toLowerCase()}
+        </div>
+      )}
+    </div>
   );
 }
