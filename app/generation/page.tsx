@@ -1,4 +1,5 @@
 "use client";
+export const revalidate = 0;
 import { notFound, useSearchParams } from "next/navigation";
 import { fetcher } from "@/lib/fetcher";
 import Image from "next/image";
@@ -22,14 +23,13 @@ export default function GenerationPage() {
   const city = searchParams.get("city");
   const countryCode = searchParams.get("countryCode");
 
-  const urlExtras = process.env.NEXT_PUBLIC_ENV === "test" ? "&test=true" : "";
-  const apiUrl = `/api/generate?city=${encodeURIComponent(city!)}${urlExtras}`;
+  const apiUrl = `/api/generate?city=${encodeURIComponent(city!)}`;
 
   const {
     data: favoriteUrl,
     error,
     isLoading,
-  } = useSWRImmutable(apiUrl, fetcher);
+  } = useSWRImmutable(apiUrl, fetcher, { revalidateOnMount: true });
 
   if (!city || !countryCode) return notFound();
 
