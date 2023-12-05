@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ImageErrorSkeleton } from "@/components/Skeletons";
 
 import { v4 as uuidv4 } from "uuid";
+
 interface IPostcardContainer {
   city: string;
   countryCode: string;
@@ -33,7 +34,7 @@ export default function PostcardContainer({
 
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", `postcard-${randomUUID}.jpg`);
+      link.setAttribute("download", `postcard-${randomUUID}.png`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -52,7 +53,7 @@ export default function PostcardContainer({
         <button className={"group"} onClick={handleDownloadImage}>
           <div
             className={
-              "w-[700px] h-[500px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition"
+              "w-[768px] h-[512px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition"
             }
             style={{
               backgroundImage: `url(${favoriteUrl})`,
