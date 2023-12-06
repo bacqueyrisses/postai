@@ -11,7 +11,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     const data = await response.json();
 
-    return NextResponse.json(data.predictions.slice(0, 3));
+    return NextResponse.json(data.predictions);
   } catch (error) {
     console.log(error);
     return NextResponse.json("ERROR");

@@ -9,7 +9,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import axios from "axios";
+import { isMobile } from "react-device-detect";
+
 import { SelectedCityType } from "@/types/global";
 
 type City = {
@@ -122,17 +123,15 @@ export default function CityAutocomplete({
             "select a city"}
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:rounded-2xl max-w-4xl top-[40%] border-3 border-none">
+      <DialogContent className="sm:rounded-2xl max-w-4xl top-[40%] border-3 border-none flex flex-col items-center justify-start h-[215px] sm:h-[230px] space-y-1">
         <div
           className={
-            "flex justify-center items-center flex-col gap-6 h-[200px]"
+            "flex justify-center items-center flex-col gap-4 basis-2/5"
           }
         >
-          <DialogHeader
-            className={"basis-1/3 inline-flex justify-center items-center"}
-          >
-            <DialogTitle className={"text-center text-xl"}>
-              Choose your city
+          <DialogHeader className={"inline-flex justify-center items-center"}>
+            <DialogTitle className={"text-center text-xl font-medium"}>
+              choose your city
             </DialogTitle>
           </DialogHeader>
           <input
@@ -140,29 +139,33 @@ export default function CityAutocomplete({
             onChange={debouncedHandleChange}
             aria-label="Cities"
             className={
-              "text-lg placeholder:text-center text-center w-fit h-fit inline-flex justify-center items-center basis-1/4 rounded-full border-2 border-black focus:border-emerald-700 outline-none"
+              "text-lg placeholder:text-center text-center w-fit h-fit inline-flex justify-center items-center rounded-full border-2 border-black focus:ring-0 outline-none focus:border-emerald-700 "
             }
           />
-
-          <div
-            className={
-              "flex gap-4 justify-center basis-1/3 items-center text-lg"
-            }
-          >
-            {cities &&
-              cities.length > 0 &&
-              cities.map((city, index: number) => (
+        </div>
+        <div className={"sm:text-lg text-xs basis-3/5"}>
+          {cities.length === 0 && (
+            <div
+              className={"text-base flex justify-center items-center h-full"}
+            >
+              Search for any city in the world 🌎
+            </div>
+          )}
+          {cities && cities.length > 0 && (
+            <div className={"flex gap-4 justify-center items-center "}>
+              {cities.slice(0, isMobile ? 2 : 3).map((city, index: number) => (
                 <button
                   className={`${getAutocompleteClassNames(
                     index,
-                  )} rounded-full px-7 py-2 border-2 transition-colors ease-in-out duration-300`}
+                  )} rounded-full px-7 py-2 border-2 transition-colors ease-in-out duration-300 min-h-full`}
                   key={city.place_id}
                   onClick={() => handleSubmit(city)}
                 >
                   {city.description.toLowerCase()}
                 </button>
               ))}
-          </div>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

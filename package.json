@@ -36,6 +36,7 @@
     "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "replicate": "^0.17.0",
     "sharp": "^0.33.0",
