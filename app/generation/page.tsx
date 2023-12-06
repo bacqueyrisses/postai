@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
 import CopyLinkButton from "@/components/buttons/CopyLinkButton";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveToFavButton from "@/components/buttons/SaveToFavButton";
@@ -26,11 +26,12 @@ export default function GenerationPage() {
 
   const apiUrl = `/api/generate?city=${encodeURIComponent(city!)}`;
 
+  const random = useRef(Date.now());
   const {
     data: favoriteUrl,
     error,
     isLoading,
-  } = useSWRImmutable(apiUrl, fetcher);
+  } = useSWRImmutable([apiUrl, random], fetcher);
 
   if (!city || !countryCode) return notFound();
 
