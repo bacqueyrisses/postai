@@ -23,7 +23,7 @@ export default function Header() {
         <div>postai</div>
       </Link>
 
-      <div className={"flex items-center sm:gap-4 gap-3"}>
+      <div className={"flex items-center sm:gap-4 gap-2.5"}>
         <UserButton
           appearance={{ elements: { avatarBox: "sm:w-8 sm:h-8 w-7 h-7" } }}
           afterSignOutUrl="/"
