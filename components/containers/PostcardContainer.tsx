@@ -45,7 +45,7 @@ export default function PostcardContainer({
 
   return (
     <div className={"flex flex-col gap-4 justify-center items-center"}>
-      <div className={"text-3xl space-x-3"}>
+      <div className={"sm:text-3xl text-2xl space-x-3"}>
         <span>{city}</span>
         <span>{countryCodeEmoji(countryCode)}</span>
       </div>
@@ -53,7 +53,7 @@ export default function PostcardContainer({
       <button className={"group"} onClick={handleDownloadImage}>
         <div
           className={
-            "w-[768px] h-[512px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition"
+            "w-[358px] sm:w-[768px] h-[256px] sm:h-[512px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition"
           }
           style={{
             backgroundImage: `url(${favoriteUrl})`,
@@ -72,26 +72,33 @@ export default function PostcardContainer({
           />
         </div>
       </button>
-      <div className={"w-[768px] flex items-center justify-between"}>
-        <div className={"basis-1/3"} />
+      <div
+        className={"w-[358px] sm:w-[768px] flex items-center justify-between"}
+      >
+        <div className={"sm:basis-1/3 basis-1/4"} />
         <div
           className={
-            "flex gap-10 basis-1/3 justify-center items-center h-8 mt-1.5"
+            "flex gap-10 sm:basis-1/3 basis-2/4 justify-center items-center h-8 mt-1.5"
           }
         >
           {children}
         </div>
         <div
-          className={"flex items-baseline justify-end gap-1.5 basis-1/3 h-8"}
+          className={
+            "flex sm:flex-row sm:items-baseline flex-col items-end justify-end gap-1.5 sm:basis-1/3 basis-1/4 h-8"
+          }
         >
           <Image
             src={"/swing-arrow.png"}
             height={50}
             width={50}
             alt={"swing arrow image"}
+            className={"hidden sm:block skew-y-6"}
           />
 
-          <span className={"text-sm"}>Click to download</span>
+          <span className={"sm:text-sm text-xs hidden sm:block"}>
+            click to download
+          </span>
         </div>
       </div>
     </div>
