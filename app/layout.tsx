@@ -19,30 +19,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: neobrutalism,
-        elements: {
-          formButtonPrimary:
-            "rounded-full shadow-none bg-emerald-500 border-emerald-500 text-white hover:bg-transparent hover:text-emerald-500 py-3",
-          footerActionLink:
-            "text-blue-600 hover:text-blue-700 hover:no-underline",
-          formFieldInput:
-            "rounded-full shadow-none focus:shadow-none focus:scale-100 focus:border-emerald-700 outline-none",
-          socialButtonsIconButton: "rounded-full",
-          socialButtonsIconButton__apple:
-            "border-yellow-400 bg-yellow-400 shadow-none hover:bg-white",
-          socialButtonsIconButton__google:
-            "bg-emerald-400 border-emerald-400 shadow-none hover:bg-white",
-          socialButtonsIconButton__github:
-            "bg-pink-400 border-pink-400 shadow-none hover:bg-white",
-          card: "shadow-none border-3 border-emerald-700",
-          profileSectionPrimaryButton: "shadow-none",
-          navbarButton: "shadow-none mb-2",
-        },
-      }}
-    >
-      <html lang="en">
+    <html lang="en">
+      <ClerkProvider
+        appearance={{
+          baseTheme: neobrutalism,
+          elements: {
+            formButtonPrimary:
+              "rounded-full shadow-none bg-emerald-500 border-emerald-500 text-white hover:bg-transparent hover:text-emerald-500 py-3",
+            footerActionLink:
+              "text-blue-600 hover:text-blue-700 hover:no-underline",
+            formFieldInput:
+              "rounded-full shadow-none focus:shadow-none focus:scale-100 focus:border-emerald-700 outline-none",
+            socialButtonsIconButton: "rounded-full",
+            socialButtonsIconButton__apple:
+              "border-yellow-400 bg-yellow-400 shadow-none hover:bg-white",
+            socialButtonsIconButton__google:
+              "bg-emerald-400 border-emerald-400 shadow-none hover:bg-white",
+            socialButtonsIconButton__github:
+              "bg-pink-400 border-pink-400 shadow-none hover:bg-white",
+            card: "w-auto sm:px-10 px-14 shadow-none border-0",
+            userButtonPopoverCard: "sm:pl-0 sm:pr-20 pl-0 pr-10",
+            profileSectionPrimaryButton: "shadow-none",
+            navbarButton: "shadow-none mb-2",
+            avatarBox: "sm:w-8 sm:h-8 w-6 h-6",
+          },
+        }}
+      >
         <body
           className={`${raleway.className} px-4 md:px-24 flex flex-col justify-between h-screen bg-[#E9E7DF]`}
         >
@@ -52,7 +54,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </body>
-      </html>
-    </ClerkProvider>
+      </ClerkProvider>
+    </html>
   );
 }

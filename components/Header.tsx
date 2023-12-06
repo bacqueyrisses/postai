@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
-import { revalidatePath } from "next/cache";
 
 export default function Header() {
   return (
@@ -24,10 +23,7 @@ export default function Header() {
       </Link>
 
       <div className={"flex items-center sm:gap-4 gap-2.5"}>
-        <UserButton
-          appearance={{ elements: { avatarBox: "sm:w-8 sm:h-8 w-6 h-6" } }}
-          afterSignOutUrl="/"
-        />
+        <UserButton afterSignOutUrl="/" />
         <Link
           href={"/favorites"}
           className={
