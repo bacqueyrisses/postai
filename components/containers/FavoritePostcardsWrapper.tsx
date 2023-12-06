@@ -52,7 +52,9 @@ export default async function FavoritePostcardWrapper() {
           </div>
           <Link
             href={"/"}
-            className={"text-5xl hover:text-green-600 transition-all"}
+            className={
+              "sm:text-5xl text-4xl hover:text-green-600 transition-all"
+            }
           >
             go create one
           </Link>
