@@ -26,6 +26,7 @@ export default function GenerationPage() {
 
   const apiUrl = `/api/generate?city=${encodeURIComponent(city!)}`;
 
+  // Prevent fetch request from caching
   const random = useRef(Date.now());
   const {
     data: favoriteUrl,
