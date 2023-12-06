@@ -17,7 +17,7 @@ export function FavoriteSkeleton() {
 export function ImageSkeleton() {
   return (
     <div
-      className={`${shimmer} relative overflow-hidden rounded-2xl bg-gray-100 p-6 shadow-sm flex items-end w-[358px] sm:w-[768px] h-[256px] sm:h-[512px]`}
+      className={`${shimmer} relative overflow-hidden rounded-2xl bg-gray-100 sm:p-6 p-2 shadow-sm flex items-end w-[358px] sm:w-[768px] h-[256px] sm:h-[512px]`}
     >
       <div className="flex items-center justify-center w-full h-full bg-gray-200 rounded-2xl">
         <svg
@@ -37,7 +37,7 @@ export function ImageSkeleton() {
 export function ImageErrorSkeleton() {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl bg-gray-100 p-6 shadow-sm flex items-end w-[358px] sm:w-[768px] h-[256px] sm:h-[512px]`}
+      className={`relative overflow-hidden rounded-2xl bg-gray-100 sm:p-6 p-2 shadow-sm flex items-end w-[358px] sm:w-[768px] h-[256px] sm:h-[512px]`}
     >
       <div className="flex items-center justify-center flex-col gap-6 w-full h-full bg-gray-200 rounded-2xl">
         <svg
