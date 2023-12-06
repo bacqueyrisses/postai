@@ -44,7 +44,7 @@ export default function PostcardContainer({
   };
 
   return (
-    <div className={"flex flex-col gap-4 justify-center items-center"}>
+    <div className={"flex flex-col sm:gap-4 gap-2 justify-center items-center"}>
       <div className={"sm:text-3xl text-2xl space-x-3"}>
         <span>{city}</span>
         <span>{countryCodeEmoji(countryCode)}</span>
