@@ -1,3 +1,4 @@
+import Image from "next/image";
 // Loading animation
 const shimmer =
   "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
@@ -5,9 +6,17 @@ const shimmer =
 export function FavoriteSkeleton() {
   return (
     <div className={"flex flex-col gap-4 justify-center items-center mb-72"}>
-      <div className={"text-3xl space-x-3"}>
-        <span>loading, postcards</span>
-        <span>🏳️</span>
+      <div className={"sm:text-3xl text-2xl space-x-3 flex gap-1"}>
+        <div>loading, postcards</div>
+        <Image
+          width={30}
+          height={30}
+          src={
+            "https://em-content.zobj.net/source/apple/354/white-flag_1f3f3-fe0f.png"
+          }
+          alt={"clipboard emoji"}
+          className={"hover:scale-105 transition-all"}
+        />
       </div>
       <ImageSkeleton />
     </div>

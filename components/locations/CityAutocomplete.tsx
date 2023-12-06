@@ -2,6 +2,7 @@ import * as React from "react";
 import { ChangeEvent, useMemo, useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -146,9 +147,20 @@ export default function CityAutocomplete({
         <div className={"sm:text-lg text-xs basis-3/5"}>
           {cities.length === 0 && (
             <div
-              className={"text-base flex justify-center items-center h-full"}
+              className={
+                "text-base flex justify-center items-center h-full gap-1"
+              }
             >
-              Search for any city in the world 🌎
+              Search for any city in the world
+              <Image
+                width={17}
+                height={17}
+                src={
+                  "https://em-content.zobj.net/source/apple/354/globe-showing-americas_1f30e.png"
+                }
+                alt={"clipboard emoji"}
+                className={"hover:scale-105 transition-all"}
+              />
             </div>
           )}
           {cities && cities.length > 0 && (
