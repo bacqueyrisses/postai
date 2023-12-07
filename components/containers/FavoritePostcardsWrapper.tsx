@@ -44,8 +44,8 @@ export default async function FavoritePostcardWrapper() {
           >
             <span>you got no postcards </span>
             <Image
-              width={30}
-              height={30}
+              width={27}
+              height={27}
               src={
                 "https://em-content.zobj.net/source/apple/354/broken-heart_1f494.png"
               }
