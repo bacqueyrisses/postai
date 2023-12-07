@@ -6,7 +6,7 @@ const shimmer =
 export function FavoriteSkeleton() {
   return (
     <div className={"flex flex-col gap-4 justify-center items-center mb-72"}>
-      <div className={"sm:text-3xl text-2xl space-x-3 flex gap-1"}>
+      <div className={"sm:text-3xl text-2xl sm:space-x-3 space-x-2 flex gap-1"}>
         <div>loading, postcards</div>
         <Image
           width={30}
