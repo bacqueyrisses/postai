@@ -36,8 +36,12 @@ export default async function FavoritePostcardWrapper() {
   return (
     <>
       {(!favorites || favorites.length === 0) && (
-        <div className={"flex gap-6 sm:gap-8 flex-col"}>
-          <div className={"text-xl flex items-center justify-center gap-1"}>
+        <div className={"flex gap-4 sm:gap-8 flex-col"}>
+          <div
+            className={
+              "sm:text-xl text-lg flex items-center justify-center gap-1"
+            }
+          >
             <span>you got no postcards </span>
             <Image
               width={30}
