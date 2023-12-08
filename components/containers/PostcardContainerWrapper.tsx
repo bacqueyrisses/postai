@@ -5,7 +5,6 @@ import SaveButtons from "@/components/buttons/SaveButtons";
 import { model, replicate } from "@/lib/replicate";
 
 export const revalidate = 0;
-export const maxDuration = 60;
 
 interface IPostcardContainerWrapper {
   city: string;
