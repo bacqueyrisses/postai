@@ -1,17 +1,16 @@
 import Image from "next/image";
+import { IPostcardContainer } from "@/components/containers/PostcardContainer";
 
-interface ISendLinkByMail {
-  city: string;
-  countryCode: string;
-  favoriteUrl: string;
+interface IEmailLinkButton extends IPostcardContainer {
   size: number;
 }
+
 export default function EmailLinkButton({
   city,
   countryCode,
   favoriteUrl,
   size,
-}: ISendLinkByMail) {
+}: IEmailLinkButton) {
   const encodedCity = encodeURIComponent(city);
   const encodedCountryCode = encodeURIComponent(countryCode);
   const encodedFavoriteUrl = encodeURIComponent(favoriteUrl);

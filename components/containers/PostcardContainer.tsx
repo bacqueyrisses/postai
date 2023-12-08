@@ -1,3 +1,4 @@
+"use client";
 // @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
 import countryCodeEmoji from "country-code-emoji";
 import { ReactNode, useState } from "react";
@@ -6,7 +7,7 @@ import { ImageErrorSkeleton } from "@/components/Skeletons";
 
 import { v4 as uuidv4 } from "uuid";
 
-interface IPostcardContainer {
+export interface IPostcardContainer {
   city: string;
   countryCode: string;
   favoriteUrl: string;

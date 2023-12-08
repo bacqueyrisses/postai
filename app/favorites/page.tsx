@@ -2,8 +2,12 @@ import { Suspense } from "react";
 
 import FavoritePostcardWrapper from "@/components/containers/FavoritePostcardsWrapper";
 import { FavoriteSkeleton } from "@/components/Skeletons";
+import { Metadata } from "next";
 
 export const revalidate = 0;
+export const metadata: Metadata = {
+  title: "Favorites",
+};
 
 export default async function FavoritesPage() {
   return (

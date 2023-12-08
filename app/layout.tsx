@@ -8,9 +8,12 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { neobrutalism } from "@clerk/themes";
 
 export const metadata: Metadata = {
-  title: "💌 Postai",
-  description:
-    "create your virtual ai-generated location-based burning postcard",
+  title: {
+    template: "%s | 💌 Postai",
+    default: "💌 Postai",
+  },
+  description: "create your virtual ai-generated location-based postcard.",
+  metadataBase: new URL("https://mypostai.vercel.app"),
 };
 
 export default function RootLayout({

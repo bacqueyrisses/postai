@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { IPostcardContainer } from "@/components/containers/PostcardContainer";
 
-interface ISignUpAndSaveToFav {
-  favoriteUrl: string;
+interface ISignUpAndSaveToFav extends IPostcardContainer {
   size: number;
-  city: string;
-  countryCode: string;
 }
 export default function SignUpAndSaveFav({
   favoriteUrl,

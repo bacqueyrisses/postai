@@ -1,70 +1,30 @@
-"use client";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { Suspense } from "react";
+import PostcardContainerWrapper from "@/components/containers/PostcardContainerWrapper";
+import { Metadata } from "next";
+
 export const revalidate = 0;
 
-import { notFound, useSearchParams } from "next/navigation";
-import { fetcher } from "@/lib/fetcher";
-import Image from "next/image";
-import Link from "next/link";
-import { useAuth } from "@clerk/nextjs";
-import CopyLinkButton from "@/components/buttons/CopyLinkButton";
-import { useRef, useState } from "react";
-import EmailLinkButton from "@/components/buttons/EmailLinkButton";
-import PostcardContainer from "@/components/containers/PostcardContainer";
-import SaveToFavButton from "@/components/buttons/SaveToFavButton";
-import SignUpAndSaveFav from "@/components/buttons/SignUpAndSaveFav";
-import useSWRImmutable from "swr/immutable";
-import { createFavorite } from "@/lib/actions";
+export const metadata: Metadata = {
+  title: "Generate",
+};
 
-export default function GenerationPage() {
-  const { userId } = useAuth();
-
-  const [isSaved, setIsSaved] = useState(false);
-
-  const searchParams = useSearchParams();
-  const city = searchParams.get("city");
-  const countryCode = searchParams.get("countryCode");
-
-  const apiUrl = `/api/generate?city=${encodeURIComponent(city!)}`;
-
-  // Prevent fetch request from caching
-  const random = useRef(Date.now());
-  const {
-    data: favoriteUrl,
-    error,
-    isLoading,
-  } = useSWRImmutable([apiUrl, random], fetcher);
-
+interface IGenerationPage {
+  searchParams: {
+    city?: string;
+    countryCode?: string;
+  };
+}
+export default async function GenerationPage({
+  searchParams,
+}: IGenerationPage) {
+  const { city, countryCode } = searchParams;
   if (!city || !countryCode) return notFound();
 
-  const handleSaveButton = async () => {
-    if (isSaved || !userId) return;
-    setIsSaved(true);
-
-    void createFavorite({
-      favoriteUrl,
-      userId,
-      city,
-      countryCode,
-    });
-  };
-
   return (
-    <div
-      className={
-        "text-3xl md:text-6xl font-normal md:font-normal inline-flex justify-center items-center"
-      }
-    >
-      {error ? (
-        <div className={"flex gap-8 flex-col"}>
-          <span>Something went wrong 😭</span>
-          <Link
-            href={"/"}
-            className={"text-3xl italic hover:text-green-600 transition-colors"}
-          >
-            Go back home
-          </Link>
-        </div>
-      ) : isLoading ? (
+    <Suspense
+      fallback={
         <div className={"space-x-4"}>
           <span>
             generating <br className={"inline sm:hidden"} /> your postcard
@@ -79,42 +39,9 @@ export default function GenerationPage() {
             priority={true}
           />
         </div>
-      ) : (
-        <PostcardContainer
-          city={city!}
-          countryCode={countryCode!}
-          favoriteUrl={favoriteUrl}
-        >
-          <EmailLinkButton
-            favoriteUrl={favoriteUrl}
-            countryCode={countryCode!}
-            size={38}
-            city={city!}
-          />
-
-          <CopyLinkButton
-            favoriteUrl={favoriteUrl}
-            countryCode={countryCode!}
-            city={city!}
-            size={25}
-          />
-
-          {userId ? (
-            <SaveToFavButton
-              handleSaveButton={handleSaveButton}
-              isSaved={isSaved}
-              size={23}
-            />
-          ) : (
-            <SignUpAndSaveFav
-              size={23}
-              favoriteUrl={favoriteUrl}
-              city={city!}
-              countryCode={countryCode!}
-            />
-          )}
-        </PostcardContainer>
-      )}
-    </div>
+      }
+    >
+      <PostcardContainerWrapper countryCode={countryCode} city={city} />
+    </Suspense>
   );
 }

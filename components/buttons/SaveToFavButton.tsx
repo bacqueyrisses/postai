@@ -1,15 +1,33 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
+import { createFavorite } from "@/lib/actions";
+import { IPostcardContainer } from "@/components/containers/PostcardContainer";
 
-interface ISaveToFavButton {
-  handleSaveButton: () => void;
-  isSaved: boolean;
+interface ISaveToFavButton extends IPostcardContainer {
   size: number;
+  userId: string;
 }
 export default function SaveToFavButton({
-  handleSaveButton,
-  isSaved,
+  favoriteUrl,
   size,
+  city,
+  countryCode,
+  userId,
 }: ISaveToFavButton) {
+  const [isSaved, setIsSaved] = useState(false);
+
+  const handleSaveButton = async () => {
+    if (isSaved || !userId) return;
+    setIsSaved(true);
+
+    void createFavorite({
+      favoriteUrl,
+      userId,
+      city,
+      countryCode,
+    });
+  };
   return (
     <button onClick={handleSaveButton}>
       {isSaved ? (

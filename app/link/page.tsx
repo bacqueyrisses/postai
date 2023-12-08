@@ -1,14 +1,22 @@
-"use client";
-import { redirect, useSearchParams } from "next/navigation";
 import PostcardContainer from "@/components/containers/PostcardContainer";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-export default function LinkPage({}) {
-  const searchParams = useSearchParams();
+export const metadata: Metadata = {
+  title: "Link",
+};
 
-  const url = searchParams.get("url");
-  const city = searchParams.get("city");
-  const countryCode = searchParams.get("countryCode");
-  const user = searchParams.get("user");
+interface ILinkPage {
+  searchParams: {
+    url?: string;
+    city?: string;
+    countryCode?: string;
+    user?: string;
+  };
+}
+
+export default function LinkPage({ searchParams }: ILinkPage) {
+  const { url, city, countryCode, user } = searchParams;
 
   if (!url || !city || !countryCode) redirect("/");
 
