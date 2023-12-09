@@ -57,13 +57,13 @@ export default function PostcardContainer({
       <button
         className={`group ${
           deleting && `relative ${shimmer} overflow-hidden rounded-2xl`
-        }} \`}`}
+        }`}
         onClick={handleDownloadImage}
       >
         <div
           className={`w-[358px] sm:w-[768px] h-[256px] sm:h-[512px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition ${
-            deleting && `opacity-70`
-          }} `}
+            deleting && "opacity-70"
+          }`}
           style={{
             backgroundImage: `url(${favoriteUrl})`,
             backgroundSize: "cover",
