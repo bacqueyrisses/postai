@@ -23,13 +23,9 @@ export async function createFavorite({
     const response = await fetch(favoriteUrl);
     const blob = await response.blob();
 
-    const { url, pathname, contentType, contentDisposition } = await put(
-      `favorites/${userId}/${randomUUID}.png`,
-      blob,
-      {
-        access: "public",
-      },
-    );
+    const { url } = await put(`favorites/${userId}/${randomUUID}.png`, blob, {
+      access: "public",
+    });
 
     await sql`INSERT INTO "Favorite" (url, city, "countryCode", "userId") VALUES (${url}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
   } catch (error) {
