@@ -6,12 +6,14 @@ import Image from "next/image";
 import { ImageErrorSkeleton } from "@/components/Skeletons";
 
 import { v4 as uuidv4 } from "uuid";
+import { shimmer } from "@/lib/utils";
 
 export interface IPostcardContainer {
   city: string;
   countryCode: string;
   favoriteUrl: string;
   children?: ReactNode;
+  deleting?: boolean;
 }
 
 export default function PostcardContainer({
@@ -19,6 +21,7 @@ export default function PostcardContainer({
   countryCode,
   favoriteUrl,
   children,
+  deleting,
 }: IPostcardContainer) {
   const [imageError, setImageError] = useState(false);
 
@@ -53,9 +56,10 @@ export default function PostcardContainer({
 
       <button className={"group"} onClick={handleDownloadImage}>
         <div
-          className={
-            "w-[358px] sm:w-[768px] h-[256px] sm:h-[512px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition"
-          }
+          className={`w-[358px] sm:w-[768px] h-[256px] sm:h-[512px] flex items-end justify-evenly rounded-2xl group-hover:shadow-xl transition ${
+            deleting &&
+            `opacity-70 relative ${shimmer} overflow-hidden rounded-2xl`
+          }} `}
           style={{
             backgroundImage: `url(${favoriteUrl})`,
             backgroundSize: "cover",

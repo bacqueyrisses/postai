@@ -4,6 +4,7 @@ import CopyLinkButton from "@/components/buttons/CopyLinkButton";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import { deleteFavorite } from "@/lib/actions";
+import { useState } from "react";
 
 interface IFavoritePostcard {
   favorite: {
@@ -18,12 +19,19 @@ interface IFavoritePostcard {
 export default function FavoritePostcard({
   favorite: { id, url, city, countryCode },
 }: IFavoritePostcard) {
+  const [deleting, setDeleting] = useState(false);
   const handleDeleteButton = async (id: number) => {
+    setDeleting(true);
     void deleteFavorite(id, url);
   };
 
   return (
-    <PostcardContainer city={city} countryCode={countryCode} favoriteUrl={url}>
+    <PostcardContainer
+      city={city}
+      countryCode={countryCode}
+      favoriteUrl={url}
+      deleting={deleting}
+    >
       <EmailLinkButton
         city={city}
         countryCode={countryCode}

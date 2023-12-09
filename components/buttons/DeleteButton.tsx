@@ -22,7 +22,7 @@ export default function DeleteButton({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button>
+        <button className={"animate-pulse"}>
           <Image
             width={size}
             height={size}
