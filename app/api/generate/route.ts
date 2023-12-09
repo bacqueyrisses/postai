@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { model, replicate } from "@/lib/replicate";
-import { revalidatePath } from "next/cache";
 
 export const maxDuration = 60;
 export const revalidate = 0;
