@@ -19,7 +19,7 @@ export default function FavoritePostcard({
   favorite: { id, url, city, countryCode },
 }: IFavoritePostcard) {
   const handleDeleteButton = async (id: number) => {
-    void deleteFavorite(id);
+    void deleteFavorite(id, url);
   };
 
   return (

@@ -40,8 +40,9 @@ export async function createFavorite({
   }
 }
 
-export async function deleteFavorite(favoriteId: number) {
+export async function deleteFavorite(favoriteId: number, favoriteUrl: string) {
   try {
+    await del(favoriteUrl);
     await sql`DELETE FROM "Favorite" WHERE "id" = ${favoriteId};`;
   } catch (error) {
     console.error("Database Error:", error);
