@@ -9,8 +9,8 @@ import { neobrutalism } from "@clerk/themes";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Postai",
-    default: "Postai",
+    template: "%s | postai",
+    default: "postai",
   },
   description: "create your virtual ai-generated location-based postcard.",
   metadataBase: new URL("https://mypostai.vercel.app"),
