@@ -1,5 +1,8 @@
 import Image from "next/image";
-import { shimmer } from "@/lib/utils";
+
+const shimmer =
+  "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
+
 export function FavoriteSkeleton() {
   return (
     <div className={"flex flex-col gap-4 justify-center items-center mb-72"}>
