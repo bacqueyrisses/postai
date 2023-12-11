@@ -34,6 +34,7 @@ export default function ClientHomePage() {
             className={"-mt-2 inline w-10 h-10 md:w-16 md:h-16"}
             width="70"
             height="70"
+            priority={true}
           />{" "}
           ai-generated <br className={"hidden md:inline"} /> &
         </div>{" "}
@@ -56,6 +57,7 @@ export default function ClientHomePage() {
           alt={"burning heart telemoji"}
           width="67"
           height="67"
+          priority={true}
           className={
             "-mt-2 -mx-1.5 md:-mx-2.5 inline w-11 h-11 md:w-20 md:h-20"
           }
