@@ -35,8 +35,9 @@ export async function createFavorite({
 
     await sql`UPDATE "Favorite" 
           SET url = ${url} 
-          WHERE "userId" = ${userId}`;
+          WHERE "url" = ${favoriteUrl}`;
   }
+  revalidatePath("/favorites");
 }
 
 export async function deleteFavorite(favoriteId: number, favoriteUrl: string) {
