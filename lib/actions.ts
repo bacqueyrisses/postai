@@ -19,6 +19,12 @@ export async function createFavorite({
   countryCode,
 }: CreateFavorite) {
   try {
+    await sql`INSERT INTO "Favorite" (url, city, "countryCode", "userId") VALUES (${favoriteUrl}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
+    revalidatePath("/favorites");
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to create favorite.");
+  } finally {
     const randomUUID = uuidv4().split("-").join("").slice(0, 4);
     const response = await fetch(favoriteUrl);
     const blob = await response.blob();
@@ -27,12 +33,9 @@ export async function createFavorite({
       access: "public",
     });
 
-    await sql`INSERT INTO "Favorite" (url, city, "countryCode", "userId") VALUES (${url}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to create favorite.");
-  } finally {
-    revalidatePath("/favorites");
+    await sql`UPDATE "Favorite" 
+          SET url = ${url} 
+          WHERE "userId" = ${userId}`;
   }
 }
 
