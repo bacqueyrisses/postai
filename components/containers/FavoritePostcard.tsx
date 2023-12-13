@@ -5,7 +5,7 @@ import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import { deleteFavorite } from "@/lib/actions";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 interface IFavoritePostcard {
   favorite: {
     id: number;
@@ -20,8 +20,11 @@ export default function FavoritePostcard({
   favorite: { id, url, city, countryCode },
 }: IFavoritePostcard) {
   const [deleting, setDeleting] = useState(false);
+  const router = useRouter();
+
   const handleDeleteButton = async (id: number) => {
     setDeleting(true);
+    router.refresh();
     void deleteFavorite(id, url);
   };
 

@@ -9,26 +9,28 @@ interface IPostcardContainerWrapper {
   city: string;
   countryCode: string;
 }
+
+const fetchGeneratedPostcard = async ({
+  city,
+}: Pick<IPostcardContainerWrapper, "city">) => {
+  const apiUrl = `${
+    process.env.NEXT_SERVER_URL
+  }/api/generate?city=${encodeURIComponent(city)}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const output: string = await response.json();
+    return output;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch data.");
+  }
+};
 export default async function PostcardContainerWrapper({
   city,
   countryCode,
 }: IPostcardContainerWrapper) {
-  const fetchGeneratedPostcard = async () => {
-    const apiUrl = `${
-      process.env.NEXT_SERVER_URL
-    }/api/generate?city=${encodeURIComponent(city!)}`;
-
-    try {
-      const response = await fetch(apiUrl);
-      const output: string = await response.json();
-      return output;
-    } catch (error) {
-      console.error("Database Error:", error);
-      throw new Error("Failed to fetch data.");
-    }
-  };
-
-  const favoriteUrl = await fetchGeneratedPostcard();
+  const favoriteUrl = await fetchGeneratedPostcard({ city });
 
   return (
     <PostcardContainer

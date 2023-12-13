@@ -55,7 +55,11 @@ export default function PostcardContainer({
     "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
 
   return (
-    <div className={"flex flex-col sm:gap-4 gap-2 justify-center items-center"}>
+    <div
+      className={`flex-col sm:gap-4 gap-2 justify-center items-center ${
+        deleting ? "hidden" : "flex"
+      }`}
+    >
       <div className={"sm:text-3xl text-2xl sm:space-x-3 space-x-2"}>
         <span>{city}</span>
         <span>{countryCodeEmoji(countryCode)}</span>
