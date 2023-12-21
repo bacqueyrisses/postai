@@ -5,7 +5,7 @@ import PostcardContainerWrapper from "@/components/containers/PostcardContainerW
 import { Metadata } from "next";
 
 export const revalidate = 0;
-
+export const maxDuration = 300;
 export const metadata: Metadata = {
   title: "generate",
 };

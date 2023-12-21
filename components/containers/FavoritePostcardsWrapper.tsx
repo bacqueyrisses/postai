@@ -15,7 +15,6 @@ type Favorites = {
 };
 
 async function fetchFavorites(user: User) {
-  noStore();
   try {
     const data =
       await sql<Favorites>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "id" DESC;`;

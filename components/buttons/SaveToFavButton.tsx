@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { useState } from "react";
 import { createFavorite } from "@/lib/actions";
@@ -29,7 +28,7 @@ export default function SaveToFavButton({
     });
   };
   return (
-    <button onClick={handleSaveButton}>
+    <button onClick={handleSaveButton} disabled={isSaved}>
       {isSaved ? (
         <Image
           width={size}

@@ -2,8 +2,8 @@ import CopyLinkButton from "@/components/buttons/CopyLinkButton";
 import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveButtons from "@/components/buttons/SaveButtons";
-
-export const revalidate = 0;
+import { auth } from "@clerk/nextjs";
+import { getPrompt, height, model, replicate, width } from "@/lib/replicate";
 
 interface IPostcardContainerWrapper {
   city: string;
@@ -13,17 +13,15 @@ interface IPostcardContainerWrapper {
 const fetchGeneratedPostcard = async ({
   city,
 }: Pick<IPostcardContainerWrapper, "city">) => {
-  const apiUrl = `${
-    process.env.NEXT_SERVER_URL
-  }/api/generate?city=${encodeURIComponent(city)}`;
+  const prompt = getPrompt(city);
 
   try {
-    const response = await fetch(apiUrl);
-    const output: string = await response.json();
-    return output;
+    const output: any = await replicate.run(model, {
+      input: { prompt, height, width },
+    });
+    return output[0];
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch data.");
+    console.log(error);
   }
 };
 export default async function PostcardContainerWrapper({
@@ -31,6 +29,7 @@ export default async function PostcardContainerWrapper({
   countryCode,
 }: IPostcardContainerWrapper) {
   const favoriteUrl = await fetchGeneratedPostcard({ city });
+  const { userId } = auth();
 
   return (
     <PostcardContainer
@@ -56,6 +55,7 @@ export default async function PostcardContainerWrapper({
         favoriteUrl={favoriteUrl}
         city={city!}
         countryCode={countryCode!}
+        userId={userId}
       />
     </PostcardContainer>
   );

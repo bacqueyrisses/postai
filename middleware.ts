@@ -6,6 +6,9 @@ import { createFavorite } from "@/lib/actions";
 
 export default authMiddleware({
   afterAuth(auth, request) {
+    // early return to get authenticated users on /generation
+    if (request.url.includes("generation")) return NextResponse.next();
+
     // early return for authenticated users from homepage
     const previousUrl = request.headers.get("referer");
     if (previousUrl === process.env.NEXT_SERVER_URL) return;
@@ -51,5 +54,5 @@ export default authMiddleware({
 });
 
 export const config = {
-  matcher: ["/favorites"],
+  matcher: ["/favorites", "/generation"],
 };
