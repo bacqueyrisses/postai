@@ -4,8 +4,9 @@ import { Suspense } from "react";
 import PostcardContainerWrapper from "@/components/containers/PostcardContainerWrapper";
 import { Metadata } from "next";
 
-export const revalidate = 0;
+// @ts-ignore
 export const maxDuration = 300;
+export const revalidate = 0;
 export const metadata: Metadata = {
   title: "generate",
 };
