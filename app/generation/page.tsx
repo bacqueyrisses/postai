@@ -6,6 +6,7 @@ import { Metadata } from "next";
 
 // @ts-ignore
 export const maxDuration = 300;
+export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const metadata: Metadata = {
   title: "generate",
