@@ -4,17 +4,15 @@ import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveButtons from "@/components/buttons/SaveButtons";
 import { auth } from "@clerk/nextjs";
 import { getPrompt, height, model, replicate, width } from "@/lib/replicate";
-import { unstable_noStore as noStore } from "next/cache";
 
 interface IPostcardContainerWrapper {
   city: string;
   countryCode: string;
 }
 
-const fetchGeneratedPostcard = async ({
+const generatedPostcard = async ({
   city,
 }: Pick<IPostcardContainerWrapper, "city">) => {
-  noStore();
   const prompt = getPrompt(city);
 
   try {
@@ -31,7 +29,7 @@ export default async function PostcardContainerWrapper({
   city,
   countryCode,
 }: IPostcardContainerWrapper) {
-  const favoriteUrl = await fetchGeneratedPostcard({ city });
+  const favoriteUrl = await generatedPostcard({ city });
   const { userId } = auth();
 
   return (
