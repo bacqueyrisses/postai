@@ -13,6 +13,7 @@ interface IPostcardContainerWrapper {
 const generatedPostcard = async ({
   city,
 }: Pick<IPostcardContainerWrapper, "city">) => {
+  "use server";
   const prompt = getPrompt(city);
 
   try {
