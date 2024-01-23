@@ -3,6 +3,10 @@ const env = process.env.VERCEL_ENV;
 
 const nextConfig = {
   images: {
+    domains: [
+      "xd2kcvzsdpeyx1gu.public.blob.vercel-storage.com",
+      "replicate.delivery",
+    ],
     remotePatterns: [
       {
         protocol: "https",
