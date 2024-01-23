@@ -33,15 +33,14 @@ export default function PhotoBooth({ image }: { image: string | null }) {
 
     return () => clearInterval(interval);
   }, [image, router]);
-  console.log(id, image);
+
   return (
     <div
-      className="group mx-auto mt-6 aspect-square w-full max-w-xl animate-fade-up overflow-hidden rounded-2xl border border-gray-200"
+      className="group relative mx-auto mt-6 aspect-square w-full max-w-xl animate-fade-up overflow-hidden rounded-2xl border border-gray-200"
       style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
     >
       {id && image && (
-        // <div className="absolute right-5 top-5 z-10 flex space-x-2">
-        <div className="flex">
+        <div className="absolute right-5 top-5 z-10 flex space-x-2">
           <button
             onClick={() => {
               setCopying(true);
