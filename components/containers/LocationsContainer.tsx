@@ -5,8 +5,12 @@ import { SelectedCityType } from "@/types/global";
 import Link from "next/link";
 import * as React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import { currentUser } from "@clerk/nextjs";
 import { User } from "@clerk/nextjs/api";
+import { generate } from "@/actions/generation";
+import { query } from "express";
 
 interface ILocations {
   selectedCity: SelectedCityType;
@@ -21,6 +25,7 @@ export default function LocationsContainer({
   setUserCurrentLocation,
 }: ILocations) {
   const [error, setError] = useState(false);
+  const router = useRouter();
 
   const validateData = () => {
     if (selectedCity.city) return;
@@ -109,27 +114,44 @@ export default function LocationsContainer({
           selectedCity={selectedCity}
         />
 
-        <Link
-          prefetch={false}
-          href={
-            selectedCity.city
-              ? {
-                  pathname: "/generation",
-                  query: {
-                    city: selectedCity.city,
-                    countryCode: selectedCity.countryCode,
-                  },
-                }
-              : ""
-          }
-          onClick={validateData}
+        <form
+          // prefetch={false}
+          action={(data) => {
+            generate(data).then((id) => {
+              router.push(`/generation/${id}`);
+            });
+          }}
+          // href={
+          //   selectedCity.city
+          //     ? {
+          //         pathname: "/generation",
+          //         query: {
+          //           city: selectedCity.city,
+          //           countryCode: selectedCity.countryCode,
+          //         },
+          //       }
+          //     : ""
+          // }
+          // onClick={validateData}
           className={`${selectedCity.city && "pulse-success"} ${
             error &&
             "bounce-error shadow-[0px_0px_3px_6px_rgba(239,68,68,0.25)]"
           } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-transparent hover:text-emerald-500 ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer transition-all`}
         >
-          generate!
-        </Link>
+          <input
+            className="hidden"
+            name="city"
+            value={selectedCity.city}
+            readOnly
+          />
+          <input
+            className="hidden"
+            name="countryCode"
+            value={selectedCity.countryCode}
+            readOnly
+          />
+          <button>generate!</button>
+        </form>
       </div>
     </div>
   );

@@ -13,7 +13,6 @@ interface IPostcardContainerWrapper {
 const generatedPostcard = async ({
   city,
 }: Pick<IPostcardContainerWrapper, "city">) => {
-  "use server";
   const prompt = getPrompt(city);
 
   try {
@@ -26,6 +25,7 @@ const generatedPostcard = async ({
     console.log(error);
   }
 };
+
 export default async function PostcardContainerWrapper({
   city,
   countryCode,

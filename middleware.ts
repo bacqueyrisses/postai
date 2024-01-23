@@ -1,7 +1,5 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { AuthObject } from "@clerk/backend";
-import { revalidatePath } from "next/cache";
 import { createFavorite } from "@/lib/actions";
 
 export default authMiddleware({
