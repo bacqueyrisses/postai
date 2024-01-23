@@ -12,6 +12,9 @@ import { User } from "@clerk/nextjs/api";
 import { generate } from "@/actions/generation";
 import { query } from "express";
 
+import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import { LoadingCircle } from "@/components/icons";
+
 interface ILocations {
   selectedCity: SelectedCityType;
   setSelectedCity: React.Dispatch<SelectedCityType>;
@@ -150,9 +153,19 @@ export default function LocationsContainer({
             value={selectedCity.countryCode}
             readOnly
           />
-          <button>generate!</button>
+          <SubmitButton />
         </form>
       </div>
     </div>
   );
 }
+
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button disabled={pending}>
+      {pending ? <LoadingCircle /> : "generate!"}
+    </button>
+  );
+};
