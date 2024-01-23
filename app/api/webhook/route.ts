@@ -6,6 +6,8 @@ export async function POST(req: Request) {
   const searchParams = new URL(req.url).searchParams;
   const id = searchParams.get("id") as string;
 
+  console.log(searchParams.get("secret"), process.env.REPLICATE_WEBHOOK_SECRET);
+
   // if (process.env.REPLICATE_WEBHOOK_SECRET) {
   //   // if a secret is set, verify it
   //   const secret = searchParams.get("secret") as string;
