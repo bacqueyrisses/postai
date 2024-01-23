@@ -10,9 +10,10 @@ import { useRouter } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { User } from "@clerk/nextjs/api";
 import { generate } from "@/actions/generation";
+import { useFormStatus } from "react-dom";
+
 import { query } from "express";
 
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import { LoadingCircle } from "@/components/icons";
 
 interface ILocations {
