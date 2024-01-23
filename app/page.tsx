@@ -1,3 +1,4 @@
+"use client";
 import ClientHomePage from "@/app/client-page";
 
 export default async function HomePage() {
