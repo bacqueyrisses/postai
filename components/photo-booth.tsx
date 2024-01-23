@@ -126,7 +126,7 @@ export default function PhotoBooth({ image }: { image: string | null }) {
               <p className="text-lg md:text-xl text-gray-500">
                 Generating your postcard
               </p>
-              <p className="text-sm md:text-lg text-gray-500">
+              <p className="text-sm md:text-base text-gray-500">
                 It can take up to 30s
               </p>
             </div>
