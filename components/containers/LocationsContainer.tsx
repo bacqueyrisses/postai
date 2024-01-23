@@ -4,6 +4,8 @@ import CityAutocomplete from "@/components/locations/CityAutocomplete";
 import { SelectedCityType } from "@/types/global";
 import Link from "next/link";
 import * as React from "react";
+import Image from "next/image";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -166,7 +168,20 @@ const SubmitButton = () => {
 
   return (
     <button disabled={pending}>
-      {pending ? <LoadingCircle /> : "generate!"}
+      {pending ? (
+        <div>
+          <Image
+            src={"/sparkles.webp"}
+            alt={"sparkles telemoji"}
+            width="10"
+            height="10"
+            priority={true}
+            className={"w-4 h-4 md:w-8 md:h-8"}
+          />
+        </div>
+      ) : (
+        "generate!"
+      )}
     </button>
   );
 };

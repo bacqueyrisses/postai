@@ -34,6 +34,8 @@ export default function PhotoBooth({ image }: { image: string | null }) {
     return () => clearInterval(interval);
   }, [image, router]);
 
+  console.log(image);
+
   return (
     <div
       className="group relative mx-auto mt-6 aspect-square w-full max-w-xl animate-fade-up overflow-hidden rounded-2xl border border-gray-200"
@@ -108,14 +110,24 @@ export default function PhotoBooth({ image }: { image: string | null }) {
         />
       ) : (
         <div className="z-10 flex h-full w-full flex-col items-center bg-white pt-[140px] sm:pt-[280px]">
-          <LoadingCircle />
+          <Image
+            src={"/sparkles.webp"}
+            alt={"sparkles telemoji"}
+            width="10"
+            height="10"
+            className={"inline w-8 h-8 md:w-10  md:h-10"}
+            priority={true}
+          />
           {id && (
             <div
-              className="my-4 flex animate-fade-up flex-col items-center space-y-4"
+              className="my-4 flex animate-fade-up flex-col items-center space-y-2"
               style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}
             >
-              <p className="text-sm text-gray-500">
-                This can take anywhere between 20s-30s to run.
+              <p className="text-lg md:text-xl text-gray-500">
+                Generating your postcard
+              </p>
+              <p className="text-sm md:text-lg text-gray-500">
+                It can take up to 30s
               </p>
             </div>
           )}
