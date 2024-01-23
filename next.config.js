@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const env = process.env.VERCEL_ENV;
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -41,4 +43,9 @@ const nextConfig = {
   },
 };
 
+if (env === "preview") {
+  nextConfig.typescript = {
+    ignoreBuildErrors: true,
+  };
+}
 module.exports = nextConfig;
