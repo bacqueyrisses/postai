@@ -113,8 +113,8 @@ export default function PhotoBooth({ image }: { image: string | null }) {
           <Image
             src={"/sparkles.webp"}
             alt={"sparkles telemoji"}
-            width="10"
-            height="10"
+            width="30"
+            height="30"
             className={"inline w-8 h-8 md:w-10  md:h-10"}
             priority={true}
           />
