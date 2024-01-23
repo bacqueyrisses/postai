@@ -111,7 +111,7 @@ export default function PhotoBooth({ image }: { image: string | null }) {
           <LoadingCircle />
           {id && (
             <div
-              className="my-4 flex animate-fade-up flex-col items-center space-y-4 opacity-0"
+              className="my-4 flex animate-fade-up flex-col items-center space-y-4"
               style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}
             >
               <p className="text-sm text-gray-500">
