@@ -52,4 +52,5 @@ if (env === "preview") {
     ignoreBuildErrors: true,
   };
 }
+
 module.exports = nextConfig;

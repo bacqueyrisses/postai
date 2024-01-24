@@ -4,7 +4,6 @@ import FavoritePostcardWrapper from "@/components/containers/FavoritePostcardsWr
 import { FavoriteSkeleton } from "@/components/Skeletons";
 import { Metadata } from "next";
 
-export const revalidate = 0;
 export const metadata: Metadata = {
   title: "favorites",
 };
