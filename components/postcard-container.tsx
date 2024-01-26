@@ -15,7 +15,7 @@ function forceDownload(blobUrl: string, filename: string) {
   a.remove();
 }
 
-export default function PhotoBooth({
+export default function PostcardContainer({
   image,
   blur,
 }: {
@@ -46,7 +46,7 @@ export default function PhotoBooth({
       style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
     >
       {id && image && (
-        <div className="absolute right-5 bottom-5 z-10 flex space-x-2">
+        <div className="absolute right-5 top-5 z-10 flex space-x-2">
           <button
             onClick={() => {
               setCopying(true);
@@ -101,7 +101,7 @@ export default function PhotoBooth({
               <Download className="h-4 w-4 text-white" />
             )}
           </button>
-          <button className="flex h-9 w-9 bg-yellow-500 items-center justify-center rounded-full shadow-sm transition-all hover:scale-105 active:scale-95">
+          <button className="flex h-9 w-9 bg-yellow-500 transition-all delay-75  items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95">
             {downloading ? (
               <LoadingCircle />
             ) : (
@@ -110,10 +110,10 @@ export default function PhotoBooth({
           </button>
         </div>
       )}
-      {blur ? (
+      {image && blur ? (
         <Image
           alt="output image"
-          src={image!}
+          src={image}
           width={1024}
           height={768}
           placeholder={"blur"}

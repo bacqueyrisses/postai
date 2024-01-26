@@ -8,6 +8,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { generate } from "@/actions/generation";
 import { useFormStatus } from "react-dom";
+import { LoadingCircle } from "@/components/icons";
+import { Loader2 } from "lucide-react";
 
 interface ILocations {
   selectedCity: SelectedCityType;
@@ -147,15 +149,8 @@ const SubmitButton = () => {
   return (
     <button disabled={pending} className={"w-full h-full"}>
       {pending ? (
-        <div className={"inline-flex items-center justify-center"}>
-          <Image
-            src={"/sparkles.webp"}
-            alt={"sparkles telemoji"}
-            width="10"
-            height="10"
-            priority={true}
-            className={"w-4 h-4 md:w-8 md:h-8"}
-          />
+        <div className={"flex justify-center items-center py-1 h-6"}>
+          <LoadingCircle />
         </div>
       ) : (
         "generate!"

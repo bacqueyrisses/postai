@@ -170,3 +170,16 @@
   position: absolute;
 }
 
+.animate-spinner {
+  animation: spinnner 1.3s linear infinite;
+}
+
+@keyframes spinnner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
