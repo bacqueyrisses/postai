@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 import { kv } from "@vercel/kv";
+import { getBlurData } from "@/lib/utils/blur-data";
 
 export async function POST(req: Request) {
   const searchParams = new URL(req.url).searchParams;
@@ -19,8 +20,6 @@ export async function POST(req: Request) {
   const body = await req.json();
   const { output } = body;
 
-  console.log(body);
-
   if (!output) {
     return new Response("Missing output", { status: 400 });
   }
@@ -30,8 +29,9 @@ export async function POST(req: Request) {
 
   // upload & store in Vercel Blob
   const { url } = await put(`${id}.png`, file, { access: "public" });
+  const { base64: urlBlur } = await getBlurData(url);
 
-  await kv.hset(id, { image: url });
+  await kv.hset(id, { image: url, blur: urlBlur });
 
   return NextResponse.json({ ok: true });
 }

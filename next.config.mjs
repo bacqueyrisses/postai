@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const env = process.env.VERCEL_ENV;
+import withPlaiceholder from "@plaiceholder/next";
 
 const nextConfig = {
   images: {
@@ -7,6 +8,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "pbxt.replicate.delivery",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "9p2lnmynrr4tito0.public.blob.vercel-storage.com",
         pathname: "/**",
       },
       {
@@ -49,4 +55,6 @@ if (env === "preview") {
   };
 }
 
-module.exports = nextConfig;
+// module.exports = nextConfig;
+
+export default withPlaiceholder(nextConfig);

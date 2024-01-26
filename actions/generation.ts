@@ -28,6 +28,8 @@ export async function generate(form: FormData) {
         "563a66acc0b39e5308e8372bed42504731b7fec3bc21f2fcbea413398690f3ec",
       input: {
         prompt,
+        width: 1024,
+        height: 768,
       },
       webhook: `${WEBHOOK_URL}?id=${id}${
         process.env.REPLICATE_WEBHOOK_SECRET

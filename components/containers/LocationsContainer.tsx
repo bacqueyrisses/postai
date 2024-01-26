@@ -107,7 +107,7 @@ export default function LocationsContainer({
           className={`${selectedCity.city && "pulse-success"} ${
             error &&
             "bounce-error shadow-[0px_0px_3px_6px_rgba(239,68,68,0.25)]"
-          } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-transparent hover:text-emerald-500 ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer transition-all`}
+          } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full hover:bg-transparent hover:text-emerald-500 ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer transition-all`}
           action={(data) => {
             if (!selectedCity.city) {
               if (error) return;
@@ -121,18 +121,6 @@ export default function LocationsContainer({
               router.push(`/generation/${id}`);
             });
           }}
-          // href={
-          //   selectedCity.city
-          //     ? {
-          //         pathname: "/generation",
-          //         query: {
-          //           city: selectedCity.city,
-          //           countryCode: selectedCity.countryCode,
-          //         },
-          //       }
-          //     : ""
-          // }
-          // onClick={validateData}
         >
           <input
             className="hidden"
@@ -159,7 +147,7 @@ const SubmitButton = () => {
   return (
     <button disabled={pending} className={"w-full h-full"}>
       {pending ? (
-        <div className={"inline flex items-center justify-center"}>
+        <div className={"inline-flex items-center justify-center"}>
           <Image
             src={"/sparkles.webp"}
             alt={"sparkles telemoji"}

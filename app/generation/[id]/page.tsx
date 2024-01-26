@@ -8,6 +8,7 @@ import PhotoBooth from "@/components/photo-booth";
 
 // Known next.js issue: https://github.com/vercel/next.js/issues/59753
 export const maxDuration = 300;
+export const revalidate = 0;
 export const metadata: Metadata = {
   title: "generate",
 };
@@ -30,13 +31,16 @@ export default async function GenerationPage({
     city: string;
     countryCode?: string;
     image?: string;
+    blur?: string;
   }>(params.id);
 
   if (!data) {
     notFound();
   }
 
-  return <PhotoBooth image={data.image || null} />;
+  console.log(data);
+
+  return <PhotoBooth image={data.image || null} blur={data.blur || null} />;
   // <Suspense
   //   fallback={
   //     <div className={"space-x-4"}>
