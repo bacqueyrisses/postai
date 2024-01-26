@@ -1,7 +1,4 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { Suspense } from "react";
-import PostcardContainerWrapper from "@/components/containers/PostcardContainerWrapper";
 import { Metadata } from "next";
 import { kv } from "@vercel/kv";
 import PostcardContainer from "@/components/postcard-container";
@@ -28,8 +25,6 @@ export default async function GenerationPage({
   }>(params.id);
 
   if (!data) notFound();
-
-  console.log(data);
 
   return (
     <PostcardContainer image={data.image || null} blur={data.blur || null} />

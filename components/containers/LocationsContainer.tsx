@@ -24,6 +24,7 @@ export default function LocationsContainer({
   setUserCurrentLocation,
 }: ILocations) {
   const [error, setError] = useState(false);
+  const [pendingStarted, setPendingStarted] = useState(false);
   const router = useRouter();
 
   return (
@@ -105,7 +106,6 @@ export default function LocationsContainer({
         />
 
         <form
-          // prefetch={false}
           className={`${selectedCity.city && "pulse-success"} ${
             error &&
             "bounce-error shadow-[0px_0px_3px_6px_rgba(239,68,68,0.25)]"
@@ -119,9 +119,12 @@ export default function LocationsContainer({
               setError((prev) => !prev);
               return;
             }
-            generate(data).then((id) => {
-              router.push(`/generation/${id}`);
-            });
+            setPendingStarted(true);
+            generate(data)
+              .then((id) => {
+                router.push(`/generation/${id}`);
+              })
+              .catch(() => setPendingStarted(false));
           }}
         >
           <input
@@ -136,19 +139,18 @@ export default function LocationsContainer({
             value={selectedCity.countryCode}
             readOnly
           />
-          <SubmitButton />
+          <SubmitButton pendingStarted={pendingStarted} />
         </form>
       </div>
     </div>
   );
 }
 
-const SubmitButton = () => {
+const SubmitButton = ({ pendingStarted }: { pendingStarted: boolean }) => {
   const { pending } = useFormStatus();
-
   return (
     <button disabled={pending} className={"w-full h-full"}>
-      {pending ? (
+      {pending || pendingStarted ? (
         <div className={"flex justify-center items-center py-1 h-6"}>
           <LoadingCircle />
         </div>
