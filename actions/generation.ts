@@ -4,7 +4,6 @@ import Replicate from "replicate";
 import { kv } from "@vercel/kv";
 import { nanoid } from "@/lib/utils";
 import { WEBHOOK_URL } from "@/lib/constants";
-import { put } from "@vercel/blob";
 import { generatePrompt } from "@/lib/replicate";
 
 const replicate = new Replicate({

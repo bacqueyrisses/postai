@@ -5,8 +5,7 @@ import { kv } from "@vercel/kv";
 export async function POST(req: Request) {
   const searchParams = new URL(req.url).searchParams;
   const id = searchParams.get("id") as string;
-
-  console.log(searchParams.get("secret"), process.env.REPLICATE_WEBHOOK_SECRET);
+  console.log(id);
 
   // if (process.env.REPLICATE_WEBHOOK_SECRET) {
   //   // if a secret is set, verify it
@@ -19,6 +18,8 @@ export async function POST(req: Request) {
   // get output from Replicate
   const body = await req.json();
   const { output } = body;
+
+  console.log(body);
 
   if (!output) {
     return new Response("Missing output", { status: 400 });

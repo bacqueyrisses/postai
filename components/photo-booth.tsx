@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Download } from "lucide-react";
+import { Copy, Download, Star } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LoadingCircle } from "@/components/icons";
@@ -33,8 +33,6 @@ export default function PhotoBooth({ image }: { image: string | null }) {
 
     return () => clearInterval(interval);
   }, [image, router]);
-
-  console.log(image);
 
   return (
     <div
@@ -70,6 +68,31 @@ export default function PhotoBooth({ image }: { image: string | null }) {
               <LoadingCircle />
             ) : (
               <Copy className="h-4 w-4 text-gray-500" />
+            )}
+          </button>
+          <button
+            onClick={() => {
+              setDownloading(true);
+              fetch(image, {
+                headers: new Headers({
+                  Origin: location.origin,
+                }),
+                mode: "cors",
+              })
+                .then((response) => response.blob())
+                .then((blob) => {
+                  let blobUrl = window.URL.createObjectURL(blob);
+                  forceDownload(blobUrl, `${id || "demo"}.png`);
+                  setDownloading(false);
+                })
+                .catch((e) => console.error(e));
+            }}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all hover:scale-105 active:scale-95"
+          >
+            {downloading ? (
+              <LoadingCircle />
+            ) : (
+              <Star className="h-4 w-4 text-gray-500" />
             )}
           </button>
           <button

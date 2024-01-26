@@ -3,7 +3,13 @@ import EmailLinkButton from "@/components/buttons/EmailLinkButton";
 import PostcardContainer from "@/components/containers/PostcardContainer";
 import SaveButtons from "@/components/buttons/SaveButtons";
 import { auth } from "@clerk/nextjs";
-import { getPrompt, height, model, replicate, width } from "@/lib/replicate";
+import {
+  generatePrompt,
+  height,
+  model,
+  replicate,
+  width,
+} from "@/lib/replicate";
 
 interface IPostcardContainerWrapper {
   city: string;
@@ -13,7 +19,7 @@ interface IPostcardContainerWrapper {
 const generatedPostcard = async ({
   city,
 }: Pick<IPostcardContainerWrapper, "city">) => {
-  const prompt = getPrompt(city);
+  const prompt = generatePrompt(city);
 
   try {
     const output: any = await replicate.run(model, {

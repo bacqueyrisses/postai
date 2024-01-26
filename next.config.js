@@ -3,10 +3,6 @@ const env = process.env.VERCEL_ENV;
 
 const nextConfig = {
   images: {
-    domains: [
-      "xd2kcvzsdpeyx1gu.public.blob.vercel-storage.com",
-      "replicate.delivery",
-    ],
     remotePatterns: [
       {
         protocol: "https",
@@ -28,7 +24,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:path*",
+        source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "*" },
