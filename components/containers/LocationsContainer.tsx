@@ -122,6 +122,7 @@ export default function LocationsContainer({
             setPendingStarted(true);
             generate(data)
               .then((id) => {
+                router.prefetch(`/generation/${id}`);
                 router.push(`/generation/${id}`);
               })
               .catch(() => setPendingStarted(false));

@@ -39,8 +39,6 @@ export async function generate(form: FormData) {
       webhook_events_filter: ["completed"],
     }),
   ]);
-
-  console.log(res);
-
+  
   return id;
 }
