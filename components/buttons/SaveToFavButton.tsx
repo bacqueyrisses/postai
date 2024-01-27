@@ -8,7 +8,7 @@ interface ISaveToFavButton extends IPostcardContainer {
   userId: string;
 }
 export default function SaveToFavButton({
-  favoriteUrl,
+  url,
   size,
   city,
   countryCode,
@@ -21,7 +21,7 @@ export default function SaveToFavButton({
     setIsSaved(true);
 
     void createFavorite({
-      favoriteUrl,
+      url,
       userId,
       city,
       countryCode,

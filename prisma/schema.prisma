@@ -11,6 +11,7 @@ datasource db {
 model Favorite {
   id          Int    @id @default(autoincrement())
   url         String
+  blur        String
   city        String
   countryCode String
   userId      String

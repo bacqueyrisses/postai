@@ -19,7 +19,7 @@ export default async function GenerationPage({
 }) {
   const data = await kv.hgetall<{
     city: string;
-    countryCode?: string;
+    countryCode: string;
     image?: string;
     blur?: string;
   }>(params.id);
@@ -27,6 +27,11 @@ export default async function GenerationPage({
   if (!data) notFound();
 
   return (
-    <PostcardContainer image={data.image || null} blur={data.blur || null} />
+    <PostcardContainer
+      image={data.image || null}
+      blur={data.blur || null}
+      city={data.city}
+      countryCode={data.countryCode}
+    />
   );
 }

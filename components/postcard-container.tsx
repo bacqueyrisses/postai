@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LoadingCircle } from "@/components/icons";
 import { useParams, useRouter } from "next/navigation";
+import SaveButtons from "./buttons/SaveButtons";
+import SaveButton from "@/components/buttons/save-button";
+import { useUser } from "@clerk/nextjs";
 
 function forceDownload(blobUrl: string, filename: string) {
   let a: any = document.createElement("a");
@@ -18,16 +21,20 @@ function forceDownload(blobUrl: string, filename: string) {
 export default function PostcardContainer({
   image,
   blur,
+  city,
+  countryCode,
 }: {
   image: string | null;
   blur: string | null;
+  city: string;
+  countryCode: string;
 }) {
   const router = useRouter();
   const params = useParams();
   const { id } = params;
   const [copying, setCopying] = useState(false);
   const [downloading, setDownloading] = useState(false);
-
+  const { user } = useUser();
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -101,13 +108,15 @@ export default function PostcardContainer({
               <Download className="h-4 w-4 text-white" />
             )}
           </button>
-          <button className="flex h-9 w-9 bg-yellow-500 transition-all delay-75  items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95">
-            {downloading ? (
-              <LoadingCircle />
-            ) : (
-              <Star className="h-4 w-4 text-white" />
-            )}
-          </button>
+          {user?.id && (
+            <SaveButton
+              countryCode={countryCode}
+              image={image}
+              city={city}
+              blur={blur}
+              userId={user.id}
+            />
+          )}
         </div>
       )}
       {image && blur ? (

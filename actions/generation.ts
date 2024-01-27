@@ -21,6 +21,7 @@ export async function generate(form: FormData) {
   const res = await Promise.all([
     kv.hset(id, {
       prompt,
+      city,
       countryCode,
     }),
     replicate.predictions.create({
