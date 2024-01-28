@@ -15,9 +15,9 @@ export default async function FavoritesPage() {
         "flex sm:gap-20 gap-16 flex-wrap justify-center items-center py-14"
       }
     >
-      <Suspense fallback={<FavoriteSkeleton />}>
-        <FavoritePostcardWrapper />
-      </Suspense>
+      {/*<Suspense fallback={<FavoriteSkeleton />}>*/}
+      <FavoritePostcardWrapper />
+      {/*</Suspense>*/}
     </div>
   );
 }

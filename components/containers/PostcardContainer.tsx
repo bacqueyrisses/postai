@@ -28,28 +28,6 @@ export default function PostcardContainer({
   const handleImageLoad = () => {
     setImageLoad(false);
   };
-  const handleImageError = () => {
-    setImageLoad(false);
-    setImageError(true);
-  };
-
-  const handleDownloadImage = async () => {
-    const randomUUID = uuidv4().split("-").join("").slice(0, 4);
-    try {
-      const response = await fetch(favoriteUrl);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `postcard-${randomUUID}.png`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Error downloading image:", error);
-    }
-  };
 
   const shimmer =
     "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
@@ -117,7 +95,6 @@ export default function PostcardContainer({
             alt={"swing arrow image"}
             className={"hidden sm:block skew-y-6"}
           />
-
           <span className={"sm:text-sm text-xs hidden sm:block"}>
             click to download
           </span>

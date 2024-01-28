@@ -1,36 +1,15 @@
 import FavoritePostcard from "@/components/containers/FavoritePostcard";
-import { sql } from "@vercel/postgres";
-import { unstable_noStore as noStore } from "next/cache";
 import type { User } from "@clerk/nextjs/api";
 import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
-
-type Favorites = {
-  id: number;
-  url: string;
-  city: string;
-  countryCode: string;
-  userId: string;
-};
-
-async function fetchFavorites(user: User) {
-  try {
-    const data =
-      await sql<Favorites>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "id" DESC;`;
-
-    return data.rows;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch favorites data.");
-  }
-}
+import { getCachedFavorites } from "@/app/lib/database";
 
 export default async function FavoritePostcardWrapper() {
   const user: User | null = await currentUser();
   if (!user) return;
 
-  const favorites = await fetchFavorites(user);
+  const favorites = await getCachedFavorites(user);
 
   return (
     <>
@@ -65,16 +44,22 @@ export default async function FavoritePostcardWrapper() {
       )}
       {favorites?.length > 0 &&
         favorites.map((favorite) => (
-          <FavoritePostcard
-            key={favorite.id}
-            favorite={{
-              id: favorite.id,
-              url: favorite.url,
-              city: favorite.city,
-              countryCode: favorite.countryCode,
-              user: user.firstName ?? "",
-            }}
-          />
+          <div
+            key={favorite.url}
+            className="group relative mx-auto mt-6 aspect-[3/2] w-full h-full max-w-3xl animate-fade-up overflow-hidden rounded-2xl border border-gray-200"
+            style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
+          >
+            <Image
+              alt="output image"
+              src={favorite.url}
+              width={1024}
+              height={768}
+              placeholder={"blur"}
+              blurDataURL={favorite.blur}
+              className="h-full w-full object-cover"
+              priority
+            />
+          </div>
         ))}
     </>
   );

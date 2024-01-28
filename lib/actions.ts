@@ -1,7 +1,7 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { put } from "@vercel/blob";
 import { del } from "@vercel/blob";
 import { v4 as uuidv4 } from "uuid";
@@ -34,11 +34,10 @@ export async function createFavorite(formData: FormData) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to create favorite.");
+  } finally {
+    revalidateTag("favorites");
   }
-
-  revalidatePath("/favorites");
 }
-
 export async function deleteFavorite(favoriteId: number, favoriteUrl: string) {
   try {
     // await del(favoriteUrl);
@@ -47,6 +46,6 @@ export async function deleteFavorite(favoriteId: number, favoriteUrl: string) {
     console.error("Database Error:", error);
     throw new Error("Failed to delete favorite.");
   } finally {
-    revalidatePath("/favorites");
+    revalidateTag("favorites");
   }
 }
