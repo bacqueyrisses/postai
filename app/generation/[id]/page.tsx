@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { kv } from "@vercel/kv";
 import GeneratedContainer from "@/components/generated-container";
+import { WavyBackground } from "@/components/ui/wavy-background";
 
 // Known next.js issue: https://github.com/vercel/next.js/issues/59753
 export const maxDuration = 300;

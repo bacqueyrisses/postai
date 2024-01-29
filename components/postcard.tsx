@@ -4,6 +4,8 @@ import Image from "next/image";
 import CopyButton from "@/components/buttons/copy-button";
 import DownloadButton from "@/components/buttons/download-button";
 import countryCodeEmoji from "country-code-emoji";
+import { ReactNode } from "react";
+import { WavyBackground } from "@/components/ui/wavy-background";
 
 export default function Postcard({
   id,
@@ -18,14 +20,14 @@ export default function Postcard({
   blur: string | null;
   city: string;
   countryCode: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <>
       {image && blur && (
         <div
           className={
-            "absolute z-10 -translate-y-16 sm:text-3xl text-2xl sm:space-x-3 space-x-2 bg-cyan-600 w-fit px-10 rounded-full py-2 text-white"
+            "absolute z-10 -translate-y-14 sm:text-2xl text-xl sm:space-x-3 space-x-2 bg-cyan-600 w-fit px-10 rounded-full py-2 text-white"
           }
         >
           <span>{city}</span>
@@ -57,34 +59,49 @@ export default function Postcard({
             />
           </>
         ) : (
-          <div className="z-10 w-full h-full bg-white">
-            <div className={"h-[768px] pt-20 sm:pt-32 md:pt-36 xl:pt-40"}>
-              <Image
-                src={"/sparkles.webp"}
-                alt={"sparkles telemoji"}
-                width="30"
-                height="30"
-                className={"inline w-8 h-8 md:w-10 md:h-10"}
-                priority
-              />
-              {id && (
-                <div
-                  className="my-4 flex animate-fade-up flex-col items-center space-y-2"
-                  style={{
-                    animationDelay: "0.5s",
-                    animationFillMode: "forwards",
-                  }}
-                >
-                  <p className="text-lg md:text-xl text-gray-500">
-                    Generating your postcard
-                  </p>
-                  <p className="text-sm md:text-base text-gray-500">
-                    It can take up to 30s
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
+          <WavyBackground
+            backgroundFill={"#0A91B3"}
+            speed={"fast"}
+            className="z-10 w-full h-full flex justify-start mt-32 items-center flex-col"
+          >
+            <p className="text-2xl md:text-3xl lg:text-4xl text-white font-medium text-center">
+              generating your postcard
+            </p>
+            <p className="text-base md:text-lg mt-4 text-white font-normal text-center">
+              it can take up to 30s to complete
+            </p>
+          </WavyBackground>
+
+          // <WavyBackground>
+          //   <div className="z-10 w-full h-full bg-white">
+          //     <div className={"h-[768px] pt-20 sm:pt-32 md:pt-36 xl:pt-40"}>
+          //       <Image
+          //         src={"/sparkles.webp"}
+          //         alt={"sparkles telemoji"}
+          //         width="30"
+          //         height="30"
+          //         className={"inline w-8 h-8 md:w-10 md:h-10"}
+          //         priority
+          //       />
+          //       {id && (
+          //         <div
+          //           className="my-4 flex animate-fade-up flex-col items-center space-y-2"
+          //           style={{
+          //             animationDelay: "0.5s",
+          //             animationFillMode: "forwards",
+          //           }}
+          //         >
+          //           <p className="text-lg md:text-xl text-gray-500">
+          //             Generating your postcard
+          //           </p>
+          //           <p className="text-sm md:text-base text-gray-500">
+          //             It can take up to 30s
+          //           </p>
+          //         </div>
+          //       )}
+          //     </div>
+          //   </div>
+          // </WavyBackground>
         )}
       </div>
     </>
