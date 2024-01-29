@@ -27,7 +27,7 @@ export default function Postcard({
       {image && blur && (
         <div
           className={
-            "absolute z-10 -translate-y-14 sm:text-2xl text-xl sm:space-x-3 space-x-2 bg-cyan-600 w-fit px-10 rounded-full py-2 text-white"
+            "absolute z-10 -translate-y-16 sm:text-2xl text-xl sm:space-x-3 space-x-2 bg-cyan-600 w-fit px-10 rounded-full py-2 text-white"
           }
         >
           <span>{city}</span>
@@ -61,8 +61,8 @@ export default function Postcard({
         ) : (
           <WavyBackground
             backgroundFill={"#0A91B3"}
-            speed={"fast"}
-            className="z-10 w-full h-full flex justify-start mt-32 items-center flex-col"
+            speed={"slow"}
+            className="z-10 w-full flex justify-start mt-32 items-center flex-col h-[768px]"
           >
             <p className="text-2xl md:text-3xl lg:text-4xl text-white font-medium text-center">
               generating your postcard
@@ -71,37 +71,6 @@ export default function Postcard({
               it can take up to 30s to complete
             </p>
           </WavyBackground>
-
-          // <WavyBackground>
-          //   <div className="z-10 w-full h-full bg-white">
-          //     <div className={"h-[768px] pt-20 sm:pt-32 md:pt-36 xl:pt-40"}>
-          //       <Image
-          //         src={"/sparkles.webp"}
-          //         alt={"sparkles telemoji"}
-          //         width="30"
-          //         height="30"
-          //         className={"inline w-8 h-8 md:w-10 md:h-10"}
-          //         priority
-          //       />
-          //       {id && (
-          //         <div
-          //           className="my-4 flex animate-fade-up flex-col items-center space-y-2"
-          //           style={{
-          //             animationDelay: "0.5s",
-          //             animationFillMode: "forwards",
-          //           }}
-          //         >
-          //           <p className="text-lg md:text-xl text-gray-500">
-          //             Generating your postcard
-          //           </p>
-          //           <p className="text-sm md:text-base text-gray-500">
-          //             It can take up to 30s
-          //           </p>
-          //         </div>
-          //       )}
-          //     </div>
-          //   </div>
-          // </WavyBackground>
         )}
       </div>
     </>
