@@ -27,7 +27,7 @@ export default function Postcard({
       {image && blur && (
         <div
           className={
-            "absolute z-10 -translate-y-16 sm:text-2xl text-xl sm:space-x-3 space-x-2 bg-cyan-600 w-fit px-10 rounded-full py-2 text-white"
+            "absolute z-10 -translate-y-16 sm:text-3xl text-xl sm:space-x-3 space-x-2 bg-cyan-600 w-fit px-10 rounded-full py-2 text-white"
           }
         >
           <span>{city}</span>

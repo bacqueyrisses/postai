@@ -1,4 +1,8 @@
-export default function LoadingCircle() {
+export default function LoadingCircle({
+  className,
+}: {
+  className?: string | undefined;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +10,7 @@ export default function LoadingCircle() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-6 h-6 animate-spinner mx-auto"
+      className={`${className ? className : "w-6 h-6"} animate-spinner mx-auto`}
     >
       <path
         strokeLinecap="round"

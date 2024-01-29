@@ -37,7 +37,11 @@ function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <button>
-      {pending ? <LoadingCircle /> : <Star className="h-4 w-4 text-white" />}
+      {pending ? (
+        <LoadingCircle className={"w-4 h-4 text-white"} />
+      ) : (
+        <Star className="h-4 w-4 text-white" />
+      )}
     </button>
   );
 }
