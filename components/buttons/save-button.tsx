@@ -1,12 +1,21 @@
+"use client";
 import { LoadingCircle } from "@/components/icons";
 import { Star } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { createFavorite } from "@/lib/actions";
 
-export default function SaveButton({ image, blur, city, countryCode, userId }) {
+export default function SaveButton({
+  id,
+  image,
+  blur,
+  city,
+  countryCode,
+  userId,
+}) {
+  const createFavoriteWithId = createFavorite.bind(null, id);
   return (
     <form
-      action={createFavorite}
+      action={createFavoriteWithId}
       className="flex h-9 w-9 bg-yellow-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
     >
       <input className="hidden" name="image" value={image} readOnly />

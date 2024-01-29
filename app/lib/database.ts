@@ -3,9 +3,10 @@ import { User } from "@clerk/nextjs/api";
 import { unstable_cache as nextCache } from "next/cache";
 
 type Favorites = {
-  id: number;
+  id: string;
   url: string;
   city: string;
+  blur: string;
   countryCode: string;
   userId: string;
 };

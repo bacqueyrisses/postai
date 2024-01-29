@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { kv } from "@vercel/kv";
-import PostcardContainer from "@/components/postcard-container";
+import GeneratedContainer from "@/components/generated-container";
 
 // Known next.js issue: https://github.com/vercel/next.js/issues/59753
 export const maxDuration = 300;
@@ -17,17 +17,19 @@ export default async function GenerationPage({
     id: string;
   };
 }) {
+  const { id } = params;
   const data = await kv.hgetall<{
     city: string;
     countryCode: string;
     image?: string;
     blur?: string;
-  }>(params.id);
+  }>(id);
 
-  if (!data) notFound();
+  if (!data || !id) notFound();
 
   return (
-    <PostcardContainer
+    <GeneratedContainer
+      id={id}
       image={data.image || null}
       blur={data.blur || null}
       city={data.city}

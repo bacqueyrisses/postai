@@ -1,11 +1,13 @@
-import FavoritePostcard from "@/components/containers/FavoritePostcard";
 import type { User } from "@clerk/nextjs/api";
 import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { getCachedFavorites } from "@/app/lib/database";
+import Postcard from "@/components/postcard";
+import DeleteButton from "@/components/buttons/delete-button";
+import { LayoutGrid } from "@/components/ui/layout-grid";
 
-export default async function FavoritePostcardWrapper() {
+export default async function FavoritesContainer() {
   const user: User | null = await currentUser();
   if (!user) return;
 
@@ -42,25 +44,7 @@ export default async function FavoritePostcardWrapper() {
           </Link>
         </div>
       )}
-      {favorites?.length > 0 &&
-        favorites.map((favorite) => (
-          <div
-            key={favorite.url}
-            className="group relative mx-auto mt-6 aspect-[3/2] w-full h-full max-w-3xl animate-fade-up overflow-hidden rounded-2xl border border-gray-200"
-            style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
-          >
-            <Image
-              alt="output image"
-              src={favorite.url}
-              width={1024}
-              height={768}
-              placeholder={"blur"}
-              blurDataURL={favorite.blur}
-              className="h-full w-full object-cover"
-              priority
-            />
-          </div>
-        ))}
+      {favorites?.length > 0 && <LayoutGrid cards={favorites} />}
     </>
   );
 }

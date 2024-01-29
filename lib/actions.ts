@@ -1,10 +1,8 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { revalidatePath, revalidateTag } from "next/cache";
-import { put } from "@vercel/blob";
+import { revalidateTag } from "next/cache";
 import { del } from "@vercel/blob";
-import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
 const CreateSchema = z.object({
@@ -15,7 +13,7 @@ const CreateSchema = z.object({
   userId: z.string(),
 });
 
-export async function createFavorite(formData: FormData) {
+export async function createFavorite(id: string, formData: FormData) {
   const validatedFields = CreateSchema.safeParse({
     image: formData.get("image"),
     blur: formData.get("blur"),
@@ -30,7 +28,7 @@ export async function createFavorite(formData: FormData) {
   const { image, blur, city, countryCode, userId } = validatedFields.data;
 
   try {
-    await sql`INSERT INTO "Favorite" (url, blur, city, "countryCode", "userId") VALUES (${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
+    await sql`INSERT INTO "Favorite" (id, url, blur, city, "countryCode", "userId") VALUES (${id}, ${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to create favorite.");
@@ -38,10 +36,10 @@ export async function createFavorite(formData: FormData) {
     revalidateTag("favorites");
   }
 }
-export async function deleteFavorite(favoriteId: number, favoriteUrl: string) {
+export async function deleteFavorite(id: string) {
   try {
     // await del(favoriteUrl);
-    await sql`DELETE FROM "Favorite" WHERE "id" = ${favoriteId};`;
+    await sql`DELETE FROM "Favorite" WHERE "id" = ${id};`;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to delete favorite.");
