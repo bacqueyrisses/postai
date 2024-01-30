@@ -51,7 +51,6 @@ export const WavyBackground = ({
     ctx = canvas.getContext("2d");
     w = ctx.canvas.width = window.innerWidth;
     h = ctx.canvas.height = window.innerHeight;
-    // ctx.filter = `blur(${blur}px)`;
     nt = 0;
     window.onresize = function () {
       w = ctx.canvas.width = window.innerWidth;
@@ -62,12 +61,13 @@ export const WavyBackground = ({
   };
 
   const waveColors = colors ?? [
-    "#38bdf8",
-    "#818cf8",
-    "#c084fc",
-    "#e879f9",
-    "#22d3ee",
+    "#0A91B1", // Teal
+    "#357E8E", // Deep Blue
+    "#FF7F50", // Coral
+    "#FFD700", // Gold
+    "#FF6347", // Tomato
   ];
+
   const drawWave = (n: number) => {
     nt += getSpeed();
     for (i = 0; i < n; i++) {

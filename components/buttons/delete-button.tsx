@@ -1,14 +1,24 @@
-"use client";
 import { LoadingCircle } from "@/components/icons";
 import { XCircle } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { deleteFavorite } from "@/lib/actions";
+import { Card } from "@/components/ui/layout-grid";
+import { Dispatch } from "react";
 
-export default function DeleteButton({ id }) {
-  const deleteFavoriteWithId = deleteFavorite.bind(null, id);
+export default function DeleteButton({
+  id,
+  setSelected,
+}: {
+  id: string;
+  setSelected: Dispatch<Card | null>;
+}) {
   return (
     <form
-      action={deleteFavoriteWithId}
+      action={() => {
+        deleteFavorite(id).then((id) => {
+          setSelected(null);
+        });
+      }}
       className="flex h-9 w-9 bg-red-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
     >
       <SubmitButton />
@@ -20,7 +30,11 @@ function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <button>
-      {pending ? <LoadingCircle /> : <XCircle className="h-5 w-5 text-white" />}
+      {pending ? (
+        <LoadingCircle className={"w-4 h-4 text-white"} />
+      ) : (
+        <XCircle className="h-5 w-5 text-white" />
+      )}
     </button>
   );
 }

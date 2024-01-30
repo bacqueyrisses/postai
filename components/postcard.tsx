@@ -60,7 +60,7 @@ export default function Postcard({
           </>
         ) : (
           <WavyBackground
-            backgroundFill={"#0A91B3"}
+            backgroundFill={"#12B981"}
             speed={"slow"}
             className="z-10 w-full flex justify-start mt-32 items-center flex-col h-[768px]"
           >
