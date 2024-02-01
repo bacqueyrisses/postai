@@ -2,8 +2,9 @@
 import { useState } from "react";
 import { LoadingCircle } from "@/components/icons";
 import { Copy } from "lucide-react";
+import { Postcard } from "@/types/definitions";
 
-export default function CopyButton({ id }: { id: string }) {
+export default function CopyButton({ id }: { id: Postcard["id"] }) {
   const [copying, setCopying] = useState(false);
 
   return (

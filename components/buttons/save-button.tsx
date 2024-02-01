@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { createFavorite } from "@/lib/actions";
 import Link from "next/link";
+import { Favorite } from "@prisma/client";
 
 export default function SaveButton({
   id,
@@ -12,9 +13,9 @@ export default function SaveButton({
   city,
   countryCode,
   userId,
-}) {
+}: Favorite) {
   const createFavoriteWithId = createFavorite.bind(null, id);
-  console.log(userId);
+
   return userId ? (
     <form
       action={createFavoriteWithId}
@@ -37,7 +38,7 @@ export default function SaveButton({
       className={
         "flex h-9 w-9 bg-yellow-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
       }
-      href={`/favorites?id=${id}&url=${image}&blur=${blur}&city=${city}&countryCode=${countryCode}`}
+      href={`/favorites?id=${id}&image=${image}&blur=${blur}&city=${city}&countryCode=${countryCode}`}
     >
       <Star className="h-4 w-4 text-white" />
     </Link>

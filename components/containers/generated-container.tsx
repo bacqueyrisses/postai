@@ -1,24 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
-import { notFound, useParams, useRouter } from "next/navigation";
-import SaveButton from "@/components/buttons/save-button";
+import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import Postcard from "@/components/postcard";
 
+interface IGeneratedContainer {
+  id: string;
+  image: string | null;
+  blur: string | null;
+  city: string;
+  countryCode: string;
+}
 export default function GeneratedContainer({
   id,
   image,
   blur,
   city,
   countryCode,
-}: {
-  id: string;
-  image: string | null;
-  blur: string | null;
-  city: string;
-  countryCode: string;
-}) {
+}: IGeneratedContainer) {
   const router = useRouter();
   const { user } = useUser();
 

@@ -28,7 +28,7 @@ export async function createFavorite(id: string, formData: FormData) {
   const { image, blur, city, countryCode, userId } = validatedFields.data;
 
   try {
-    await sql`INSERT INTO "Favorite" (id, url, blur, city, "countryCode", "userId") VALUES (${id}, ${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
+    await sql`INSERT INTO "Favorite" (id, image, blur, city, "countryCode", "userId") VALUES (${id}, ${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to create favorite.");

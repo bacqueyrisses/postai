@@ -3,27 +3,20 @@ import React, { Dispatch, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-// @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
-import countryCodeEmoji from "country-code-emoji";
 import DownloadButton from "@/components/buttons/download-button";
 import CopyButton from "@/components/buttons/copy-button";
 import DeleteButton from "@/components/buttons/delete-button";
+import { Postcard } from "@/types/definitions";
+// @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
+import countryCodeEmoji from "country-code-emoji";
 
-export type Card = {
-  id: string;
-  countryCode: string;
-  city: string;
-  url: string;
-  blur: string;
-};
+export const LayoutGrid = ({ postcards }: { postcards: Postcard[] }) => {
+  const [selected, setSelected] = useState<Postcard | null>(null);
+  const [lastSelected, setLastSelected] = useState<Postcard | null>(null);
 
-export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
-  const [selected, setSelected] = useState<Card | null>(null);
-  const [lastSelected, setLastSelected] = useState<Card | null>(null);
-
-  const handleClick = (card: Card) => {
+  const handleClick = (postcard: Postcard) => {
     setLastSelected(selected);
-    setSelected(card);
+    setSelected(postcard);
   };
 
   const handleOutsideClick = () => {
@@ -33,29 +26,29 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
 
   return (
     <div
-      className={`${cards.length > 1 ? "md:grid-cols-2 max-w-7xl" : "max-w-3xl"} w-full h-full p-10 grid grid-cols-1 mx-auto gap-4`}
+      className={`${postcards.length > 1 ? "md:grid-cols-2 max-w-7xl" : "max-w-3xl"} w-full h-full p-10 grid grid-cols-1 mx-auto gap-4`}
     >
-      {cards.map((card, i) => (
+      {postcards.map((postcard, i) => (
         <div
           key={i}
           className={`aspect-[3/2] ${!selected?.id && "hover:cursor-pointer"}`}
         >
           <motion.div
-            onClick={() => handleClick(card)}
+            onClick={() => handleClick(postcard)}
             className={cn(
               "relative overflow-clip rounded-2xl",
-              selected?.id === card.id
+              selected?.id === postcard.id
                 ? "fixed inset-0 h-[40%] w-[90%] md:h-[65%] md:w-[60%] m-auto z-50 flex justify-center items-center flex-wrap flex-col rounded-3xl"
-                : lastSelected?.id === card.id
+                : lastSelected?.id === postcard.id
                   ? "z-40 bg-white h-full w-full"
                   : "bg-white h-full w-full",
             )}
             layout
           >
-            {selected?.id === card.id && (
-              <SelectedCard selected={selected} setSelected={setSelected} />
+            {selected?.id === postcard.id && (
+              <SelectedPostCard selected={selected} setSelected={setSelected} />
             )}
-            <BlurImage card={card} />
+            <BlurImage postcard={postcard} />
           </motion.div>
         </div>
       ))}
@@ -71,30 +64,30 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   );
 };
 
-const BlurImage = ({ card }: { card: Card }) => {
+const BlurImage = ({ postcard }: { postcard: Postcard }) => {
   return (
     <>
       <Image
-        src={card.url}
+        src={postcard.image}
         width={1024}
         height={768}
         placeholder={"blur"}
-        blurDataURL={card.blur}
+        blurDataURL={postcard.blur}
         className={
           "aspect-[3/2] object-fill absolute inset-0 h-full w-full transition duration-200"
         }
-        alt={`postcard of ${card.city}`}
+        alt={`postcard of ${postcard.city}`}
       />
     </>
   );
 };
 
-const SelectedCard = ({
+const SelectedPostCard = ({
   selected,
   setSelected,
 }: {
-  selected: Card;
-  setSelected: Dispatch<Card | null>;
+  selected: Postcard;
+  setSelected: Dispatch<Postcard | null>;
 }) => {
   return (
     <div className="h-full w-full flex flex-col relative z-50">
@@ -137,7 +130,7 @@ const SelectedCard = ({
           }
         >
           <CopyButton id={selected.id} />
-          <DownloadButton id={selected.id} image={selected.url} />
+          <DownloadButton id={selected.id} image={selected.image} />
           <DeleteButton setSelected={setSelected} id={selected.id} />
         </div>
       </motion.div>

@@ -10,7 +10,7 @@ datasource db {
 
 model Favorite {
   id          String @id @unique
-  url         String
+  image       String
   blur        String
   city        String
   countryCode String

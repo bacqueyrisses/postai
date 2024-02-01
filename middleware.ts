@@ -12,17 +12,17 @@ export default authMiddleware({
 
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
-    const url = searchParams.get("url");
+    const image = searchParams.get("image");
     const blur = searchParams.get("blur");
     const city = searchParams.get("city");
     const countryCode = searchParams.get("countryCode");
 
     // redirect users who aren't authenticated & have created a postcard
-    if (!auth.userId && url && city && countryCode) {
+    if (!auth.userId && image && city && countryCode) {
       const nextResponse = NextResponse.redirect(
         new URL(`/sign-in`, request.url),
       );
-      const cookiesValues = `${id}&${url}&${blur}&${city}&${countryCode}`;
+      const cookiesValues = `${id}&${image}&${blur}&${city}&${countryCode}`;
       nextResponse.cookies.set({ name: "newFavorite", value: cookiesValues });
 
       return nextResponse;

@@ -2,15 +2,15 @@ import { LoadingCircle } from "@/components/icons";
 import { XCircle } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { deleteFavorite } from "@/lib/actions";
-import { Card } from "@/components/ui/layout-grid";
 import { Dispatch } from "react";
+import { Postcard } from "@/types/definitions";
 
 export default function DeleteButton({
   id,
   setSelected,
 }: {
-  id: string;
-  setSelected: Dispatch<Card | null>;
+  id: Postcard["id"];
+  setSelected: Dispatch<Postcard | null>;
 }) {
   return (
     <form

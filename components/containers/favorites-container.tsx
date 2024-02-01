@@ -2,7 +2,7 @@ import type { User } from "@clerk/nextjs/api";
 import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
-import { getCachedFavorites } from "@/app/lib/database";
+import { getCachedFavorites } from "@/lib/database";
 import { LayoutGrid } from "@/components/ui/layout-grid";
 
 export default async function FavoritesContainer() {

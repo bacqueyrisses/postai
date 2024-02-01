@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { LoadingCircle } from "@/components/icons";
 import { Download } from "lucide-react";
+import { Postcard } from "@/types/definitions";
 
 function forceDownload(blobUrl: string, filename: string) {
   let a: any = document.createElement("a");
@@ -12,7 +13,13 @@ function forceDownload(blobUrl: string, filename: string) {
   a.remove();
 }
 
-export default function DownloadButton({ id, image }) {
+export default function DownloadButton({
+  id,
+  image,
+}: {
+  id: Postcard["id"];
+  image: Postcard["image"];
+}) {
   const [downloading, setDownloading] = useState(false);
 
   return (

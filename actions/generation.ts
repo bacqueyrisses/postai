@@ -1,14 +1,15 @@
 "use server";
 
-import Replicate from "replicate";
 import { kv } from "@vercel/kv";
 import { nanoid } from "@/lib/utils";
 import { WEBHOOK_URL } from "@/lib/constants";
-import { generatePrompt } from "@/lib/replicate";
-
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN as string,
-});
+import {
+  generatePrompt,
+  replicate,
+  height,
+  width,
+  version,
+} from "@/lib/replicate";
 
 export async function generate(form: FormData) {
   const city = form.get("city") as string;
@@ -25,12 +26,11 @@ export async function generate(form: FormData) {
       countryCode,
     }),
     replicate.predictions.create({
-      version:
-        "563a66acc0b39e5308e8372bed42504731b7fec3bc21f2fcbea413398690f3ec",
+      version,
       input: {
         prompt,
-        width: 1024,
-        height: 768,
+        width,
+        height,
       },
       webhook: `${WEBHOOK_URL}?id=${id}${
         process.env.REPLICATE_WEBHOOK_SECRET

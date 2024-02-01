@@ -1,19 +1,12 @@
 import { sql } from "@vercel/postgres";
 import { User } from "@clerk/nextjs/api";
 import { unstable_cache as nextCache } from "next/cache";
+import { Favorite } from "@prisma/client";
 
-type Favorites = {
-  id: string;
-  url: string;
-  city: string;
-  blur: string;
-  countryCode: string;
-  userId: string;
-};
 async function getFavorites(user: User) {
   try {
     const data =
-      await sql<Favorites>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "id" DESC;`;
+      await sql<Favorite>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "id" DESC;`;
 
     return data.rows;
   } catch (error) {

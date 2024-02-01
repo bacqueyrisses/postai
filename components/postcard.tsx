@@ -3,11 +3,11 @@
 import Image from "next/image";
 import CopyButton from "@/components/buttons/copy-button";
 import DownloadButton from "@/components/buttons/download-button";
-// @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
-import countryCodeEmoji from "country-code-emoji";
 import { ReactNode } from "react";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import SaveButton from "@/components/buttons/save-button";
+// @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
+import countryCodeEmoji from "country-code-emoji";
 
 export default function Postcard({
   id,
