@@ -1,7 +1,7 @@
 import { LoadingCircle } from "@/components/icons";
 import { XCircle } from "lucide-react";
 import { useFormStatus } from "react-dom";
-import { deleteFavorite } from "@/lib/actions";
+import { deleteFavorite } from "@/actions/favorites";
 import { Dispatch } from "react";
 import { Postcard } from "@/types/definitions";
 

@@ -1,6 +1,6 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { createFavorite } from "@/lib/actions";
+import { createFavorite } from "@/actions/favorites";
 
 export default authMiddleware({
   afterAuth(auth, request) {

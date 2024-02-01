@@ -2,7 +2,7 @@
 import { LoadingCircle } from "@/components/icons";
 import { Star } from "lucide-react";
 import { useFormStatus } from "react-dom";
-import { createFavorite } from "@/lib/actions";
+import { createFavorite } from "@/actions/favorites";
 import Link from "next/link";
 import { Favorite } from "@prisma/client";
 
