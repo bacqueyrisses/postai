@@ -38,7 +38,7 @@ export async function createFavorite(id: string, formData: FormData) {
 }
 export async function deleteFavorite(id: string) {
   try {
-    // await del(favoriteUrl);
+    await del(id);
     await sql`DELETE FROM "Favorite" WHERE "id" = ${id};`;
   } catch (error) {
     console.error("Database Error:", error);
