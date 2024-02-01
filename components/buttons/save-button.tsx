@@ -1,5 +1,5 @@
 import { LoadingCircle } from "@/components/icons";
-import { Check, Cross, Star } from "lucide-react";
+import { Check, Star } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { createFavorite } from "@/actions/favorites";
 import Link from "next/link";
