@@ -1,6 +1,7 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { createFavorite } from "@/actions/favorites";
+import { sql } from "@vercel/postgres";
 
 export default authMiddleware({
   afterAuth(auth, request) {
@@ -37,15 +38,22 @@ export default authMiddleware({
     if (!newCookieValues) return NextResponse.next();
 
     const splitValues: string[] = newCookieValues?.split("&");
-    const formData = new FormData();
-    formData.append("id", splitValues[0]);
-    formData.append("image", splitValues[1]);
-    formData.append("blur", splitValues[2]);
-    formData.append("city", splitValues[3]);
-    formData.append("countryCode", splitValues[4]);
-    formData.append("userId", auth.userId!);
+    // const formData = new FormData();
+    // formData.append("id", splitValues[0]);
+    // formData.append("image", splitValues[1]);
+    // formData.append("blur", splitValues[2]);
+    // formData.append("city", splitValues[3]);
+    // formData.append("countryCode", splitValues[4]);
+    // formData.append("userId", auth.userId!);
 
-    void createFavorite(splitValues[0], formData);
+    void create({
+      id: splitValues[0],
+      image: splitValues[1],
+      blur: splitValues[2],
+      city: splitValues[3],
+      countryCode: splitValues[4],
+      userId: auth.userId!,
+    });
 
     const nextResponse = NextResponse.next();
     nextResponse.cookies.set("newFavorite", "");
@@ -53,6 +61,15 @@ export default authMiddleware({
     return nextResponse;
   },
 });
+
+async function create({ id, image, blur, city, countryCode, userId }: any) {
+  try {
+    await sql`INSERT INTO "Favorite" (id, image, blur, city, "countryCode", "userId") VALUES (${id}, ${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to create favorite.");
+  }
+}
 
 export const config = {
   matcher: ["/favorites"],
