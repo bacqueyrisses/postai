@@ -3,6 +3,7 @@ import FavoritesContainer from "@/components/containers/favorites-container";
 import { User } from "@clerk/nextjs/api";
 import { currentUser } from "@clerk/nextjs";
 import { getFavorites } from "@/lib/database";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "favorites",
