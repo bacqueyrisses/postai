@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 import { createFavorite } from "@/actions/favorites";
 import Link from "next/link";
 import { Favorite } from "@prisma/client";
+import { Postcard } from "@/types/definitions";
 
 export default function SaveButton({
   id,
@@ -13,7 +14,7 @@ export default function SaveButton({
   city,
   countryCode,
   userId,
-}: Favorite) {
+}: Postcard & { userId: string | null }) {
   const createFavoriteWithId = createFavorite.bind(null, id);
 
   return userId ? (

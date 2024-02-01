@@ -42,7 +42,7 @@ export default function Postcard({
         className="group relative mx-auto aspect-[3/2] w-full h-full max-w-3xl animate-fade-up rounded-xl border border-gray-200 overflow-hidden"
         style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
       >
-        {id && image && (
+        {id && image && blur && (
           <div className="absolute right-5 top-5 z-10 flex space-x-2">
             <CopyButton id={id} />
             <DownloadButton id={id} image={image} />{" "}
