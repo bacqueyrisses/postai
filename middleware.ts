@@ -1,7 +1,7 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { createFavorite } from "@/actions/favorites";
 import { sql } from "@vercel/postgres";
+import { Favorite } from "@prisma/client";
 
 export default authMiddleware({
   afterAuth(auth, request) {
@@ -38,13 +38,6 @@ export default authMiddleware({
     if (!newCookieValues) return NextResponse.next();
 
     const splitValues: string[] = newCookieValues?.split("&");
-    // const formData = new FormData();
-    // formData.append("id", splitValues[0]);
-    // formData.append("image", splitValues[1]);
-    // formData.append("blur", splitValues[2]);
-    // formData.append("city", splitValues[3]);
-    // formData.append("countryCode", splitValues[4]);
-    // formData.append("userId", auth.userId!);
 
     void create({
       id: splitValues[0],
@@ -62,7 +55,14 @@ export default authMiddleware({
   },
 });
 
-async function create({ id, image, blur, city, countryCode, userId }: any) {
+async function create({
+  id,
+  image,
+  blur,
+  city,
+  countryCode,
+  userId,
+}: Favorite) {
   try {
     await sql`INSERT INTO "Favorite" (id, image, blur, city, "countryCode", "userId") VALUES (${id}, ${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
   } catch (error) {
