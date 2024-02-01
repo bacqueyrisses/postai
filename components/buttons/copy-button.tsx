@@ -16,7 +16,7 @@ export default function CopyButton({ id }: { id: Postcard["id"] }) {
           `${process.env.NEXT_PUBLIC_URL}/generation/${id}`,
         );
         setCopying(false);
-        toast.success("url copied to clipboard");
+        toast.success("postcard share link copied");
       }}
       className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-500 shadow-sm transition-all hover:scale-105 active:scale-95"
     >
