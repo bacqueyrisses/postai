@@ -6,8 +6,6 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import { currentUser } from "@clerk/nextjs";
 import { sql } from "@vercel/postgres";
 
-// Known next.js issue: https://github.com/vercel/next.js/issues/59753
-export const maxDuration = 300;
 export const revalidate = 0;
 export const metadata: Metadata = {
   title: "generate",
