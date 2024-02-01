@@ -1,8 +1,8 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { revalidatePath, revalidateTag } from "next/cache";
-import { del, list } from "@vercel/blob";
+import { revalidatePath } from "next/cache";
+import { del } from "@vercel/blob";
 import { CreateSchema } from "@/lib/schemas";
 import { Postcard } from "@/types/definitions";
 import { kv } from "@vercel/kv";
@@ -26,10 +26,9 @@ export async function createFavorite(id: Postcard["id"], formData: FormData) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to create favorite.");
-  } finally {
-    revalidatePath("/favorites");
   }
 }
+
 export async function deleteFavorite(
   id: Postcard["image"],
   image: Postcard["image"],
@@ -42,6 +41,6 @@ export async function deleteFavorite(
     console.error("Database Error:", error);
     throw new Error("Failed to delete favorite.");
   } finally {
-    revalidateTag("favorites");
+    revalidatePath("favorites");
   }
 }

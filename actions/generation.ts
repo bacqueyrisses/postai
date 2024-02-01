@@ -5,10 +5,10 @@ import { nanoid } from "@/lib/utils";
 import { WEBHOOK_URL } from "@/lib/constants";
 import {
   generatePrompt,
-  replicate,
   height,
-  width,
+  replicate,
   version,
+  width,
 } from "@/lib/replicate";
 
 export async function generate(form: FormData) {
