@@ -5,6 +5,7 @@ import { createFavorite } from "@/actions/favorites";
 import Link from "next/link";
 import { Postcard } from "@/types/definitions";
 import { toast } from "sonner";
+import { Dispatch, useState } from "react";
 
 export default function SaveButton({
   id,
@@ -15,6 +16,7 @@ export default function SaveButton({
   userId,
   saved,
 }: Postcard & { userId: string | null; saved: boolean }) {
+  const [loading, setLoading] = useState(false);
   const createFavoriteWithId = createFavorite.bind(null, id);
   const withUser = (saved: boolean, userId: string) => {
     return saved ? (
@@ -53,19 +55,24 @@ export default function SaveButton({
     );
   };
 
-  const withoutUser = () => {
+  const withoutUser = (loading: boolean, setLoading: Dispatch<boolean>) => {
     return (
       <Link
+        onClick={() => setLoading(true)}
         className={
           "flex h-9 w-9 bg-yellow-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
         }
         href={`/favorites?id=${id}&image=${image}&blur=${blur}&city=${city}&countryCode=${countryCode}`}
       >
-        <Star className="h-4 w-4 text-white" />
+        {loading ? (
+          <LoadingCircle className={"w-4 h-4 text-white"} />
+        ) : (
+          <Star className="h-4 w-4 text-white" />
+        )}
       </Link>
     );
   };
-  return userId ? withUser(saved, userId) : withoutUser();
+  return userId ? withUser(saved, userId) : withoutUser(loading, setLoading);
 }
 
 function SubmitButton() {
