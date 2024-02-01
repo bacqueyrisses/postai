@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     default: "postai",
   },
   description: "create your virtual ai-generated location-based postcard.",
-  metadataBase: new URL("https://mypostai.vercel.app"),
+  metadataBase: new URL("https://www.postai.enzo.codes"),
 };
 export const viewport: Viewport = {
   themeColor: [
