@@ -56,7 +56,9 @@ export default function LocationsContainer({
           setSelectedCity={setSelectedCity}
           country={{ city: "tokyo, japan", countryCode: "JP" }}
           inputCity={"tokyo"}
-          className={"col-span-3  border-orange-400 hover:text-orange-400"}
+          className={
+            "col-span-4 md:col-span-3 border-orange-400 hover:text-orange-400"
+          }
           selectedClassName={"text-orange-400"}
           unselectedClassName={"bg-orange-400"}
           variant={"full"}
@@ -67,7 +69,7 @@ export default function LocationsContainer({
           country={{ city: "cape town, south africa", countryCode: "ZA" }}
           inputCity={"cape town"}
           className={
-            "col-span-7 md:col-span-5 border-yellow-400 hover:text-yellow-400"
+            "col-span-6 md:col-span-5 border-yellow-400 hover:text-yellow-400"
           }
           selectedClassName={"text-yellow-400"}
           unselectedClassName={"bg-yellow-400"}
