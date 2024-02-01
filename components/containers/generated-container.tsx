@@ -1,9 +1,9 @@
 "use client";
-
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import Postcard from "@/components/postcard";
+import { User } from "@clerk/nextjs/api";
 
 interface IGeneratedContainer {
   id: string;
@@ -11,6 +11,7 @@ interface IGeneratedContainer {
   blur: string | null;
   city: string;
   countryCode: string;
+  saved: boolean;
 }
 export default function GeneratedContainer({
   id,
@@ -18,6 +19,7 @@ export default function GeneratedContainer({
   blur,
   city,
   countryCode,
+  saved,
 }: IGeneratedContainer) {
   const router = useRouter();
   const { user } = useUser();
@@ -42,6 +44,7 @@ export default function GeneratedContainer({
       city={city}
       countryCode={countryCode}
       userId={user?.id || null}
+      saved={saved}
     />
   );
 }

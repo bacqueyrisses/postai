@@ -16,6 +16,7 @@ export default function Postcard({
   city,
   countryCode,
   userId,
+  saved,
 }: {
   id: string;
   image: string | null;
@@ -23,6 +24,7 @@ export default function Postcard({
   city: string;
   countryCode: string;
   userId: string | null;
+  saved: boolean;
 }) {
   return (
     <>
@@ -51,6 +53,7 @@ export default function Postcard({
               city={city}
               blur={blur}
               userId={userId}
+              saved={saved}
             />
           </div>
         )}

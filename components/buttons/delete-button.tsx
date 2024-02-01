@@ -4,6 +4,7 @@ import { useFormStatus } from "react-dom";
 import { deleteFavorite } from "@/actions/favorites";
 import { Dispatch } from "react";
 import { Postcard } from "@/types/definitions";
+import { toast } from "sonner";
 
 export default function DeleteButton({
   id,
@@ -19,6 +20,7 @@ export default function DeleteButton({
       action={() => {
         deleteFavorite(id, image).then((id) => {
           setSelected(null);
+          toast.success("favorite deleted");
         });
       }}
       className="flex h-9 w-9 bg-red-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"

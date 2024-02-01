@@ -1,15 +1,13 @@
-import UserCurrentLocation from "@/components/locations/UserCurrentLocation";
-import City from "@/components/locations/City";
-import CityAutocomplete from "@/components/locations/CityAutocomplete";
+import UserCurrentLocation from "@/components/locations/user-current-location";
+import City from "@/components/locations/city";
+import CityAutocomplete from "@/components/locations/city-autocomplete";
 import { SelectedCityType } from "@/types/global";
 import * as React from "react";
 import { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { generate } from "@/actions/generation";
 import { useFormStatus } from "react-dom";
 import { LoadingCircle } from "@/components/icons";
-import { Loader2 } from "lucide-react";
 
 interface ILocations {
   selectedCity: SelectedCityType;

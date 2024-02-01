@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import { kv } from "@vercel/kv";
 import GeneratedContainer from "@/components/containers/generated-container";
 import { WavyBackground } from "@/components/ui/wavy-background";
+import { currentUser } from "@clerk/nextjs";
+import { sql } from "@vercel/postgres";
 
 // Known next.js issue: https://github.com/vercel/next.js/issues/59753
 export const maxDuration = 300;
@@ -28,6 +30,11 @@ export default async function GenerationPage({
 
   if (!data || !id) notFound();
 
+  const {
+    rows: [{ count }],
+  } = await sql`SELECT COUNT(*) as count FROM "Favorite" WHERE id = ${id};`;
+  const saved = Boolean(+count);
+
   return (
     <GeneratedContainer
       id={id}
@@ -35,6 +42,7 @@ export default async function GenerationPage({
       blur={data.blur || null}
       city={data.city}
       countryCode={data.countryCode}
+      saved={saved}
     />
   );
 }

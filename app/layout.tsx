@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { neobrutalism } from "@clerk/themes";
 import { ReactNode } from "react";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -51,6 +52,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           },
         }}
       >
+        <Toaster
+          position={"bottom-center"}
+          toastOptions={{
+            unstyled: true,
+            classNames: {
+              toast: `${raleway.className} w-fit mx-auto flex justify-center items-center gap-1.5 rounded-3xl py-2 md:py-2.5 px-8 text-white text-sm md:text-base`,
+              success: "bg-emerald-500",
+              error: "bg-red-600",
+            },
+          }}
+        />
         <body
           className={`px-4 md:px-24 flex flex-col justify-between h-screen bg-[#E9E7DF]`}
         >

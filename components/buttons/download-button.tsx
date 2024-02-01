@@ -1,8 +1,8 @@
-"use client";
 import { useState } from "react";
 import { LoadingCircle } from "@/components/icons";
 import { Download } from "lucide-react";
 import { Postcard } from "@/types/definitions";
+import { toast } from "sonner";
 
 function forceDownload(blobUrl: string, filename: string) {
   let a: any = document.createElement("a");
@@ -37,8 +37,12 @@ export default function DownloadButton({
             let blobUrl = window.URL.createObjectURL(blob);
             forceDownload(blobUrl, `${id || "demo"}.png`);
             setDownloading(false);
+            toast.success("favorite downloaded");
           })
-          .catch((e) => console.error(e));
+          .catch((error) => {
+            console.error(error);
+            toast.error("error, please retry!");
+          });
       }}
       className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 shadow-sm transition-all hover:scale-105 active:scale-95"
     >
