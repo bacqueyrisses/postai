@@ -18,7 +18,7 @@ export async function generate(form: FormData) {
 
   const prompt = generatePrompt(city);
 
-  const res = await Promise.all([
+  await Promise.all([
     kv.hset(id, {
       prompt,
       city,

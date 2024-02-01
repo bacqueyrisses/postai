@@ -55,17 +55,16 @@ export const WavyBackground = ({
     window.onresize = function () {
       w = ctx.canvas.width = window.innerWidth;
       h = ctx.canvas.height = window.innerHeight;
-      ctx.filter = `blur(${blur}px)`;
     };
     render();
   };
 
   const waveColors = colors ?? [
-    "#0A91B1", // Teal
-    "#357E8E", // Deep Blue
-    "#FF7F50", // Coral
-    "#FFD700", // Gold
-    "#FF6347", // Tomato
+    "#4E96B8", // Sky Blue
+    "#6AB1D7", // Powder Blue
+    "#92C7E7", // Light Blue
+    "#B9E1F4", // Baby Blue
+    "#D6EDFF", // Pale Blue
   ];
 
   const drawWave = (n: number) => {
@@ -74,9 +73,9 @@ export const WavyBackground = ({
       ctx.beginPath();
       ctx.lineWidth = waveWidth || 50;
       ctx.strokeStyle = waveColors[i % waveColors.length];
-      for (x = 0; x < w; x += 5) {
-        var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+      for (x = 0; x < w; x += 1) {
+        var y = noise(x / 1000, 0.3 * i, nt) * 100;
+        ctx.lineTo(x, y + h * 0.43); // adjust for height, currently at 50% of the container
       }
       ctx.stroke();
       ctx.closePath();

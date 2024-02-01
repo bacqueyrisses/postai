@@ -41,17 +41,7 @@ export default function GeneratedContainer({
       blur={blur}
       city={city}
       countryCode={countryCode}
-    >
-      {user?.id && (
-        <SaveButton
-          id={id}
-          countryCode={countryCode}
-          image={image}
-          city={city}
-          blur={blur}
-          userId={user.id}
-        />
-      )}
-    </Postcard>
+      userId={user?.id || null}
+    />
   );
 }

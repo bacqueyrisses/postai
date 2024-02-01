@@ -55,6 +55,5 @@ if (env === "preview") {
   };
 }
 
-// module.exports = nextConfig;
 
 export default withPlaiceholder(nextConfig);

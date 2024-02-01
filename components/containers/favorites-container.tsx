@@ -3,8 +3,6 @@ import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { getCachedFavorites } from "@/app/lib/database";
-import Postcard from "@/components/postcard";
-import DeleteButton from "@/components/buttons/delete-button";
 import { LayoutGrid } from "@/components/ui/layout-grid";
 
 export default async function FavoritesContainer() {

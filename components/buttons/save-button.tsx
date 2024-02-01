@@ -3,6 +3,7 @@ import { LoadingCircle } from "@/components/icons";
 import { Star } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { createFavorite } from "@/lib/actions";
+import Link from "next/link";
 
 export default function SaveButton({
   id,
@@ -13,7 +14,8 @@ export default function SaveButton({
   userId,
 }) {
   const createFavoriteWithId = createFavorite.bind(null, id);
-  return (
+  console.log(userId);
+  return userId ? (
     <form
       action={createFavoriteWithId}
       className="flex h-9 w-9 bg-yellow-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
@@ -30,6 +32,15 @@ export default function SaveButton({
       <input className="hidden" name="userId" value={userId} readOnly />
       <SubmitButton />
     </form>
+  ) : (
+    <Link
+      className={
+        "flex h-9 w-9 bg-yellow-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
+      }
+      href={`/favorites?id=${id}&url=${image}&blur=${blur}&city=${city}&countryCode=${countryCode}`}
+    >
+      <Star className="h-4 w-4 text-white" />
+    </Link>
   );
 }
 

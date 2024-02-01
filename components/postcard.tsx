@@ -3,9 +3,11 @@
 import Image from "next/image";
 import CopyButton from "@/components/buttons/copy-button";
 import DownloadButton from "@/components/buttons/download-button";
+// @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
 import countryCodeEmoji from "country-code-emoji";
 import { ReactNode } from "react";
 import { WavyBackground } from "@/components/ui/wavy-background";
+import SaveButton from "@/components/buttons/save-button";
 
 export default function Postcard({
   id,
@@ -14,13 +16,15 @@ export default function Postcard({
   city,
   countryCode,
   children,
+  userId,
 }: {
   id: string;
   image: string | null;
   blur: string | null;
   city: string;
   countryCode: string;
-  children: ReactNode;
+  children?: ReactNode;
+  userId: string | null;
 }) {
   return (
     <>
@@ -35,13 +39,21 @@ export default function Postcard({
         </div>
       )}
       <div
-        className="group relative mx-auto aspect-[3/2] w-full h-full max-w-3xl animate-fade-up rounded-2xl border border-gray-200 overflow-hidden"
+        className="group relative mx-auto aspect-[3/2] w-full h-full max-w-3xl animate-fade-up rounded-xl border border-gray-200 overflow-hidden"
         style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
       >
         {id && image && (
           <div className="absolute right-5 top-5 z-10 flex space-x-2">
             <CopyButton id={id} />
-            <DownloadButton id={id} image={image} />
+            <DownloadButton id={id} image={image} />{" "}
+            <SaveButton
+              id={id}
+              countryCode={countryCode}
+              image={image}
+              city={city}
+              blur={blur}
+              userId={userId}
+            />
             {children}
           </div>
         )}

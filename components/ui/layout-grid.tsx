@@ -1,12 +1,11 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { Dispatch, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 // @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
 import countryCodeEmoji from "country-code-emoji";
 import DownloadButton from "@/components/buttons/download-button";
-import Postcard from "@/components/postcard";
 import CopyButton from "@/components/buttons/copy-button";
 import DeleteButton from "@/components/buttons/delete-button";
 
@@ -90,7 +89,13 @@ const BlurImage = ({ card }: { card: Card }) => {
   );
 };
 
-const SelectedCard = ({ selected, setSelected }: { selected: Card }) => {
+const SelectedCard = ({
+  selected,
+  setSelected,
+}: {
+  selected: Card;
+  setSelected: Dispatch<Card | null>;
+}) => {
   return (
     <div className="h-full w-full flex flex-col relative z-50">
       <motion.div

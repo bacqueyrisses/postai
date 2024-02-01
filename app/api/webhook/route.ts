@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 import { kv } from "@vercel/kv";
-import { getBlurData } from "@/lib/utils/blur-data";
+import { getBlurData } from "@/lib/blur-data";
 
 export async function POST(req: Request) {
   const searchParams = new URL(req.url).searchParams;

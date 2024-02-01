@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import { raleway } from "@/lib/fonts";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -16,7 +16,12 @@ export const metadata: Metadata = {
   description: "create your virtual ai-generated location-based postcard.",
   metadataBase: new URL("https://mypostai.vercel.app"),
 };
-
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#E9E7DF" },
+    { media: "(prefers-color-scheme: dark)", color: "#E9E7DF" },
+  ],
+};
 export default function RootLayout({
   children,
 }: {

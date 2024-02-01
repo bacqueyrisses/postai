@@ -1,10 +1,9 @@
 "use client";
 import Image from "next/image";
 import RotatingGlobe from "@/components/locations/RotatingGlobe";
-import LocationsContainer from "@/components/containers/LocationsContainer";
+import LocationsContainer from "@/components/containers/locations-container";
 import { useState } from "react";
 import { SelectedCityType } from "@/types/global";
-import { useUser } from "@clerk/nextjs";
 
 export default function ClientHomePage() {
   const [selectedCity, setSelectedCity] = useState<SelectedCityType>({
