@@ -22,7 +22,7 @@ export default function SaveButton({
         className={
           "flex h-9 w-9 bg-yellow-500 items-center justify-center rounded-full shadow-sm"
         }
-        onClick={() => toast.success("favorite already added")}
+        onClick={() => toast.success("favorite already saved")}
       >
         <Check className="h-4 w-4 text-white" />
       </button>
@@ -30,7 +30,7 @@ export default function SaveButton({
       <form
         action={(data) => {
           createFavoriteWithId(data)
-            .then(() => toast.success("favorite added"))
+            .then(() => toast.success("favorite saved"))
             .catch((error) => {
               console.error(error);
               toast.error("error, please retry!");
