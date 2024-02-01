@@ -15,7 +15,6 @@ export default function Postcard({
   blur,
   city,
   countryCode,
-  children,
   userId,
 }: {
   id: string;
@@ -23,7 +22,6 @@ export default function Postcard({
   blur: string | null;
   city: string;
   countryCode: string;
-  children?: ReactNode;
   userId: string | null;
 }) {
   return (
@@ -54,7 +52,6 @@ export default function Postcard({
               blur={blur}
               userId={userId}
             />
-            {children}
           </div>
         )}
         {image && blur ? (
