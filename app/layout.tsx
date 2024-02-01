@@ -7,6 +7,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { neobrutalism } from "@clerk/themes";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: {
@@ -22,11 +23,7 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: dark)", color: "#E9E7DF" },
   ],
 };
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={raleway.className}>
       <ClerkProvider

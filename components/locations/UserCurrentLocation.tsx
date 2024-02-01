@@ -23,7 +23,6 @@ export default function UserCurrentLocation({
       return localStorage.setItem("hasLocationPermission", "false");
 
     getUserCurrentLocation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = async () => {
@@ -36,7 +35,7 @@ export default function UserCurrentLocation({
     });
   };
 
-  function getUserCurrentLocation(): void {
+  function getUserCurrentLocation() {
     // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
     navigator.geolocation.getCurrentPosition(
       async ({ coords }) => {
