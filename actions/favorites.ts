@@ -3,15 +3,7 @@
 import { sql } from "@vercel/postgres";
 import { revalidateTag } from "next/cache";
 import { del } from "@vercel/blob";
-import { z } from "zod";
-
-const CreateSchema = z.object({
-  image: z.string(),
-  blur: z.string(),
-  city: z.string(),
-  countryCode: z.string(),
-  userId: z.string(),
-});
+import { CreateSchema } from "@/lib/schemas";
 
 export async function createFavorite(id: string, formData: FormData) {
   const validatedFields = CreateSchema.safeParse({
