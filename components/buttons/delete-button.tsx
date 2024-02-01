@@ -6,16 +6,16 @@ import { Dispatch } from "react";
 import { Postcard } from "@/types/definitions";
 
 export default function DeleteButton({
-  id,
+  image,
   setSelected,
 }: {
-  id: Postcard["id"];
+  image: Postcard["image"];
   setSelected: Dispatch<Postcard | null>;
 }) {
   return (
     <form
       action={() => {
-        deleteFavorite(id).then((id) => {
+        deleteFavorite(image).then((id) => {
           setSelected(null);
         });
       }}

@@ -131,7 +131,7 @@ const SelectedPostCard = ({
         >
           <CopyButton id={selected.id} />
           <DownloadButton id={selected.id} image={selected.image} />
-          <DeleteButton setSelected={setSelected} id={selected.id} />
+          <DeleteButton setSelected={setSelected} image={selected.image} />
         </div>
       </motion.div>
     </div>
