@@ -3,6 +3,7 @@ const env = process.env.VERCEL_ENV;
 import withPlaiceholder from "@plaiceholder/next";
 
 const nextConfig = {
+  logging: { fetches: { fullUrl: true } },
   images: {
     remotePatterns: [
       {
