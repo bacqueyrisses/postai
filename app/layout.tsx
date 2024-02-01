@@ -3,8 +3,8 @@ import { raleway } from "@/lib/fonts";
 
 import type { Metadata, Viewport } from "next";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { neobrutalism } from "@clerk/themes";
 
