@@ -9,10 +9,11 @@ datasource db {
 }
 
 model Favorite {
-  id          String @id @unique
-  image       String @unique
+  id          String   @id @unique
+  image       String   @unique
   blur        String
   city        String
   countryCode String
   userId      String
+  createdAt   DateTime @default(now())
 }

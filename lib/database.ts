@@ -6,7 +6,7 @@ import { Favorite } from "@prisma/client";
 async function getFavorites(user: User) {
   try {
     const data =
-      await sql<Favorite>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "id" DESC;`;
+      await sql<Favorite>`SELECT * FROM "Favorite" WHERE "userId" = ${user.id} ORDER BY "createdAt" DESC;`;
 
     return data.rows;
   } catch (error) {
