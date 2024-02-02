@@ -1,6 +1,6 @@
 import { sql } from "@vercel/postgres";
 import { User } from "@clerk/nextjs/api";
-import { unstable_cache as nextCache } from "next/cache";
+import { revalidateTag, unstable_cache as nextCache } from "next/cache";
 import { Favorite } from "@prisma/client";
 
 async function getFavorites(user: User) {

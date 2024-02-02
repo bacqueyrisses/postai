@@ -2,6 +2,7 @@ import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 import { Favorite } from "@prisma/client";
+import { createMiddlewareFavorite, revalidateFavorites } from "@/lib/database";
 
 export default authMiddleware({
   afterAuth(auth, request) {
@@ -47,6 +48,7 @@ export default authMiddleware({
       countryCode: splitValues[4],
       userId: auth.userId!,
     });
+    void revalidateFavorites;
 
     const nextResponse = NextResponse.next();
     nextResponse.cookies.set("newFavorite", "");
