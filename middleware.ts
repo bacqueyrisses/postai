@@ -64,7 +64,7 @@ async function create({
   city,
   countryCode,
   userId,
-}: Favorite) {
+}: Omit<Favorite, "createdAt">) {
   try {
     await sql`INSERT INTO "Favorite" (id, image, blur, city, "countryCode", "userId") VALUES (${id}, ${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
   } catch (error) {
