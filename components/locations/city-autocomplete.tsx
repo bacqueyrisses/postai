@@ -13,6 +13,7 @@ import {
 import { isMobile } from "react-device-detect";
 
 import { SelectedCityType } from "@/types/global";
+import { LoadingCircle } from "@/components/icons";
 
 type City = {
   place_id: string;
@@ -47,6 +48,7 @@ export default function CityAutocomplete({
   const [selectedInputCity, setSelectedInputCity] = useState<string | null>(
     null,
   );
+  const [cityLoading, setCityLoading] = useState<string | null>(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -61,7 +63,7 @@ export default function CityAutocomplete({
       const newSearchTerm = event.target.value;
       debounceTimer = setTimeout(() => {
         setSearchTerm(newSearchTerm);
-      }, 300);
+      }, 100);
     };
   }, []);
 
@@ -73,7 +75,8 @@ export default function CityAutocomplete({
     return response.json();
   }
 
-  const handleSubmit = async (city: City) => {
+  const handleClick = async (city: City) => {
+    setCityLoading(city.description.toLowerCase());
     const data = await getCountryCode(city.place_id);
 
     const currentInputCity = city.structured_formatting.main_text.toLowerCase();
@@ -92,6 +95,9 @@ export default function CityAutocomplete({
     });
 
     setIsOpen(false);
+    setTimeout(() => {
+      setCityLoading(null);
+    }, 300);
   };
 
   return (
@@ -164,16 +170,29 @@ export default function CityAutocomplete({
             </div>
           )}
           {cities && cities.length > 0 && (
-            <div className={"flex gap-4 justify-center items-center "}>
+            <div className={"flex gap-4 justify-center items-center"}>
               {cities.slice(0, isMobile ? 2 : 3).map((city, index: number) => (
                 <button
                   className={`${getAutocompleteClassNames(
                     index,
                   )} rounded-full px-7 py-2 border-2 transition-colors ease-in-out duration-300 min-h-full`}
                   key={city.place_id}
-                  onClick={() => handleSubmit(city)}
+                  onClick={() => handleClick(city)}
                 >
-                  {city.description.toLowerCase()}
+                  {cityLoading === city.description.toLowerCase() ? (
+                    <div
+                      className={
+                        "w-full relative flex items-center justify-center"
+                      }
+                    >
+                      <div className="invisible">
+                        {city.description.toLowerCase()}
+                      </div>
+                      <LoadingCircle className="text-inherit h-5 w-5 absolute" />
+                    </div>
+                  ) : (
+                    city.description.toLowerCase()
+                  )}
                 </button>
               ))}
             </div>
