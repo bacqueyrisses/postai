@@ -2,7 +2,7 @@ import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 import { Favorite } from "@prisma/client";
-import { createMiddlewareFavorite, revalidateFavorites } from "@/lib/database";
+import { revalidateFavorites } from "@/lib/database";
 
 export default authMiddleware({
   afterAuth(auth, request) {
