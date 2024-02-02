@@ -13,6 +13,7 @@
     "@clerk/nextjs": "^4.27.2",
     "@clerk/themes": "^1.7.9",
     "@plaiceholder/next": "^3.0.0",
+    "@prisma/client": "^5.9.1",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-popover": "^1.0.6",
