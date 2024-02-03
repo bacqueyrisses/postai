@@ -1,11 +1,11 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { revalidatePath, revalidateTag } from "next/cache";
 import { del } from "@vercel/blob";
 import { CreateSchema } from "@/lib/schemas";
 import { Postcard } from "@/types/definitions";
 import { kv } from "@vercel/kv";
+import { revalidateFavorites } from "@/lib/database";
 
 export async function createFavorite(id: Postcard["id"], formData: FormData) {
   const validatedFields = CreateSchema.safeParse({
@@ -27,7 +27,7 @@ export async function createFavorite(id: Postcard["id"], formData: FormData) {
     console.error("Database Error:", error);
     throw new Error("Failed to create favorite.");
   } finally {
-    revalidateTag("favorites");
+    revalidateFavorites();
   }
 }
 
@@ -43,6 +43,6 @@ export async function deleteFavorite(
     console.error("Database Error:", error);
     throw new Error("Failed to delete favorite.");
   } finally {
-    revalidateTag("favorites");
+    revalidateFavorites();
   }
 }

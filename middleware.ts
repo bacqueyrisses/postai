@@ -1,12 +1,10 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { sql } from "@vercel/postgres";
-import { Favorite } from "@prisma/client";
-import { revalidateFavorites } from "@/lib/database";
+import { createFavorite } from "@/actions/favorites";
 
 export default authMiddleware({
   afterAuth(auth, request) {
-    // early redirect to authenticated users coming from /generation and /home
+    // early redirect to sign in users coming from /generation and /home
     const fromHome =
       request.headers.get("referer") === process.env.NEXT_SERVER_URL;
     const fromGeneration = request.url.includes("generation");
@@ -19,7 +17,7 @@ export default authMiddleware({
     const city = searchParams.get("city");
     const countryCode = searchParams.get("countryCode");
 
-    // redirect users who aren't authenticated & have created a postcard
+    // redirect users not signed in & that have created a postcard
     if (!auth.userId && image && city && countryCode) {
       const nextResponse = NextResponse.redirect(
         new URL(`/sign-in`, request.url),
@@ -30,25 +28,23 @@ export default authMiddleware({
       return nextResponse;
     }
 
-    // redirect users who aren't authenticated
+    // redirect user not signed in
     if (!auth.userId)
       return NextResponse.redirect(new URL("/sign-in", request.url));
 
-    // redirect authenticated users
+    // redirect new signed in/signed-up users & create favorite
     const newCookieValues = request.cookies.get("newFavorite")?.value;
     if (!newCookieValues) return NextResponse.next();
 
     const splitValues: string[] = newCookieValues?.split("&");
+    const formData = new FormData();
+    formData.append("image", splitValues[1]);
+    formData.append("blur", splitValues[2]);
+    formData.append("city", splitValues[3]);
+    formData.append("countryCode", splitValues[4]);
+    formData.append("userId", auth.userId!);
 
-    void create({
-      id: splitValues[0],
-      image: splitValues[1],
-      blur: splitValues[2],
-      city: splitValues[3],
-      countryCode: splitValues[4],
-      userId: auth.userId!,
-    });
-    void revalidateFavorites;
+    void createFavorite(splitValues[0], formData);
 
     const nextResponse = NextResponse.next();
     nextResponse.cookies.set("newFavorite", "");
@@ -56,22 +52,6 @@ export default authMiddleware({
     return nextResponse;
   },
 });
-
-async function create({
-  id,
-  image,
-  blur,
-  city,
-  countryCode,
-  userId,
-}: Omit<Favorite, "createdAt">) {
-  try {
-    await sql`INSERT INTO "Favorite" (id, image, blur, city, "countryCode", "userId") VALUES (${id}, ${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to create favorite.");
-  }
-}
 
 export const config = {
   matcher: ["/favorites"],
