@@ -19,10 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.postai.enzo.codes"),
 };
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#E9E7DF" },
-    { media: "(prefers-color-scheme: dark)", color: "#E9E7DF" },
-  ],
+  themeColor: "E9E7DF",
 };
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
