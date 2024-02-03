@@ -21,12 +21,15 @@ export default function ClientHomePage() {
 
   return (
     <>
-      <div className={"text-3xl md:text-6xl font-normal md:font-normal"}>
-        <span className={"font-medium md:font-normal"}>
-          create your virtual
+      <div
+        className={
+          "text-3xl md:text-6xl lg:text-6xl font-normal lg:font-normal space-y-0.5 lg:space-y-0"
+        }
+      >
+        <span className={"font-medium lg:font-normal"}>
+          create your virtual{" "}
         </span>
-        <div className={"block md:inline"}>
-          {" "}
+        <div className={"block lg:inline"}>
           <Image
             src={"/robot.webp"}
             alt={"robot telemoji"}
@@ -35,11 +38,11 @@ export default function ClientHomePage() {
             height="70"
             priority={true}
           />{" "}
-          ai-generated <br className={"hidden md:inline"} /> &
+          ai-generated <br className={"hidden lg:inline"} /> &
         </div>{" "}
         <div
           className={
-            "h-8 w-8 md:w-20 md:h-20 scale-[0.2] md:scale-[0.275] -translate-y-2 md:translate-y-0.5 -translate-x-5 inline-block"
+            "h-8 w-8 md:h-14 md:w-14 lg:w-20 lg:h-20 scale-[0.2] md:scale-[0.26] lg:scale-[0.275] -translate-y-2 md:-translate-y-3 lg:translate-y-0.5 -translate-x-5 inline-block"
           }
         >
           <RotatingGlobe
@@ -48,7 +51,7 @@ export default function ClientHomePage() {
           />
         </div>{" "}
         location-based{" "}
-        <span className={"inline md:hidden"}>
+        <span className={"inline lg:hidden"}>
           <br />
         </span>
         <Image
@@ -58,11 +61,11 @@ export default function ClientHomePage() {
           height="67"
           priority={true}
           className={
-            "-mt-2 -mx-1.5 md:-mx-2.5 inline w-11 h-11 md:w-20 md:h-20"
+            "-mt-2 -mx-1.5 lg:-mx-2.5 inline w-11 h-11 md:w-20 md:h-20"
           }
         />
         {"  "}
-        <span className={"font-medium md:font-normal"}>postcard</span>
+        <span className={"font-medium lg:font-normal"}>postcard</span>
       </div>
 
       <LocationsContainer
