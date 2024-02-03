@@ -76,12 +76,12 @@ export default function Postcard({
           <WavyBackground
             backgroundFill={"#12B981"}
             speed={"slow"}
-            className="z-10 w-full flex justify-start mt-32 items-center flex-col h-[768px]"
+            className="z-10 w-full flex gap-2 md:gap-4 justify-start mt-12 md:mt-16 lg:mt-32 items-center flex-col h-[768px]"
           >
-            <p className="text-2xl md:text-3xl lg:text-4xl text-white font-medium text-center">
+            <p className="text-xl md:text-3xl lg:text-4xl text-white font-medium text-center">
               generating your postcard
             </p>
-            <p className="text-base md:text-lg mt-4 text-white font-normal text-center">
+            <p className="text-sm md:text-lg text-white font-normal text-center">
               it can take up to 30s to complete
             </p>
           </WavyBackground>

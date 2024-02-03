@@ -57,7 +57,7 @@ export default function SaveButton({
         href={`/favorites?id=${id}&image=${image}&blur=${blur}&city=${city}&countryCode=${countryCode}`}
       >
         {loading ? (
-          <LoadingCircle className={"w-4 h-4 text-white"} />
+          <LoadingCircle className={"text-white"} />
         ) : (
           <Star className="h-4 w-4 text-white" />
         )}
@@ -73,7 +73,7 @@ function SubmitButton() {
   return (
     <button>
       {pending ? (
-        <LoadingCircle className={"w-4 h-4 text-white"} />
+        <LoadingCircle className={"text-white"} />
       ) : (
         <Star className="h-4 w-4 text-white" />
       )}

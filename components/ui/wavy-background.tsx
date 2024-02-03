@@ -106,7 +106,7 @@ export const WavyBackground = ({
       )}
     >
       <canvas
-        className="absolute inset-y-0 z-0 blur-sm"
+        className="absolute inset-y-0 -translate-y-12 md:-translate-y-10 lg:-translate-y-0 z-0 blur-sm"
         ref={canvasRef}
         id="canvas"
       ></canvas>

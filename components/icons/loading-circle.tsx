@@ -10,7 +10,7 @@ export default function LoadingCircle({
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className={`${className ? className : "w-6 h-6"} animate-spinner mx-auto`}
+      className={`w-4 h-4 md:w-6 md:h-6 animate-spinner mx-auto ${className}`}
     >
       <path
         strokeLinecap="round"
