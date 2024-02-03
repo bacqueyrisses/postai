@@ -42,7 +42,7 @@ export default function ClientHomePage() {
         </div>{" "}
         <div
           className={
-            "h-8 w-8 md:h-14 md:w-14 lg:w-20 lg:h-20 scale-[0.2] md:scale-[0.26] lg:scale-[0.275] -translate-y-2 md:-translate-y-3 lg:translate-y-0.5 -translate-x-3 md:-translate-x-5 inline-block"
+            "h-8 w-8 md:h-14 md:w-14 lg:w-20 lg:h-20 scale-[0.2] md:scale-[0.26] lg:scale-[0.275] -translate-y-2 md:-translate-y-3 lg:translate-y-0.5 -translate-x-4 md:-translate-x-5 inline-block"
           }
         >
           <RotatingGlobe
