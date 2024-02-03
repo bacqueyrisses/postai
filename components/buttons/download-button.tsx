@@ -45,12 +45,12 @@ export default function DownloadButton({
             toast.error("error, please retry!");
           });
       }}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 shadow-sm transition-all hover:scale-105 active:scale-95"
+      className="flex h-7 w-7 md:h-9 md:w-9 items-center justify-center rounded-full bg-emerald-500 shadow-sm transition-all hover:scale-105 active:scale-95"
     >
       {downloading ? (
-        <LoadingCircle className={"text-white"} />
+        <LoadingCircle className={"h-3 w-3 md:h-4 md:w-4 text-white"} />
       ) : (
-        <Download className="h-4 w-4 text-white" />
+        <Download className="h-3 w-3 md:h-4 md:w-4 text-white" />
       )}
     </button>
   );

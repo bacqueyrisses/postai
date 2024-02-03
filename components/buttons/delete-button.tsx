@@ -23,7 +23,7 @@ export default function DeleteButton({
           toast.success("favorite deleted");
         });
       }}
-      className="flex h-9 w-9 bg-red-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
+      className="flex h-7 w-7 md:h-9 md:w-9 bg-red-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
     >
       <SubmitButton />
     </form>
@@ -35,9 +35,9 @@ function SubmitButton() {
   return (
     <button>
       {pending ? (
-        <LoadingCircle className={"text-white"} />
+        <LoadingCircle className={"h-3 w-3 md:h-4 md:w-4 text-white"} />
       ) : (
-        <XCircle className="h-5 w-5 text-white" />
+        <XCircle className="h-4 w-4 md:h-5 md:w-5 text-white" />
       )}
     </button>
   );
