@@ -113,12 +113,12 @@ const SelectedPostCard = ({
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className="flex items-center justify-between mt-4"
+        className="flex flex-col md:flex-row h-full md:h-auto items-center justify-between mt-4"
       >
-        <div className={"basis-1/3"} />
+        <div className={"hidden md:block md:basis-1/3"} />
         <div
           className={
-            "basis-1/3 sm:text-3xl text-2xl sm:space-x-3 space-x-2 bg-cyan-600 min-w-fit px-10 rounded-full py-2 text-white"
+            "text-lg md:text-2xl lg:text-3xl md:space-x-3 space-x-2 bg-cyan-600 min-w-fit md:px-10 px-5 rounded-full py-0.5 md:py-2 text-white"
           }
         >
           <span>{selected.city}</span>
@@ -126,7 +126,7 @@ const SelectedPostCard = ({
         </div>
         <div
           className={
-            "basis-1/3 gap-2 flex items-center justify-end -translate-x-6"
+            "basis-1/3 gap-1 md:gap-2 flex items-end md:items-center justify-center md:justify-end md:-translate-x-6 -translate-x-0"
           }
         >
           <CopyButton id={selected.id} />
