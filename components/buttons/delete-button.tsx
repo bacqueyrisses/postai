@@ -3,17 +3,17 @@ import { XCircle } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { deleteFavorite } from "@/actions/favorites";
 import { Dispatch } from "react";
-import { Postcard } from "@/types/definitions";
 import { toast } from "sonner";
+import { Favorite } from "@prisma/client";
 
 export default function DeleteButton({
   id,
   image,
   setSelected,
 }: {
-  id: Postcard["id"];
-  image: Postcard["image"];
-  setSelected: Dispatch<Postcard | null>;
+  id: Favorite["id"];
+  image: Favorite["image"];
+  setSelected: Dispatch<Favorite | null>;
 }) {
   return (
     <form

@@ -4,8 +4,13 @@ import { LoadingCircle } from "@/components/icons";
 import { Copy } from "lucide-react";
 import { Postcard } from "@/types/definitions";
 import { toast } from "sonner";
+import { Favorite } from "@prisma/client";
 
-export default function CopyButton({ id }: { id: Postcard["id"] }) {
+export default function CopyButton({
+  id,
+}: {
+  id: Postcard["id"] | Favorite["id"];
+}) {
   const [copying, setCopying] = useState(false);
 
   return (

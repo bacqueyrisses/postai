@@ -37,14 +37,15 @@ export default authMiddleware({
     if (!newCookieValues) return NextResponse.next();
 
     const splitValues: string[] = newCookieValues?.split("&");
-    const formData = new FormData();
-    formData.append("image", splitValues[1]);
-    formData.append("blur", splitValues[2]);
-    formData.append("city", splitValues[3]);
-    formData.append("countryCode", splitValues[4]);
-    formData.append("userId", auth.userId!);
 
-    void createFavorite(splitValues[0], formData);
+    void createFavorite({
+      id: splitValues[0],
+      image: splitValues[1],
+      blur: splitValues[2],
+      city: splitValues[3],
+      countryCode: splitValues[4],
+      userId: auth.userId!,
+    });
 
     const nextResponse = NextResponse.next();
     nextResponse.cookies.set("newFavorite", "");

@@ -23,7 +23,7 @@ export default function Postcard({
   blur: string | null;
   city: string;
   countryCode: string;
-  userId: string | null;
+  userId?: string;
   saved: boolean;
 }) {
   return (

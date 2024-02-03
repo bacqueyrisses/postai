@@ -6,17 +6,17 @@ import Image from "next/image";
 import DownloadButton from "@/components/buttons/download-button";
 import CopyButton from "@/components/buttons/copy-button";
 import DeleteButton from "@/components/buttons/delete-button";
-import { Postcard } from "@/types/definitions";
 // @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
 import countryCodeEmoji from "country-code-emoji";
+import { Favorite } from "@prisma/client";
 
-export const LayoutGrid = ({ postcards }: { postcards: Postcard[] }) => {
-  const [selected, setSelected] = useState<Postcard | null>(null);
-  const [lastSelected, setLastSelected] = useState<Postcard | null>(null);
+export const LayoutGrid = ({ favorites }: { favorites: Favorite[] }) => {
+  const [selected, setSelected] = useState<Favorite | null>(null);
+  const [lastSelected, setLastSelected] = useState<Favorite | null>(null);
 
-  const handleClick = (postcard: Postcard) => {
+  const handleClick = (favorite: Favorite) => {
     setLastSelected(selected);
-    setSelected(postcard);
+    setSelected(favorite);
   };
 
   const handleOutsideClick = () => {
@@ -26,29 +26,29 @@ export const LayoutGrid = ({ postcards }: { postcards: Postcard[] }) => {
 
   return (
     <div
-      className={`${postcards.length > 1 ? "md:grid-cols-2 max-w-7xl" : "max-w-3xl"} w-full h-full p-10 grid grid-cols-1 mx-auto gap-4`}
+      className={`${favorites.length > 1 ? "md:grid-cols-2 max-w-7xl" : "max-w-3xl"} w-full h-full p-10 grid grid-cols-1 mx-auto gap-4`}
     >
-      {postcards.map((postcard, i) => (
+      {favorites.map((favorite, i) => (
         <div
           key={i}
           className={`aspect-[3/2] ${!selected?.id && "hover:cursor-pointer"}`}
         >
           <motion.div
-            onClick={() => handleClick(postcard)}
+            onClick={() => handleClick(favorite)}
             className={cn(
               "relative overflow-clip rounded-2xl",
-              selected?.id === postcard.id
+              selected?.id === favorite.id
                 ? "fixed inset-0 h-[40%] w-[90%] md:h-[65%] md:w-[60%] m-auto z-50 flex justify-center items-center flex-wrap flex-col rounded-3xl"
-                : lastSelected?.id === postcard.id
+                : lastSelected?.id === favorite.id
                   ? "z-40 bg-white h-full w-full"
                   : "bg-white h-full w-full",
             )}
             layout
           >
-            {selected?.id === postcard.id && (
+            {selected?.id === favorite.id && (
               <SelectedPostCard selected={selected} setSelected={setSelected} />
             )}
-            <BlurImage postcard={postcard} />
+            <BlurImage favorite={favorite} />
           </motion.div>
         </div>
       ))}
@@ -64,19 +64,19 @@ export const LayoutGrid = ({ postcards }: { postcards: Postcard[] }) => {
   );
 };
 
-const BlurImage = ({ postcard }: { postcard: Postcard }) => {
+const BlurImage = ({ favorite }: { favorite: Favorite }) => {
   return (
     <>
       <Image
-        src={postcard.image}
+        src={favorite.image}
         width={1024}
         height={768}
         placeholder={"blur"}
-        blurDataURL={postcard.blur}
+        blurDataURL={favorite.blur}
         className={
           "aspect-[3/2] object-fill absolute inset-0 h-full w-full transition duration-200"
         }
-        alt={`postcard of ${postcard.city}`}
+        alt={`postcard of ${favorite.city}`}
       />
     </>
   );
@@ -86,8 +86,8 @@ const SelectedPostCard = ({
   selected,
   setSelected,
 }: {
-  selected: Postcard;
-  setSelected: Dispatch<Postcard | null>;
+  selected: Favorite;
+  setSelected: Dispatch<Favorite | null>;
 }) => {
   return (
     <div className="h-full w-full flex flex-col relative z-50">

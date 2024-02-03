@@ -3,23 +3,29 @@
 import { sql } from "@vercel/postgres";
 import { del } from "@vercel/blob";
 import { CreateSchema } from "@/lib/schemas";
-import { Postcard } from "@/types/definitions";
 import { kv } from "@vercel/kv";
 import { revalidateFavorites } from "@/lib/database";
+import { Favorite } from "@prisma/client";
 
-export async function createFavorite(id: Postcard["id"], formData: FormData) {
+export async function createFavorite({
+  id,
+  image,
+  blur,
+  city,
+  countryCode,
+  userId,
+}: Omit<Favorite, "createdAt">) {
   const validatedFields = CreateSchema.safeParse({
-    image: formData.get("image"),
-    blur: formData.get("blur"),
-    city: formData.get("city"),
-    countryCode: formData.get("countryCode"),
-    userId: formData.get("userId"),
+    id,
+    image,
+    blur,
+    city,
+    countryCode,
+    userId,
   });
 
   if (!validatedFields.success)
     throw new Error("Couldn't validate Create Favorite data.");
-
-  const { image, blur, city, countryCode, userId } = validatedFields.data;
 
   try {
     await sql`INSERT INTO "Favorite" (id, image, blur, city, "countryCode", "userId") VALUES (${id}, ${image}, ${blur}, ${city}, ${countryCode}, ${userId}) RETURNING "id";`;
@@ -32,8 +38,8 @@ export async function createFavorite(id: Postcard["id"], formData: FormData) {
 }
 
 export async function deleteFavorite(
-  id: Postcard["image"],
-  image: Postcard["image"],
+  id: Favorite["id"],
+  image: Favorite["image"],
 ) {
   try {
     await del(image);

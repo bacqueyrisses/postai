@@ -3,6 +3,7 @@ import { LoadingCircle } from "@/components/icons";
 import { Download } from "lucide-react";
 import { Postcard } from "@/types/definitions";
 import { toast } from "sonner";
+import { Favorite } from "@prisma/client";
 
 function forceDownload(blobUrl: string, filename: string) {
   let a: any = document.createElement("a");
@@ -17,8 +18,8 @@ export default function DownloadButton({
   id,
   image,
 }: {
-  id: Postcard["id"];
-  image: Postcard["image"];
+  id: Postcard["id"] | Favorite["id"];
+  image: Postcard["image"] | Favorite["image"];
 }) {
   const [downloading, setDownloading] = useState(false);
 

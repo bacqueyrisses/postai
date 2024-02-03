@@ -39,7 +39,7 @@ export default async function FavoritesContainer({
           </Link>
         </div>
       )}
-      {favorites?.length > 0 && <LayoutGrid postcards={favorites} />}
+      {favorites?.length > 0 && <LayoutGrid favorites={favorites} />}
     </>
   );
 }

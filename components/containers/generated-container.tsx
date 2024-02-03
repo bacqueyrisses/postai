@@ -43,7 +43,7 @@ export default function GeneratedContainer({
       blur={blur}
       city={city}
       countryCode={countryCode}
-      userId={user?.id || null}
+      userId={user?.id}
       saved={saved}
     />
   );

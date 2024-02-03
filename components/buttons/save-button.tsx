@@ -2,10 +2,12 @@ import { LoadingCircle } from "@/components/icons";
 import { Check, Star } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { createFavorite } from "@/actions/favorites";
-import Link from "next/link";
-import { Postcard } from "@/types/definitions";
 import { toast } from "sonner";
 import { Dispatch, useState } from "react";
+import Link from "next/link";
+
+import { Postcard } from "@/types/definitions";
+import { Favorite } from "@prisma/client";
 
 export default function SaveButton({
   id,
@@ -15,9 +17,9 @@ export default function SaveButton({
   countryCode,
   userId,
   saved,
-}: Postcard & { userId: string | null; saved: boolean }) {
+}: (Favorite | Postcard) & { userId: string | undefined; saved: boolean }) {
   const [loading, setLoading] = useState(false);
-  const createFavoriteWithId = createFavorite.bind(null, id);
+
   const withUser = (saved: boolean, userId: string) => {
     return saved ? (
       <button
@@ -30,8 +32,8 @@ export default function SaveButton({
       </button>
     ) : (
       <form
-        action={(data) => {
-          createFavoriteWithId(data)
+        action={() => {
+          createFavorite({ id, image, blur, city, countryCode, userId })
             .then(() => toast.success("favorite saved"))
             .catch((error) => {
               console.error(error);
@@ -40,16 +42,6 @@ export default function SaveButton({
         }}
         className="flex h-9 w-9 bg-yellow-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
       >
-        <input className="hidden" name="image" value={image} readOnly />
-        <input className="hidden" name="blur" value={blur} readOnly />
-        <input className="hidden" name="city" value={city} readOnly />
-        <input
-          className="hidden"
-          name="countryCode"
-          value={countryCode}
-          readOnly
-        />
-        <input className="hidden" name="userId" value={userId} readOnly />
         <SubmitButton />
       </form>
     );
@@ -72,6 +64,7 @@ export default function SaveButton({
       </Link>
     );
   };
+
   return userId ? withUser(saved, userId) : withoutUser(loading, setLoading);
 }
 
