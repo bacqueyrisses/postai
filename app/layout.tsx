@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               "bg-emerald-400 border-emerald-400 shadow-none hover:bg-white",
             socialButtonsIconButton__github:
               "bg-pink-400 border-pink-400 shadow-none hover:bg-white",
-            card: "w-auto sm:px-10 px-14 shadow-none border-0",
+            card: "w-auto md:px-24 lg:px-32 px-14 shadow-none border-0",
             userButtonPopoverCard: "sm:pl-0 sm:pr-20 pl-0 pr-10",
             profileSectionPrimaryButton: "shadow-none",
             navbarButton: "shadow-none mb-2",
