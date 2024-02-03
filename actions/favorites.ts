@@ -2,7 +2,7 @@
 
 import { sql } from "@vercel/postgres";
 import { del } from "@vercel/blob";
-import { CreateSchema } from "@/lib/schemas";
+import { CreateSchema, DeleteSchema } from "@/lib/schemas";
 import { kv } from "@vercel/kv";
 import { revalidateFavorites } from "@/lib/database";
 import { Favorite } from "@prisma/client";
@@ -41,6 +41,14 @@ export async function deleteFavorite(
   id: Favorite["id"],
   image: Favorite["image"],
 ) {
+  const validatedFields = DeleteSchema.safeParse({
+    id,
+    image,
+  });
+
+  if (!validatedFields.success)
+    throw new Error("Couldn't validate Delete Favorite data.");
+
   try {
     await del(image);
     await kv.del(id);

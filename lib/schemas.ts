@@ -8,3 +8,8 @@ export const CreateSchema = z.object({
   countryCode: z.string(),
   userId: z.string(),
 });
+
+export const DeleteSchema = z.object({
+  id: z.string(),
+  image: z.string(),
+});
