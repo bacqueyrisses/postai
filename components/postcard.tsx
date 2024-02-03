@@ -9,6 +9,16 @@ import SaveButton from "@/components/buttons/save-button";
 // @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
 import countryCodeEmoji from "country-code-emoji";
 
+interface IPostcard {
+  id: string;
+  image: string | null;
+  blur: string | null;
+  city: string;
+  countryCode: string;
+  userId?: string;
+  saved: boolean;
+}
+
 export default function Postcard({
   id,
   image,
@@ -17,15 +27,7 @@ export default function Postcard({
   countryCode,
   userId,
   saved,
-}: {
-  id: string;
-  image: string | null;
-  blur: string | null;
-  city: string;
-  countryCode: string;
-  userId?: string;
-  saved: boolean;
-}) {
+}: IPostcard) {
   return (
     <>
       {image && blur && (
@@ -45,7 +47,7 @@ export default function Postcard({
         {id && image && blur && (
           <div className="absolute right-5 top-5 z-10 flex space-x-2">
             <CopyButton id={id} />
-            <DownloadButton id={id} image={image} />{" "}
+            <DownloadButton id={id} image={image} />
             <SaveButton
               id={id}
               countryCode={countryCode}

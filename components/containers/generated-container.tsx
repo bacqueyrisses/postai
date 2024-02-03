@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import Postcard from "@/components/postcard";
-import { User } from "@clerk/nextjs/api";
 
 interface IGeneratedContainer {
   id: string;

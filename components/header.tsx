@@ -11,7 +11,6 @@ export default function Header() {
           "text-2xl md:text-3xl flex items-center italic font-semibold"
         }
       >
-        {" "}
         <Image
           src={"/logo.webp"}
           alt={"logo postai"}
