@@ -54,7 +54,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           position={"bottom-center"}
           toastOptions={{
             unstyled: true,
-            style: { margin: "auto" },
             classNames: {
               toast: `${raleway.className} w-full flex justify-center items-center gap-1.5 rounded-3xl py-2 md:py-2.5 px-8 text-white text-sm md:text-base bottom-52`,
               success: "bg-emerald-500",
