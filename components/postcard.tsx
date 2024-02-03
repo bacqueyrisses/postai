@@ -45,7 +45,7 @@ export default function Postcard({
         style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
       >
         {id && image && blur && (
-          <div className="absolute right-5 top-5 z-10 flex space-x-2">
+          <div className="absolute md:right-5 top-3 right-3 md:top-5 z-10 flex space-x-2">
             <CopyButton id={id} />
             <DownloadButton id={id} image={image} />
             <SaveButton

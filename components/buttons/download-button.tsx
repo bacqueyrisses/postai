@@ -48,7 +48,7 @@ export default function DownloadButton({
       className="flex h-7 w-7 md:h-9 md:w-9 items-center justify-center rounded-full bg-emerald-500 shadow-sm transition-all hover:scale-105 active:scale-95"
     >
       {downloading ? (
-        <LoadingCircle className={"h-3 w-3 md:h-4 md:w-4 text-white"} />
+        <LoadingCircle className={"h-2 w-2 md:h-4 md:w-4 text-white"} />
       ) : (
         <Download className="h-3 w-3 md:h-4 md:w-4 text-white" />
       )}
