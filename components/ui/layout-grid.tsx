@@ -126,7 +126,7 @@ const SelectedPostCard = ({
         </div>
         <div
           className={
-            "basis-1/3 gap-1 md:gap-2 flex items-end md:items-center justify-center md:justify-end md:-translate-x-6 -translate-x-0"
+            "basis-1/3 gap-2 flex items-end md:items-center justify-center md:justify-end md:-translate-x-6 -translate-x-0"
           }
         >
           <CopyButton id={selected.id} />
