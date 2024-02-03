@@ -29,7 +29,7 @@ export default function LocationsContainer({
     <div className={"flex flex-col text-black gap-3 md:gap-6"}>
       <div
         className={
-          "grid grid-cols-10 gap-3 md:gap-5 md:text-4xl text-lg font-medium md:font-normal z-10"
+          "grid grid-cols-10 gap-3 md:gap-5 md:text-3xl lg:text-4xl text-lg font-medium md:font-normal z-10"
         }
       >
         <UserCurrentLocation
@@ -109,7 +109,7 @@ export default function LocationsContainer({
           className={`${selectedCity.city && "pulse-success"} ${
             error &&
             "bounce-error shadow-[0px_0px_3px_6px_rgba(239,68,68,0.25)]"
-          } col-span-4 md:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full hover:bg-transparent hover:text-emerald-500 ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer transition-all`}
+          } col-span-4 md:col-span-3 lg:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full hover:bg-transparent hover:text-emerald-500 ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer transition-all`}
           action={(data) => {
             if (!selectedCity.city) {
               if (error) return;
