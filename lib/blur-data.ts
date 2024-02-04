@@ -1,6 +1,6 @@
 import { getPlaiceholder } from "plaiceholder";
 
-async function getBlurData(image: string) {
+async function getBlur(image: string) {
   const buffer = await fetch(image).then(async (response) =>
     Buffer.from(await response.arrayBuffer()),
   );
@@ -8,4 +8,4 @@ async function getBlurData(image: string) {
   return await getPlaiceholder(buffer);
 }
 
-export { getBlurData };
+export { getBlur };
