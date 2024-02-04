@@ -1,13 +1,12 @@
 "use client";
 import React, { Dispatch, useState } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn, getFlagEmoji } from "@/lib/utils";
 import Image from "next/image";
 import DownloadButton from "@/components/buttons/download-button";
 import CopyButton from "@/components/buttons/copy-button";
 import DeleteButton from "@/components/buttons/delete-button";
 import { Favorite } from "@prisma/client";
-import { getFlagEmoji } from "@/lib/utils";
 
 export const LayoutGrid = ({ favorites }: { favorites: Favorite[] }) => {
   const [selected, setSelected] = useState<Favorite | null>(null);
