@@ -6,9 +6,8 @@ import Image from "next/image";
 import DownloadButton from "@/components/buttons/download-button";
 import CopyButton from "@/components/buttons/copy-button";
 import DeleteButton from "@/components/buttons/delete-button";
-// @ts-expect-error — out-of-date library types - see https://github.com/thekelvinliu/country-code-emoji/issues/22
-import countryCodeEmoji from "country-code-emoji";
 import { Favorite } from "@prisma/client";
+import { getFlagEmoji } from "@/lib/utils";
 
 export const LayoutGrid = ({ favorites }: { favorites: Favorite[] }) => {
   const [selected, setSelected] = useState<Favorite | null>(null);
@@ -122,7 +121,7 @@ const SelectedPostCard = ({
           }
         >
           <span>{selected.city}</span>
-          <span>{countryCodeEmoji(selected.countryCode)}</span>
+          <span>{getFlagEmoji(selected.countryCode)}</span>
         </div>
         <div
           className={
