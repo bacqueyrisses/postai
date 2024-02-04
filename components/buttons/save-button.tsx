@@ -59,7 +59,7 @@ export default function SaveButton({
         {loading ? (
           <LoadingCircle className={"h-3 w-3 md:h-4 md:w-4 text-white"} />
         ) : (
-          <Star className="h-4 w-4 text-white" />
+          <Star className="h-3 w-3 md:h-4 md:w-4 text-white" />
         )}
       </Link>
     );
