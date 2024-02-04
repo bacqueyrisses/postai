@@ -9,7 +9,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { neobrutalism } from "@clerk/themes";
 import { ReactNode } from "react";
 import { Toaster } from "@/components/ui/sonner";
-import { isMobile } from "react-device-detect";
 
 export const metadata: Metadata = {
   title: {
@@ -51,7 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         }}
       >
         <Toaster
-          offset={isMobile ? 100 : 50}
+          offset={50}
           position={"bottom-center"}
           toastOptions={{
             unstyled: true,
