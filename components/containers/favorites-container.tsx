@@ -11,10 +11,10 @@ export default async function FavoritesContainer({
   return (
     <>
       {(!favorites || favorites.length === 0) && (
-        <div className={"flex gap-4 sm:gap-8 flex-col"}>
+        <div className={"flex gap-2 md:gap-4 flex-col"}>
           <div
             className={
-              "sm:text-xl text-lg flex items-center justify-center gap-1"
+              "md:text-xl text-lg flex items-center justify-center gap-1"
             }
           >
             <span>you got no postcards </span>
@@ -32,10 +32,10 @@ export default async function FavoritesContainer({
           <Link
             href={"/"}
             className={
-              "sm:text-5xl text-4xl hover:text-green-600 transition-all"
+              "md:text-4xl text-3xl hover:text-green-600 transition-all"
             }
           >
-            go create one
+            go create a new one
           </Link>
         </div>
       )}
