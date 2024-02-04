@@ -35,7 +35,7 @@ function SubmitButton() {
   return (
     <button>
       {pending ? (
-        <LoadingCircle className={"h-2 w-2 md:h-4 md:w-4 text-white"} />
+        <LoadingCircle className={"h-3 w-3 md:h-4 md:w-4 text-white"} />
       ) : (
         <XCircle className="h-4 w-4 md:h-5 md:w-5 text-white" />
       )}
