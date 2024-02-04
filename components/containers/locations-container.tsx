@@ -152,7 +152,7 @@ const SubmitButton = ({ pendingStarted }: { pendingStarted: boolean }) => {
     <button disabled={pending} className={"w-full h-full"}>
       {pending || pendingStarted ? (
         <div className={"flex justify-center items-center py-1 h-6"}>
-          <LoadingCircle />
+          <LoadingCircle className={"w-4 h-4 md:w-7 md:h-7"} />
         </div>
       ) : (
         "generate!"
