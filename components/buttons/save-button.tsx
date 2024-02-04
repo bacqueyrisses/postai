@@ -57,7 +57,7 @@ export default function SaveButton({
         href={`/favorites?id=${id}&image=${image}&blur=${blur}&city=${city}&countryCode=${countryCode}`}
       >
         {loading ? (
-          <LoadingCircle className={"text-white"} />
+          <LoadingCircle className={"h-2 w-2 md:h-4 md:w-4 text-white"} />
         ) : (
           <Star className="h-4 w-4 text-white" />
         )}
