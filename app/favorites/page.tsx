@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import FavoritesContainer from "@/components/containers/favorites-container";
 import { User } from "@clerk/nextjs/api";
 import { currentUser } from "@clerk/nextjs";
-import { getCachedFavorites } from "@/lib/database";
 import { Suspense } from "react";
 import { LoadingCircle } from "@/components/icons";
 
