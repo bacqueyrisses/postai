@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { LayoutGrid } from "@/components/ui/layout-grid";
-import { Favorite } from "@prisma/client";
+import { getCachedFavorites } from "@/lib/database";
+import { User } from "@clerk/nextjs/api";
 
-export default async function FavoritesContainer({
-  favorites,
-}: {
-  favorites: Favorite[];
-}) {
+export default async function FavoritesContainer({ user }: { user: User }) {
+  const favorites = await getCachedFavorites(user);
+
   return (
     <>
       {(!favorites || favorites.length === 0) && (
