@@ -188,7 +188,7 @@ export default function CityAutocomplete({
                       <div className="invisible">
                         {city.description.toLowerCase()}
                       </div>
-                      <LoadingCircle className="text-inherit h-3 w-3 md:h-5 md:w-5 absolute" />
+                      <LoadingCircle className="text-inherit h-4 w-4 md:h-5 md:w-5 absolute" />
                     </div>
                   ) : (
                     city.description.toLowerCase()
