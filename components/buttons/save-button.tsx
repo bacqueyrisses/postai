@@ -1,7 +1,7 @@
 import { LoadingCircle } from "@/components/icons";
 import { Check, Star } from "lucide-react";
 import { useFormStatus } from "react-dom";
-import { createFavorite } from "@/actions/favorites";
+import { createFavorite } from "@/lib/actions/favorites";
 import { toast } from "sonner";
 import { Dispatch, useState } from "react";
 import Link from "next/link";

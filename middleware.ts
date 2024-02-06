@@ -1,6 +1,6 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { createFavorite } from "@/actions/favorites";
+import { createFavorite } from "@/lib/actions/favorites";
 
 export default authMiddleware({
   afterAuth(auth, request) {
@@ -26,7 +26,7 @@ export default authMiddleware({
     if (!auth.userId && !image && !city && !countryCode)
       return NextResponse.redirect(new URL(`/sign-in`, request.url));
 
-    // create favorite or redirect just signed in/signup users that have not saved a postcard
+    // redirect new signed in/signed-up users & create favorite
     const newCookieValues = request.cookies.get("newFavorite")?.value;
     if (!newCookieValues) return NextResponse.next();
 

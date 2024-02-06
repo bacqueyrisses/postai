@@ -5,7 +5,7 @@ import { SelectedCityType } from "@/types/global";
 import * as React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { generate } from "@/actions/generation";
+import { generate } from "@/lib/actions/generation";
 import { useFormStatus } from "react-dom";
 import { LoadingCircle } from "@/components/icons";
 
