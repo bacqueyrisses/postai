@@ -1,9 +1,9 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { createFavorite } from "@/actions/favorites";
-import { getCachedFavorites } from "@/lib/database";
 
 export default authMiddleware({
+  debug: true,
   afterAuth(auth, request) {
     // early redirect to sign in users coming from /generation and /home
     const fromHome =
