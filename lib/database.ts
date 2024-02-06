@@ -20,7 +20,3 @@ export const getCachedFavorites = nextCache(
   ["favorites"],
   { tags: ["favorites"] },
 );
-
-export const revalidateFavorites = () => {
-  revalidateTag("favorites");
-};

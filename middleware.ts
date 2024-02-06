@@ -1,6 +1,7 @@
 import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { createFavorite } from "@/actions/favorites";
+import { getCachedFavorites } from "@/lib/database";
 
 export default authMiddleware({
   afterAuth(auth, request) {
@@ -8,7 +9,8 @@ export default authMiddleware({
     const fromHome =
       request.headers.get("referer") === process.env.NEXT_SERVER_URL;
     const fromGeneration = request.url.includes("generation");
-    if (fromHome || fromGeneration) return NextResponse.next();
+    if (auth.userId && (fromHome || fromGeneration))
+      return NextResponse.redirect(new URL("/favorites", request.url));
 
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");

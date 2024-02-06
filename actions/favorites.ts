@@ -4,8 +4,8 @@ import { sql } from "@vercel/postgres";
 import { del } from "@vercel/blob";
 import { CreateSchema, DeleteSchema } from "@/lib/schemas";
 import { kv } from "@vercel/kv";
-import { revalidateFavorites } from "@/lib/database";
 import { Favorite } from "@prisma/client";
+import { revalidateTag } from "next/cache";
 
 export async function createFavorite({
   id,
@@ -33,7 +33,7 @@ export async function createFavorite({
     console.error("Database Error:", error);
     throw new Error("Failed to create favorite.");
   } finally {
-    revalidateFavorites();
+    revalidateTag("favorites");
   }
 }
 
@@ -57,6 +57,6 @@ export async function deleteFavorite(
     console.error("Database Error:", error);
     throw new Error("Failed to delete favorite.");
   } finally {
-    revalidateFavorites();
+    revalidateTag("favorites");
   }
 }
