@@ -3,15 +3,7 @@ import { NextResponse } from "next/server";
 import { createFavorite } from "@/actions/favorites";
 
 export default authMiddleware({
-  debug: true,
   afterAuth(auth, request) {
-    // early redirect to sign in users coming from /generation and /home
-    const fromHome =
-      request.headers.get("referer") === process.env.NEXT_SERVER_URL;
-    const fromGeneration = request.url.includes("generation");
-    if (auth.userId && (fromHome || fromGeneration))
-      return NextResponse.redirect(new URL("/favorites", request.url));
-
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
     const image = searchParams.get("image");
@@ -19,7 +11,7 @@ export default authMiddleware({
     const city = searchParams.get("city");
     const countryCode = searchParams.get("countryCode");
 
-    // redirect users not signed in & that have created a postcard
+    // redirect users not signed in & that have saved a postcard
     if (!auth.userId && image && city && countryCode) {
       const nextResponse = NextResponse.redirect(
         new URL(`/sign-in`, request.url),
@@ -30,11 +22,11 @@ export default authMiddleware({
       return nextResponse;
     }
 
-    // redirect user not signed in
-    if (!auth.userId)
-      return NextResponse.redirect(new URL("/sign-in", request.url));
+    // redirect users not signed in & that have not saved a postcard
+    if (!auth.userId && !image && !city && !countryCode)
+      return NextResponse.redirect(new URL(`/sign-in`, request.url));
 
-    // redirect new signed in/signed-up users & create favorite
+    // create favorite or redirect just signed in/signup users that have not saved a postcard
     const newCookieValues = request.cookies.get("newFavorite")?.value;
     if (!newCookieValues) return NextResponse.next();
 
