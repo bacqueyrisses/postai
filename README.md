@@ -4,7 +4,7 @@
   Design and send AI-crafted, location-based virtual postcards. Powered by Vercel and Replicate.
 </p>
 
-<p align="center">
+<p align="center" style="margin: 0;>
   <a href="https://twitter.com/bacqueyrisses" style="text-decoration: none;">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/twitter.svg" style="width: 19px; height: auto;" alt="Enzo Bacqueyrisses Twitter Account" />
   </a> ·
