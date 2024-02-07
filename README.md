@@ -1,3 +1,5 @@
+<h1 align="center">postai</h1>
+
 <p align="center">
   Design and send AI-crafted, location-based virtual postcards. Powered by Vercel and Replicate.
 </p>
@@ -21,7 +23,6 @@
 
 <a href="https://www.postai.enzo.codes">
     <img alt="Design and send AI-crafted, location-based virtual postcards." src="/app/opengraph-image.png">
-  <h1 align="center">postai</h1>
 </a>
 
 <br/>
