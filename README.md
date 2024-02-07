@@ -25,6 +25,9 @@
 
 - Next.js [App Router](https://nextjs.org/docs/app)
 - Next.js [Server Actions](https://nextjs.org/docs/app/api-reference/functions/server-actions)
+- Tailwind CSS
+- [Clerk](https://clerk.com) for authentication
+- [Replicate](https://replicate.com) for image generation
 - [Vercel Blob](https://vercel.com/storage/blob) for image storage
 - [Vercel Postgres](https://vercel.com/storage/postgres) for user data storage
 - [Vercel KV](https://vercel.com/storage/kv) for redis
