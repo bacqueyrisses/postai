@@ -1,4 +1,4 @@
-<h1 align="center">postai</h1>
+<h1 align="center">💌 postai</h1>
 
 <p align="center">
   Design and send AI-crafted, location-based virtual postcards. Powered by Vercel and Replicate.
