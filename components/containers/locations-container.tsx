@@ -1,5 +1,5 @@
 import UserCurrentLocation from "@/components/locations/user-current-location";
-import City from "@/components/locations/city";
+import City from "@/components/locations/cit";
 import CityAutocomplete from "@/components/locations/city-autocomplete";
 import { SelectedCityType } from "@/types/global";
 import * as React from "react";
