@@ -5,13 +5,13 @@
 </p>
 
 <p align="center">
-  <a href="https://twitter.com/bacqueyrisses">
+  <a href="https://twitter.com/bacqueyrisses" style="text-decoration: none;">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/twitter.svg" style="width: 19px; height: auto;" alt="Enzo Bacqueyrisses Twitter Account" />
   </a> ·
-  <a href="https://github.com/bacqueyrisses">
+  <a href="https://github.com/bacqueyrisses" style="text-decoration: none;">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/github.svg"  style="width: 19px; height: auto;" alt="Enzo Bacqueyrisses GitHub Account" />
   </a> ·
-    <a href="https://www.linkedin.com/in/bacqueyrisses/">
+    <a href="https://www.linkedin.com/in/bacqueyrisses/" style="text-decoration: none;">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/linkedin.svg"  style="width: 19px; height: auto;" alt="Enzo Bacqueyrisses Linkedin Account" />
   </a>
 </p>
