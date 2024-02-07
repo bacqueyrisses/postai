@@ -16,7 +16,7 @@
 </p>
 
 <a href="https://www.postai.enzo.codes">
-  ![postai](https://github.com/bacqueyrisses/postai/assets/96829831/c70b7709-016b-4881-ba2a-a846053f7b1a)
+    <img alt="Design and send AI-crafted, location-based virtual postcards." src="https://github.com/bacqueyrisses/postai/assets/96829831/c70b7709-016b-4881-ba2a-a846053f7b1a">
 </a>
 
 <br/>
