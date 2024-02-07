@@ -1,8 +1,3 @@
-<a href="https://www.postai.enzo.codes">
-    <img alt="Design and send AI-crafted, location-based virtual postcards." src="/app/opengraph-image.png">
-  <h1 align="center">postai</h1>
-</a>
-
 <p align="center">
   Design and send AI-crafted, location-based virtual postcards. Powered by Vercel and Replicate.
 </p>
@@ -23,6 +18,12 @@
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
   <a href="#author"><strong>Author</strong></a>
 </p>
+
+<a href="https://www.postai.enzo.codes">
+    <img alt="Design and send AI-crafted, location-based virtual postcards." src="/app/opengraph-image.png">
+  <h1 align="center">postai</h1>
+</a>
+
 <br/>
 
 ## Tech Stack
