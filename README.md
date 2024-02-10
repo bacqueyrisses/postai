@@ -30,4 +30,8 @@
 
 ## Author
 
-- Enzo Bacqueyrisses &ensp;<a href="https://twitter.com/bacqueyrisses"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/twitter.svg" style="width: 15px; height: auto; fill: currentColor;" alt="Enzo Bacqueyrisses Twitter Account" /></a>&ensp;<a href="https://github.com/bacqueyrisses"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/github.svg"  style="width: 15px; height: auto; fill: currentColor;" alt="Enzo Bacqueyrisses GitHub Account" /></a>&ensp;<a href="https://www.linkedin.com/in/bacqueyrisses/"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/linkedin.svg"  style="width: 15px; height: auto; fill: currentColor;" alt="Enzo Bacqueyrisses Linkedin Account" /></a>
+## Author
+
+- Enzo Bacqueyrisses &ensp;<a href="https://twitter.com/bacqueyrisses"><svg class="icon" width="15" height="15" style="fill: currentColor;"><use xlink:href="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/twitter.svg#twitter"></use></svg></a>&ensp;
+<a href="https://github.com/bacqueyrisses"><svg class="icon" width="15" height="15" style="fill: currentColor;"><use xlink:href="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/github.svg#github"></use></svg></a>&ensp;
+<a href="https://www.linkedin.com/in/bacqueyrisses/"><svg class="icon" width="15" height="15" style="fill: currentColor;"><use xlink:href="https://cdn.jsdelivr.net/npm/simple-icons@v5.15.0/icons/linkedin.svg#linkedin"></use></svg></a>
