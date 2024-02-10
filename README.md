@@ -32,4 +32,4 @@
 
 ## Author
 
-- Enzo Bacqueyrisses &ensp;<a href="https://twitter.com/bacqueyrisses"><img src="https://skillicons.dev/icons?i=twitter" style="width: 15px; height: auto;" alt="Enzo Bacqueyrisses Twitter Account" /></a>&ensp;<a href="https://github.com/bacqueyrisses"><img src="hhttps://skillicons.dev/icons?i=github"  style="width: 15px; height: auto;" alt="Enzo Bacqueyrisses GitHub Account" /></a>&ensp;<a href="https://www.linkedin.com/in/bacqueyrisses/"><img src="https://skillicons.dev/icons?i=linkedin" style="width: 15px; height: auto;" alt="Enzo Bacqueyrisses Linkedin Account" /></a>
+- Enzo Bacqueyrisses &ensp;<a href="https://twitter.com/bacqueyrisses"><img src="https://skillicons.dev/icons?i=twitter" style="width: 15px; height: auto;" alt="Enzo Bacqueyrisses Twitter Account" /></a>&ensp;<a href="https://github.com/bacqueyrisses"><img src="https://skillicons.dev/icons?i=github" style="width: 15px; height: auto;" alt="Enzo Bacqueyrisses GitHub Account" /></a>&ensp;<a href="https://www.linkedin.com/in/bacqueyrisses/"><img src="https://skillicons.dev/icons?i=linkedin" style="width: 15px; height: auto;" alt="Enzo Bacqueyrisses Linkedin Account" /></a>
