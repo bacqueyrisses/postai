@@ -36,5 +36,4 @@ if (env === "preview") {
   };
 }
 
-
 export default withPlaiceholder(nextConfig);
