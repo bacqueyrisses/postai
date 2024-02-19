@@ -24,11 +24,11 @@ export default function SaveButton({
     return saved ? (
       <button
         className={
-          "flex h-7 w-7 md:h-9 md:w-9 bg-yellow-500 items-center justify-center rounded-full shadow-sm"
+          "flex h-7 w-7 items-center justify-center rounded-full bg-yellow-500 shadow-sm md:h-9 md:w-9"
         }
         onClick={() => toast.success("favorite already saved")}
       >
-        <Check className="h-3 w-3 md:h-4 md:w-4 text-white" />
+        <Check className="h-3 w-3 text-white md:h-4 md:w-4" />
       </button>
     ) : (
       <form
@@ -40,7 +40,7 @@ export default function SaveButton({
               toast.error("error, please retry!");
             });
         }}
-        className="flex h-7 w-7 md:h-9 md:w-9 bg-yellow-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-yellow-500 shadow-sm transition-all delay-75 hover:scale-105 active:scale-95 md:h-9 md:w-9"
       >
         <SubmitButton />
       </form>
@@ -52,14 +52,14 @@ export default function SaveButton({
       <Link
         onClick={() => setLoading(true)}
         className={
-          "flex h-7 w-7 md:h-9 md:w-9 bg-yellow-500 transition-all delay-75 items-center justify-center rounded-full shadow-sm hover:scale-105 active:scale-95"
+          "flex h-7 w-7 items-center justify-center rounded-full bg-yellow-500 shadow-sm transition-all delay-75 hover:scale-105 active:scale-95 md:h-9 md:w-9"
         }
         href={`/favorites?id=${id}&image=${image}&blur=${blur}&city=${city}&countryCode=${countryCode}`}
       >
         {loading ? (
-          <LoadingCircle className={"h-3 w-3 md:h-4 md:w-4 text-white"} />
+          <LoadingCircle className={"h-3 w-3 text-white md:h-4 md:w-4"} />
         ) : (
-          <Star className="h-3 w-3 md:h-4 md:w-4 text-white" />
+          <Star className="h-3 w-3 text-white md:h-4 md:w-4" />
         )}
       </Link>
     );
@@ -73,9 +73,9 @@ function SubmitButton() {
   return (
     <button>
       {pending ? (
-        <LoadingCircle className={"h-3 w-3 md:h-4 md:w-4 text-white"} />
+        <LoadingCircle className={"h-3 w-3 text-white md:h-4 md:w-4"} />
       ) : (
-        <Star className="h-3 w-3 md:h-4 md:w-4 text-white" />
+        <Star className="h-3 w-3 text-white md:h-4 md:w-4" />
       )}
     </button>
   );

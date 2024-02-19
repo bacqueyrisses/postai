@@ -23,7 +23,7 @@ export default function ClientHomePage() {
     <>
       <div
         className={
-          "text-3xl md:text-6xl lg:text-6xl font-normal lg:font-normal space-y-0.5 lg:space-y-0"
+          "space-y-0.5 text-3xl font-normal md:text-6xl lg:space-y-0 lg:text-6xl lg:font-normal"
         }
       >
         <span className={"font-medium lg:font-normal"}>
@@ -33,7 +33,7 @@ export default function ClientHomePage() {
           <Image
             src={"/robot.webp"}
             alt={"robot telemoji"}
-            className={"-mt-2 inline w-10 h-10 md:w-16 md:h-16"}
+            className={"-mt-2 inline h-10 w-10 md:h-16 md:w-16"}
             width="70"
             height="70"
             priority={true}
@@ -42,7 +42,7 @@ export default function ClientHomePage() {
         </div>{" "}
         <div
           className={
-            "h-8 w-8 md:h-14 md:w-14 lg:w-20 lg:h-20 scale-[0.2] md:scale-[0.26] lg:scale-[0.275] -translate-y-2 md:-translate-y-3 lg:translate-y-0.5 -translate-x-4 md:-translate-x-5 inline-block"
+            "inline-block h-8 w-8 -translate-x-4 -translate-y-2 scale-[0.2] md:h-14 md:w-14 md:-translate-x-5 md:-translate-y-3 md:scale-[0.26] lg:h-20 lg:w-20 lg:translate-y-0.5 lg:scale-[0.275]"
           }
         >
           <RotatingGlobe
@@ -61,7 +61,7 @@ export default function ClientHomePage() {
           height="67"
           priority={true}
           className={
-            "-mt-2 -mx-1.5 lg:-mx-2.5 inline w-11 h-11 md:w-20 md:h-20"
+            "-mx-1.5 -mt-2 inline h-11 w-11 md:h-20 md:w-20 lg:-mx-2.5"
           }
         />
         {"  "}

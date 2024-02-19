@@ -105,18 +105,18 @@ export default function CityAutocomplete({
       <DialogTrigger asChild>
         <div
           className={
-            "col-span-6 md:col-span-4 lg:col-span-5 border-emerald-700 text-emerald-700 border-2 md:border-3 rounded-full px-2.5 py-1 md:py-4 hover:bg-emerald-700 hover:text-white transition-colors ease-in-out duration-300 text-center placeholder:text-emerald-700 bg-transparent hover:placeholder:text-white focus:placeholder:text-transparent focus:outline-none cursor-pointer focus:cursor-text"
+            "col-span-6 cursor-pointer rounded-full border-2 border-emerald-700 bg-transparent px-2.5 py-1 text-center text-emerald-700 transition-colors duration-300 ease-in-out placeholder:text-emerald-700 hover:bg-emerald-700 hover:text-white hover:placeholder:text-white focus:cursor-text focus:outline-none focus:placeholder:text-transparent md:col-span-4 md:border-3 md:py-4 lg:col-span-5"
           }
         >
           {(selectedCity.type === "userSelection" && (
-            <div className={"relative w-fit mx-auto"}>
+            <div className={"relative mx-auto w-fit"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-4 h-4 md:w-7 md:h-7 pt-0.5 md:pt-1 md:-left-8 -left-5  -translate-y-1/2 top-1/2 absolute"
+                className="absolute -left-5 top-1/2 h-4 w-4 -translate-y-1/2 pt-0.5 md:-left-8  md:h-7 md:w-7 md:pt-1"
               >
                 <path
                   strokeLinecap="round"
@@ -130,13 +130,13 @@ export default function CityAutocomplete({
             "select a city"}
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:rounded-2xl max-w-4xl top-[40%] border-3 border-none flex flex-col items-center justify-start h-[215px] sm:h-[230px] space-y-1">
+      <DialogContent className="top-[40%] flex h-[215px] max-w-4xl flex-col items-center justify-start space-y-1 border-3 border-none sm:h-[230px] sm:rounded-2xl">
         <div
           className={
-            "flex justify-center items-center flex-col gap-4 basis-2/5"
+            "flex basis-2/5 flex-col items-center justify-center gap-4"
           }
         >
-          <DialogHeader className={"inline-flex justify-center items-center"}>
+          <DialogHeader className={"inline-flex items-center justify-center"}>
             <DialogTitle className={"text-center text-xl font-medium"}>
               choose your city
             </DialogTitle>
@@ -146,15 +146,15 @@ export default function CityAutocomplete({
             onChange={debouncedHandleChange}
             aria-label="Cities"
             className={
-              "text-lg placeholder:text-center text-center w-fit h-fit inline-flex justify-center items-center rounded-full border-2 border-black focus:ring-0 outline-none focus:border-emerald-700 "
+              "inline-flex h-fit w-fit items-center justify-center rounded-full border-2 border-black text-center text-lg outline-none placeholder:text-center focus:border-emerald-700 focus:ring-0 "
             }
           />
         </div>
-        <div className={"sm:text-lg text-xs basis-3/5"}>
+        <div className={"basis-3/5 text-xs sm:text-lg"}>
           {cities.length === 0 && (
             <div
               className={
-                "text-base flex justify-center items-center h-full gap-1"
+                "flex h-full items-center justify-center gap-1 text-base"
               }
             >
               Search for any city in the world
@@ -165,30 +165,30 @@ export default function CityAutocomplete({
                   "https://em-content.zobj.net/source/apple/354/globe-showing-americas_1f30e.png"
                 }
                 alt={"clipboard emoji"}
-                className={"hover:scale-105 transition-all"}
+                className={"transition-all hover:scale-105"}
               />
             </div>
           )}
           {cities && cities.length > 0 && (
-            <div className={"flex gap-4 justify-center items-center"}>
+            <div className={"flex items-center justify-center gap-4"}>
               {cities.slice(0, isMobile ? 2 : 3).map((city, index: number) => (
                 <button
                   className={`${getAutocompleteClassNames(
                     index,
-                  )} rounded-full px-7 py-2 border-2 transition-colors ease-in-out duration-300 min-h-full`}
+                  )} min-h-full rounded-full border-2 px-7 py-2 transition-colors duration-300 ease-in-out`}
                   key={city.place_id}
                   onClick={() => handleClick(city)}
                 >
                   {cityLoading === city.description.toLowerCase() ? (
                     <div
                       className={
-                        "w-full relative flex items-center justify-center"
+                        "relative flex w-full items-center justify-center"
                       }
                     >
                       <div className="invisible">
                         {city.description.toLowerCase()}
                       </div>
-                      <LoadingCircle className="text-inherit h-4 w-4 md:h-5 md:w-5 absolute" />
+                      <LoadingCircle className="absolute h-4 w-4 text-inherit md:h-5 md:w-5" />
                     </div>
                   ) : (
                     city.description.toLowerCase()

@@ -81,10 +81,10 @@ export default function UserCurrentLocation({
     <button
       onClick={handleClick}
       className={
-        "col-span-6 md:col-span-4 border-2 md:border-3 border-pink-400 text-pink-400 rounded-full px-2.5 py-1 md:py-4 hover:bg-pink-400 hover:text-white transition-colors ease-in-out cursor-pointer duration-300 inline-flex items-center justify-center gap-1 md:gap-2"
+        "col-span-6 inline-flex cursor-pointer items-center justify-center gap-1 rounded-full border-2 border-pink-400 px-2.5 py-1 text-pink-400 transition-colors duration-300 ease-in-out hover:bg-pink-400 hover:text-white md:col-span-4 md:gap-2 md:border-3 md:py-4"
       }
     >
-      <div className={"relative w-fit mx-auto"}>
+      <div className={"relative mx-auto w-fit"}>
         {selectedCity.countryCode &&
         selectedCity.city === userCurrentLocation.city ? (
           <svg
@@ -93,7 +93,7 @@ export default function UserCurrentLocation({
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-4 h-4 md:w-7 md:h-7 pt-0.5 md:pt-1 md:-left-8 -left-5  -translate-y-1/2 top-1/2 absolute"
+            className="absolute -left-5 top-1/2 h-4 w-4 -translate-y-1/2 pt-0.5 md:-left-8  md:h-7 md:w-7 md:pt-1"
           >
             <path
               strokeLinecap="round"
@@ -108,7 +108,7 @@ export default function UserCurrentLocation({
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-4 h-4 md:w-7 md:h-7 md:-left-8 -left-5  -translate-y-1/2 top-1/2 absolute"
+            className="absolute -left-5 top-1/2 h-4 w-4 -translate-y-1/2  md:-left-8 md:h-7 md:w-7"
           >
             <path
               strokeLinecap="round"

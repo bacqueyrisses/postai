@@ -15,7 +15,7 @@ export default async function FavoritesPage() {
 
   return (
     <Suspense
-      fallback={<LoadingCircle className={"w-8 h-8 md:w-10 md:h-10"} />}
+      fallback={<LoadingCircle className={"h-8 w-8 md:h-10 md:w-10"} />}
     >
       <FavoritesContainer user={user} />
     </Suspense>

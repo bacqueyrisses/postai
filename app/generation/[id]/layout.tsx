@@ -4,7 +4,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <main
       className={
-        "text-3xl md:text-6xl font-normal justify-start items-center gap-3 flex flex-col"
+        "flex flex-col items-center justify-start gap-3 text-3xl font-normal md:text-6xl"
       }
     >
       {children}

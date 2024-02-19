@@ -23,12 +23,12 @@ export default function CopyButton({
         setCopying(false);
         toast.success("postcard share link copied");
       }}
-      className="flex h-7 w-7 md:h-9 md:w-9 items-center justify-center rounded-full bg-blue-500 shadow-sm transition-all hover:scale-105 active:scale-95"
+      className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-500 shadow-sm transition-all hover:scale-105 active:scale-95 md:h-9 md:w-9"
     >
       {copying ? (
-        <LoadingCircle className={"h-3 w-3 md:h-4 md:w-4 text-white"} />
+        <LoadingCircle className={"h-3 w-3 text-white md:h-4 md:w-4"} />
       ) : (
-        <Copy className="h-3 w-3 md:h-4 md:w-4 text-white" />
+        <Copy className="h-3 w-3 text-white md:h-4 md:w-4" />
       )}
     </button>
   );

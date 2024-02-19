@@ -142,5 +142,5 @@ export default function RotatingGlobe({
       );
   }, [userCurrentLocation.countryCode]);
 
-  return <div id="chartdiv" className={"w-[50rem] h-[50rem]"}></div>;
+  return <div id="chartdiv" className={"h-[50rem] w-[50rem]"}></div>;
 }

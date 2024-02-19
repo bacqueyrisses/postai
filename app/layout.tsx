@@ -61,10 +61,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
         <body
-          className={`px-4 md:px-10 lg:px-24 flex flex-col justify-between h-screen bg-[#E9E7DF]`}
+          className={`flex h-screen flex-col justify-between bg-[#E9E7DF] px-4 md:px-10 lg:px-24`}
         >
           <Header />
-          <main className="flex flex-col justify-between text-center md:gap-28 gap-20">
+          <main className="flex flex-col justify-between gap-20 text-center md:gap-28">
             {children}
           </main>
           <Footer />

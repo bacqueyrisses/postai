@@ -24,7 +24,7 @@ export const LayoutGrid = ({ favorites }: { favorites: Favorite[] }) => {
 
   return (
     <div
-      className={`${favorites.length > 1 ? "md:grid-cols-2 max-w-7xl" : "max-w-3xl"} w-full h-full p-10 grid grid-cols-1 mx-auto gap-4`}
+      className={`${favorites.length > 1 ? "max-w-7xl md:grid-cols-2" : "max-w-3xl"} mx-auto grid h-full w-full grid-cols-1 gap-4 p-10`}
     >
       {favorites.map((favorite, i) => (
         <div
@@ -36,10 +36,10 @@ export const LayoutGrid = ({ favorites }: { favorites: Favorite[] }) => {
             className={cn(
               "relative overflow-clip rounded-2xl",
               selected?.id === favorite.id
-                ? "fixed inset-0 h-[40%] w-[90%] md:h-[65%] md:w-[60%] m-auto z-50 flex justify-center items-center flex-wrap flex-col rounded-3xl"
+                ? "fixed inset-0 z-50 m-auto flex h-[40%] w-[90%] flex-col flex-wrap items-center justify-center rounded-3xl md:h-[65%] md:w-[60%]"
                 : lastSelected?.id === favorite.id
-                  ? "z-40 bg-white h-full w-full"
-                  : "bg-white h-full w-full",
+                  ? "z-40 h-full w-full bg-white"
+                  : "h-full w-full bg-white",
             )}
             layout
           >
@@ -53,7 +53,7 @@ export const LayoutGrid = ({ favorites }: { favorites: Favorite[] }) => {
       <motion.div
         onClick={handleOutsideClick}
         className={cn(
-          "fixed h-full w-full left-0 top-0 bg-black opacity-0 z-10",
+          "fixed left-0 top-0 z-10 h-full w-full bg-black opacity-0",
           selected?.id ? "pointer-events-auto" : "pointer-events-none",
         )}
         animate={{ opacity: selected?.id ? 0.3 : 0 }}
@@ -72,7 +72,7 @@ const BlurImage = ({ favorite }: { favorite: Favorite }) => {
         placeholder={"blur"}
         blurDataURL={favorite.blur}
         className={
-          "aspect-[3/2] object-fill absolute inset-0 h-full w-full transition duration-200"
+          "absolute inset-0 aspect-[3/2] h-full w-full object-fill transition duration-200"
         }
         alt={`postcard of ${favorite.city}`}
       />
@@ -88,7 +88,7 @@ const SelectedPostCard = ({
   setSelected: Dispatch<Favorite | null>;
 }) => {
   return (
-    <div className="h-full w-full flex flex-col relative z-50">
+    <div className="relative z-50 flex h-full w-full flex-col">
       <motion.div
         initial={{
           opacity: 0,
@@ -111,12 +111,12 @@ const SelectedPostCard = ({
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className="flex flex-col md:flex-row h-full md:h-auto items-center justify-between mt-4"
+        className="mt-4 flex h-full flex-col items-center justify-between md:h-auto md:flex-row"
       >
         <div className={"hidden md:block md:basis-1/3"} />
         <div
           className={
-            "text-lg md:text-2xl lg:text-3xl md:space-x-3 space-x-2 bg-cyan-600 min-w-fit md:px-10 px-5 rounded-full py-0.5 md:py-2 text-white"
+            "min-w-fit space-x-2 rounded-full bg-cyan-600 px-5 py-0.5 text-lg text-white md:space-x-3 md:px-10 md:py-2 md:text-2xl lg:text-3xl"
           }
         >
           <span>{selected.city}</span>
@@ -124,7 +124,7 @@ const SelectedPostCard = ({
         </div>
         <div
           className={
-            "basis-1/3 gap-2 flex items-end md:items-center justify-center md:justify-end md:-translate-x-6 -translate-x-0"
+            "flex basis-1/3 -translate-x-0 items-end justify-center gap-2 md:-translate-x-6 md:items-center md:justify-end"
           }
         >
           <CopyButton id={selected.id} />

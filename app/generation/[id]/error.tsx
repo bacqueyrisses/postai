@@ -16,10 +16,10 @@ export default function Error({
 
   return (
     <div className={"flex flex-col gap-8"}>
-      <div className={"flex gap-4 sm:gap-8 flex-col"}>
+      <div className={"flex flex-col gap-4 sm:gap-8"}>
         <div
           className={
-            "sm:text-xl text-lg flex items-center justify-center gap-1"
+            "flex items-center justify-center gap-1 text-lg sm:text-xl"
           }
         >
           <span>something went wrong</span>
@@ -35,7 +35,7 @@ export default function Error({
           />
         </div>
         <button
-          className={"sm:text-5xl text-4xl hover:text-green-600 transition-all"}
+          className={"text-4xl transition-all hover:text-green-600 sm:text-5xl"}
           onClick={() => reset()}
         >
           Try again

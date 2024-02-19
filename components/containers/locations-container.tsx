@@ -26,10 +26,10 @@ export default function LocationsContainer({
   const router = useRouter();
 
   return (
-    <div className={"flex flex-col text-black gap-3 md:gap-6"}>
+    <div className={"flex flex-col gap-3 text-black md:gap-6"}>
       <div
         className={
-          "grid grid-cols-10 gap-3 md:gap-5 md:text-3xl lg:text-4xl text-lg font-medium md:font-normal z-10"
+          "z-10 grid grid-cols-10 gap-3 text-lg font-medium md:gap-5 md:text-3xl md:font-normal lg:text-4xl"
         }
       >
         <UserCurrentLocation
@@ -45,7 +45,7 @@ export default function LocationsContainer({
           country={{ city: "paris, france", countryCode: "FR" }}
           inputCity={"paris"}
           className={
-            "col-span-4 md:col-span-3 border-emerald-700 hover:bg-emerald-700"
+            "col-span-4 border-emerald-700 hover:bg-emerald-700 md:col-span-3"
           }
           selectedClassName={"bg-emerald-700"}
           unselectedClassName={"text-emerald-700"}
@@ -57,7 +57,7 @@ export default function LocationsContainer({
           country={{ city: "tokyo, japan", countryCode: "JP" }}
           inputCity={"tokyo"}
           className={
-            "col-span-4 md:col-span-3 border-orange-400 hover:text-orange-400"
+            "col-span-4 border-orange-400 hover:text-orange-400 md:col-span-3"
           }
           selectedClassName={"text-orange-400"}
           unselectedClassName={"bg-orange-400"}
@@ -69,7 +69,7 @@ export default function LocationsContainer({
           country={{ city: "cape town, south africa", countryCode: "ZA" }}
           inputCity={"cape town"}
           className={
-            "col-span-6 md:col-span-5 border-yellow-400 hover:text-yellow-400"
+            "col-span-6 border-yellow-400 hover:text-yellow-400 md:col-span-5"
           }
           selectedClassName={"text-yellow-400"}
           unselectedClassName={"bg-yellow-400"}
@@ -81,7 +81,7 @@ export default function LocationsContainer({
           country={{ city: "washington, usa", countryCode: "US" }}
           inputCity={"washington"}
           className={
-            "col-span-5 md:col-span-5 border-red-600 hover:text-red-600"
+            "col-span-5 border-red-600 hover:text-red-600 md:col-span-5"
           }
           selectedClassName={"text-red-600"}
           unselectedClassName={"bg-red-600"}
@@ -93,7 +93,7 @@ export default function LocationsContainer({
           country={{ city: "dublin, ireland", countryCode: "IE" }}
           inputCity={"dublin"}
           className={
-            "col-span-5 md:col-span-3 border-blue-600 hover:text-blue-600"
+            "col-span-5 border-blue-600 hover:text-blue-600 md:col-span-3"
           }
           selectedClassName={"text-blue-600"}
           unselectedClassName={"bg-blue-600"}
@@ -109,7 +109,7 @@ export default function LocationsContainer({
           className={`${selectedCity.city && "pulse-success"} ${
             error &&
             "bounce-error shadow-[0px_0px_3px_6px_rgba(239,68,68,0.25)]"
-          } col-span-4 md:col-span-3 lg:col-span-2 border-emerald-500 bg-emerald-500 text-white border-2 md:border-3 rounded-full hover:bg-transparent hover:text-emerald-500 ease-in-out duration-300 text-center hover:placeholder:text-white cursor-pointer transition-all`}
+          } col-span-4 cursor-pointer rounded-full border-2 border-emerald-500 bg-emerald-500 text-center text-white transition-all duration-300 ease-in-out hover:bg-transparent hover:text-emerald-500 hover:placeholder:text-white md:col-span-3 md:border-3 lg:col-span-2`}
           action={(data) => {
             if (!selectedCity.city) {
               if (error) return;
@@ -149,10 +149,10 @@ export default function LocationsContainer({
 const SubmitButton = ({ pendingStarted }: { pendingStarted: boolean }) => {
   const { pending } = useFormStatus();
   return (
-    <button disabled={pending} className={"w-full h-full"}>
+    <button disabled={pending} className={"h-full w-full"}>
       {pending || pendingStarted ? (
-        <div className={"flex justify-center items-center py-1 h-6"}>
-          <LoadingCircle className={"w-4 h-4 md:w-7 md:h-7"} />
+        <div className={"flex h-6 items-center justify-center py-1"}>
+          <LoadingCircle className={"h-4 w-4 md:h-7 md:w-7"} />
         </div>
       ) : (
         "generate!"
