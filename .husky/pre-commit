@@ -1,1 +1,1 @@
-prettier --write . && git add -A .
+lint-staged
