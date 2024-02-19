@@ -10,7 +10,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*": "prettier --write"
+    "*": "prettier --write ."
   },
   "dependencies": {
     "@amcharts/amcharts4-geodata": "^4.1.27",
