@@ -17,6 +17,8 @@
     "@amcharts/amcharts5": "^5.4.7",
     "@clerk/nextjs": "^4.29.5",
     "@clerk/themes": "^1.7.9",
+    "@commitlint/cli": "^18.6.1",
+    "@commitlint/config-conventional": "^18.6.2",
     "@plaiceholder/next": "^3.0.0",
     "@prisma/client": "^5.9.1",
     "@radix-ui/react-alert-dialog": "^1.0.5",

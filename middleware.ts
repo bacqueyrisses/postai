@@ -28,6 +28,7 @@ export default authMiddleware({
 
     // handle new signed in/signed-up users & that have saved a postcard
     const newCookieValues = request.cookies.get("newFavorite")?.value;
+
     // redirect new signed in/signed-up users & that have not saved a postcard
     if (!newCookieValues) return NextResponse.next();
 
