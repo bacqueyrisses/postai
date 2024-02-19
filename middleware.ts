@@ -22,8 +22,8 @@ export default authMiddleware({
       return nextResponse;
     }
 
-    // redirect users not signed in & that have not saved a postcard
-    if (!auth.userId && !image && !city && !countryCode)
+    // redirect users not signed in
+    if (!auth.userId)
       return NextResponse.redirect(new URL(`/sign-in`, request.url));
 
     // handle new signed in/signed-up users & that have saved a postcard
