@@ -28,7 +28,7 @@
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "@vercel/blob": "^0.22.0",
+    "@vercel/blob": "^0.0.2",
     "@vercel/kv": "^1.0.1",
     "@vercel/postgres": "^0.4.1",
     "autoprefixer": "10.4.15",
@@ -67,8 +67,8 @@
     "@types/uuid": "^9.0.7",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "prettier": "^3.0.2",
-    "prettier-plugin-tailwindcss": "^0.5.3",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "prisma": "^5.9.1",
     "typescript": "^5.3.3"
   }
